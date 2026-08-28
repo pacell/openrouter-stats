@@ -29,9 +29,11 @@ import statistics
 import sys
 from typing import Any, Dict, List
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from openrouter_prices import (  # noqa: E402
-    EFFECTIVE_SHAPE, EFFECTIVE_URL, MODELS_URL, OUT_DIR, get_json, list_models)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from openrouter_prices import OUT_DIR  # noqa: E402
+from openrouter_stats.api import (  # noqa: E402
+    EFFECTIVE_SHAPE, EFFECTIVE_URL, MODELS_URL, get_json)
+from openrouter_stats.pull import models as list_models  # noqa: E402
 
 SAMPLE = 60
 

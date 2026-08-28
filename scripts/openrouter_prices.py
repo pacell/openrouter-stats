@@ -1,643 +1,184 @@
 #!/usr/bin/env python3
-"""Fetch OpenRouter's historical **effective** token prices for every model.
+"""Fetch OpenRouter's model, pricing, performance and reliability data.
 
-OpenRouter publishes two different prices per model endpoint:
+The headline series is the **effective** token price — the average $/M tokens
+customers actually pay once prompt caching, tiered overrides and provider
+discounts are applied, which is usually well below the posted rate.
 
-* the **listed** price — what the provider posts on the model page, and
-* the **effective** price — the average $/M tokens customers *actually* pay,
-  once prompt caching, tiered/long-context overrides and provider discounts
-  are taken into account.  It is usually well below the listed price.
-
-The effective series is the one behind the "Pricing" chart on a model page and
-is served by ``/api/frontend/v1/stats/effective-pricing`` as a daily, per
-provider-endpoint time series.  This script walks every model in
-``/api/v1/models`` and flattens that series into CSV/JSON.
+Everything written here is either pulled verbatim from the API
+(``openrouter_stats/pull.py``) or computed by us (``openrouter_stats/derive.py``).
+The split is enforced by that module boundary and documented column by column in
+``data/openrouter/README.md``.
 
 Standard library only (Python 3.10+), in keeping with the rest of the repo.
 
 Usage
 -----
-    python3 scripts/openrouter_prices.py                 # effective, range=all
-    python3 scripts/openrouter_prices.py --range 3m
-    python3 scripts/openrouter_prices.py --listed        # also pull listed prices
-    python3 scripts/openrouter_prices.py --models anthropic/claude-sonnet-4
+    python3 scripts/openrouter_prices.py --all         # everything
+    python3 scripts/openrouter_prices.py               # prices only
+    python3 scripts/openrouter_prices.py --activity --performance
+    python3 scripts/openrouter_prices.py --models anthropic/claude-sonnet-4 --all
 """
 
 from __future__ import annotations
 
 import argparse
 import concurrent.futures as futures
-import csv
-import gzip
-import json
 import os
-import statistics
 import sys
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
-from typing import Any, Dict, Iterable, List, Optional, Tuple
 
-BASE = "https://openrouter.ai"
-MODELS_URL = f"{BASE}/api/v1/models"
-EFFECTIVE_URL = f"{BASE}/api/frontend/v1/stats/effective-pricing"
-LISTED_URL = f"{BASE}/api/frontend/v1/stats/listed-pricing"
-ACTIVITY_URL = f"{BASE}/api/frontend/v1/stats/model-activity"
-# Performance series, all keyed by "<endpointId>::<colo>" and all median by
-# default. OpenRouter's own labels: LATENCY is "Time to First Token", E2E is
-# "Time to Last Token", throughput is average output tokens per second.
-PERF_URLS = {
-    "throughput_tok_s": f"{BASE}/api/frontend/v1/stats/throughput-comparison",
-    "ttft_ms": f"{BASE}/api/frontend/v1/stats/latency-comparison",
-    "e2e_ms": f"{BASE}/api/frontend/v1/stats/latency-e2e-comparison",
-}
-PERCENTILES = ("p50", "p90", "p95", "p99")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Shape versions the OpenRouter front-end currently requests. They pin the
-# response schema, so bump them only alongside the parsing code below.
-EFFECTIVE_SHAPE = "v7"
-LISTED_SHAPE = "v4"
-RANGES = ("3d", "1w", "1m", "3m", "1y", "all")
+from openrouter_stats import derive, pull, storage  # noqa: E402
+from openrouter_stats.api import PERCENTILES, RANGES  # noqa: E402
 
 OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                        "data", "openrouter")
 
-USER_AGENT = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-              "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
-TIMEOUT = 60
-MAX_RETRIES = 4
-
-
-# --------------------------------------------------------------------------- #
-# HTTP
-# --------------------------------------------------------------------------- #
-
-def get_json(url: str, params: Optional[Dict[str, str]] = None) -> Optional[Any]:
-    """GET a JSON document, retrying transient failures with backoff."""
-    if params:
-        url = f"{url}?{urllib.parse.urlencode(params)}"
-    headers = {
-        "User-Agent": USER_AGENT,
-        "Accept": "application/json",
-        "Accept-Encoding": "gzip",
-    }
-    delay = 2.0
-    last_err: Optional[Exception] = None
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-                raw = resp.read()
-                if resp.headers.get("Content-Encoding") == "gzip":
-                    raw = gzip.decompress(raw)
-                return json.loads(raw.decode("utf-8", errors="replace"))
-        except urllib.error.HTTPError as e:
-            last_err = e
-            if e.code in (400, 403, 404, 410):  # won't fix itself on a retry
-                return None
-        except Exception as e:  # noqa: BLE001 - network errors of many kinds
-            last_err = e
-        if attempt < MAX_RETRIES:
-            time.sleep(delay)
-            delay *= 2
-    print(f"  ! giving up on {url}: {last_err}", file=sys.stderr)
-    return None
-
-
-# --------------------------------------------------------------------------- #
-# Model catalogue
-# --------------------------------------------------------------------------- #
-
-def list_models() -> List[Dict[str, Any]]:
-    """Return every model with the (permaslug, variant) pair the stats API wants.
-
-    ``canonical_slug`` is the permaslug; the variant is the ``:suffix`` on the
-    model id (``:free``, ``:batch``), defaulting to ``standard``.
-    """
-    payload = get_json(MODELS_URL)
-    if not payload:
-        raise SystemExit("could not fetch the OpenRouter model list")
-    out = []
-    for m in payload["data"]:
-        model_id = m["id"]
-        variant = model_id.split(":", 1)[1] if ":" in model_id else "standard"
-        out.append({
-            "model_id": model_id,
-            "permaslug": m["canonical_slug"],
-            "variant": variant,
-            "name": m.get("name") or model_id,
-            "listed_prompt_usd_per_mtok": _per_mtok(m.get("pricing", {}).get("prompt")),
-            "listed_completion_usd_per_mtok": _per_mtok(m.get("pricing", {}).get("completion")),
-        })
-    return out
-
-
-def _per_mtok(price: Any) -> Optional[float]:
-    """/api/v1/models quotes $/token; the stats API quotes $/M tokens."""
-    if price is None or price == "":
-        return None
-    try:
-        return float(price) * 1_000_000
-    except (TypeError, ValueError):
-        return None
-
-
-# --------------------------------------------------------------------------- #
-# Effective prices
-# --------------------------------------------------------------------------- #
-
-def fetch_effective(model: Dict[str, Any], rng: str) -> Optional[Dict[str, Any]]:
-    payload = get_json(EFFECTIVE_URL, {
-        "permaslug": model["permaslug"],
-        "variant": model["variant"],
-        "shape": EFFECTIVE_SHAPE,
-        "range": rng,
-    })
-    return payload.get("data") if isinstance(payload, dict) else None
-
-
-def flatten_effective(model: Dict[str, Any], data: Dict[str, Any]
-                      ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-    """Split one model's response into (daily rows, per-provider summary rows).
-
-    ``inputChartData``/``outputChartData`` are parallel daily series keyed by
-    endpoint id, so they are joined on (date, endpoint id) — an endpoint that
-    served no traffic on a day is simply absent from that day's bucket.
-    """
-    summaries = {s["endpointId"]: s for s in data.get("providerSummaries", [])}
-    names = data.get("endpointNames", {}) or {}
-    slugs = data.get("endpointProviderSlugs", {}) or {}
-
-    outputs: Dict[str, Dict[str, float]] = {}
-    for point in data.get("outputChartData", []):
-        outputs[point["x"]] = point.get("y") or {}
-
-    daily: List[Dict[str, Any]] = []
-    for point in data.get("inputChartData", []):
-        date = str(point["x"])[:10]
-        out_bucket = outputs.get(point["x"], {})
-        for endpoint_id, in_price in (point.get("y") or {}).items():
-            summary = summaries.get(endpoint_id, {})
-            daily.append({
-                "date": date,
-                "model_id": model["model_id"],
-                "permaslug": model["permaslug"],
-                "variant": model["variant"],
-                "endpoint_id": endpoint_id,
-                "provider_name": summary.get("providerName") or names.get(endpoint_id, ""),
-                "provider_slug": summary.get("providerSlug") or slugs.get(endpoint_id, ""),
-                "effective_input_usd_per_mtok": in_price,
-                "effective_output_usd_per_mtok": out_bucket.get(endpoint_id),
-            })
-
-    summary_rows = [{
-        "model_id": model["model_id"],
-        "permaslug": model["permaslug"],
-        "variant": model["variant"],
-        "endpoint_id": s.get("endpointId"),
-        "provider_name": s.get("providerName"),
-        "provider_slug": s.get("providerSlug"),
-        "effective_input_usd_per_mtok": s.get("effectiveInputPrice"),
-        "effective_output_usd_per_mtok": s.get("effectiveOutputPrice"),
-        "cache_hit_rate": s.get("cacheHitRate"),
-        "total_tokens": s.get("totalTokens"),
-    } for s in data.get("providerSummaries", [])]
-
-    return daily, summary_rows
-
-
-def model_level_daily(model: Dict[str, Any], data: Dict[str, Any],
-                      daily: Iterable[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Collapse the per-endpoint daily series to one price per model per day.
-
-    The API only reports token volumes per endpoint over the whole window, not
-    per day, so endpoints are weighted by their window-wide ``totalTokens``
-    (renormalised over whichever endpoints were live that day). Where no volume
-    is known the endpoints are weighted equally.
-
-    The two ``*_current`` listed columns are today's headline price from
-    ``/api/v1/models``, repeated on every row as a reference line — they are a
-    snapshot, not history. Use ``--listed`` for the real listed-price change log.
-    """
-    weights = {s["endpointId"]: float(s.get("totalTokens") or 0)
-               for s in data.get("providerSummaries", [])}
-
-    by_date: Dict[str, List[Dict[str, Any]]] = {}
-    for row in daily:
-        by_date.setdefault(row["date"], []).append(row)
-
-    rows = []
-    for date in sorted(by_date):
-        entries = by_date[date]
-        rows.append({
-            "date": date,
-            "model_id": model["model_id"],
-            "permaslug": model["permaslug"],
-            "variant": model["variant"],
-            "n_endpoints": len(entries),
-            "effective_input_usd_per_mtok": _weighted(
-                entries, "effective_input_usd_per_mtok", weights),
-            "effective_output_usd_per_mtok": _weighted(
-                entries, "effective_output_usd_per_mtok", weights),
-            "listed_input_usd_per_mtok_current": model["listed_prompt_usd_per_mtok"],
-            "listed_output_usd_per_mtok_current": model["listed_completion_usd_per_mtok"],
-        })
-    return rows
-
-
-def _weighted(entries: List[Dict[str, Any]], field: str,
-              weights: Dict[str, float]) -> Optional[float]:
-    pairs = [(e[field], weights.get(e["endpoint_id"], 0.0))
-             for e in entries if e.get(field) is not None]
-    if not pairs:
-        return None
-    total = sum(w for _, w in pairs)
-    if total <= 0:  # no volume reported — fall back to an unweighted mean
-        return round(sum(v for v, _ in pairs) / len(pairs), 6)
-    return round(sum(v * w for v, w in pairs) / total, 6)
-
-
-# --------------------------------------------------------------------------- #
-# Performance (throughput / latency)
-# --------------------------------------------------------------------------- #
-
-def fetch_performance(model: Dict[str, Any], rng: str, percentile: str,
-                      names: Dict[str, str], slugs: Dict[str, str]
-                      ) -> List[Dict[str, Any]]:
-    """Daily p50 throughput, time-to-first-token and time-to-last-token.
-
-    Three separate series, joined on (date, endpoint, colo). ``percentile`` is
-    omitted from the request for p50 because that is the API's own default.
-    Endpoint names come from the effective-pricing response we already hold;
-    an endpoint that served no billable traffic falls back to its raw id.
-    """
-    merged: Dict[Tuple[str, str], Dict[str, Any]] = {}
-    for column, url in PERF_URLS.items():
-        params = {"permaslug": model["permaslug"], "variant": model["variant"],
-                  "timeRange": rng}
-        if percentile != "p50":
-            params["percentile"] = percentile
-        payload = get_json(url, params)
-        series = payload.get("data") if isinstance(payload, dict) else None
-        for point in series or []:
-            date = str(point["x"])[:10]
-            for key, value in (point.get("y") or {}).items():
-                endpoint_id, _, colo = key.partition("::")
-                row = merged.setdefault((date, key), {
-                    "date": date,
-                    "model_id": model["model_id"],
-                    "permaslug": model["permaslug"],
-                    "variant": model["variant"],
-                    "endpoint_id": endpoint_id,
-                    "colo": colo or "default",
-                    "provider_name": names.get(endpoint_id, ""),
-                    "provider_slug": slugs.get(endpoint_id, ""),
-                    "percentile": percentile,
-                    "throughput_tok_s": None,
-                    "ttft_ms": None,
-                    "e2e_ms": None,
-                })
-                row[column] = value
-    return list(merged.values())
-
-
-def best_providers(perf_rows: List[Dict[str, Any]],
-                   summary_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Rank each model's endpoints on speed, alongside what they actually cost.
-
-    Daily points are collapsed with a median so one bad day cannot decide the
-    ranking, and the effective prices are joined on so "best" can be read as
-    fast, cheap, or the trade-off between them.
-    """
-    price = {(r["model_id"], r["endpoint_id"]): r for r in summary_rows}
-
-    grouped: Dict[Tuple[str, str, str], List[Dict[str, Any]]] = {}
-    for r in perf_rows:
-        grouped.setdefault((r["model_id"], r["endpoint_id"], r["colo"]), []).append(r)
-
-    out = []
-    for (model_id, endpoint_id, colo), rows in grouped.items():
-        p = price.get((model_id, endpoint_id), {})
-        row = {
-            "model_id": model_id,
-            "endpoint_id": endpoint_id,
-            "colo": colo,
-            "provider_name": rows[0]["provider_name"] or p.get("provider_name") or "",
-            "provider_slug": rows[0]["provider_slug"] or p.get("provider_slug") or "",
-            "percentile": rows[0]["percentile"],
-            "days_observed": len(rows),
-            "effective_input_usd_per_mtok": p.get("effective_input_usd_per_mtok"),
-            "effective_output_usd_per_mtok": p.get("effective_output_usd_per_mtok"),
-            "total_tokens": p.get("total_tokens"),
-        }
-        for column in ("throughput_tok_s", "ttft_ms", "e2e_ms"):
-            vals = [r[column] for r in rows if r[column] is not None]
-            row[column] = round(statistics.median(vals), 2) if vals else None
-        out.append(row)
-
-    # rank within each model: fastest writer first, then quickest to respond
-    by_model: Dict[str, List[Dict[str, Any]]] = {}
-    for r in out:
-        by_model.setdefault(r["model_id"], []).append(r)
-    for rows in by_model.values():
-        for rank, r in enumerate(sorted(
-                rows, key=lambda x: -(x["throughput_tok_s"] or 0)), start=1):
-            r["throughput_rank"] = rank
-        for rank, r in enumerate(sorted(
-                rows, key=lambda x: (x["ttft_ms"] is None, x["ttft_ms"] or 0)), start=1):
-            r["ttft_rank"] = rank
-    return out
-
-
-# --------------------------------------------------------------------------- #
-# Listed prices (optional companion series)
-# --------------------------------------------------------------------------- #
-
-def fetch_listed(model: Dict[str, Any], rng: str) -> List[Dict[str, Any]]:
-    payload = get_json(LISTED_URL, {
-        "permaslug": model["permaslug"],
-        "variant": model["variant"],
-        "shape": LISTED_SHAPE,
-        "range": rng,
-    })
-    data = payload.get("data") if isinstance(payload, dict) else None
-    if not data:
-        return []
-    rows = []
-    for series in data.get("series", []):
-        # Each field is a sparse list of change points, not a dense daily series.
-        for field, column in (("input", "listed_input_usd_per_mtok"),
-                              ("output", "listed_output_usd_per_mtok"),
-                              ("cacheRead", "listed_cache_read_usd_per_mtok"),
-                              ("cacheWrite", "listed_cache_write_usd_per_mtok"),
-                              ("discount", "discount_fraction")):
-            for point in series.get(field) or []:
-                rows.append({
-                    "changed_at": point.get("at"),
-                    "model_id": model["model_id"],
-                    "permaslug": model["permaslug"],
-                    "variant": model["variant"],
-                    "endpoint_id": series.get("endpointId"),
-                    "provider_name": series.get("providerName"),
-                    "provider_slug": series.get("providerSlug"),
-                    "field": column,
-                    "value": point.get("value"),
-                })
-    return rows
-
-
-# --------------------------------------------------------------------------- #
-# Token mix (prompt/completion sequence lengths)
-# --------------------------------------------------------------------------- #
-
-def fetch_activity(model: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Daily token volumes for one model, split prompt vs completion.
-
-    ``model-activity`` takes no range and always returns the last ~31 days —
-    much shorter than the price history, so the blend below is only defined
-    over that window.
-    """
-    payload = get_json(ACTIVITY_URL, {
-        "permaslug": model["permaslug"],
-        "variant": model["variant"],
-    })
-    data = payload.get("data") if isinstance(payload, dict) else None
-    if not data:
-        return []
-
-    rows = []
-    for a in data.get("analytics", []):
-        requests = a.get("count") or 0
-        prompt = a.get("total_prompt_tokens") or 0
-        completion = a.get("total_completion_tokens") or 0
-        cached = a.get("total_native_tokens_cached") or 0
-        reasoning = a.get("total_native_tokens_reasoning") or 0
-        rows.append({
-            "date": str(a["date"])[:10],
-            "model_id": model["model_id"],
-            "permaslug": model["permaslug"],
-            "variant": model["variant"],
-            "requests": requests,
-            "prompt_tokens": prompt,
-            "completion_tokens": completion,
-            "cached_prompt_tokens": cached,
-            "reasoning_tokens": reasoning,
-            "avg_prompt_tokens_per_request": _div(prompt, requests, 1),
-            "avg_completion_tokens_per_request": _div(completion, requests, 1),
-            "avg_reasoning_tokens_per_request": _div(reasoning, requests, 1),
-            "completion_to_prompt_ratio": _div(completion, prompt, 4),
-            "cache_hit_share_of_prompt": _div(cached, prompt, 4),
-            "tool_calls": a.get("total_tool_calls") or 0,
-            "media_prompt_requests": a.get("num_media_prompt") or 0,
-        })
-    return rows
-
-
-def _div(num: float, den: float, places: int) -> Optional[float]:
-    return round(num / den, places) if den else None
-
-
-def blend(model_rows: List[Dict[str, Any]], activity_rows: List[Dict[str, Any]]
-          ) -> List[Dict[str, Any]]:
-    """Join effective prices to the token mix to get a real blended price.
-
-    The stats API never blends: input and output are separate series, so a
-    single headline $/M figure only exists once you weight them by the actual
-    prompt:completion split, which is what this does.
-    """
-    prices = {(r["model_id"], r["date"]): r for r in model_rows}
-    out = []
-    for a in activity_rows:
-        p = prices.get((a["model_id"], a["date"]))
-        if not p:
-            continue
-        ein = p["effective_input_usd_per_mtok"]
-        eout = p["effective_output_usd_per_mtok"]
-        if ein is None or eout is None:
-            continue
-        prompt, completion = a["prompt_tokens"], a["completion_tokens"]
-        total = prompt + completion
-        if not total:
-            continue
-        cost = (prompt * ein + completion * eout) / 1_000_000
-        lin = p["listed_input_usd_per_mtok_current"]
-        lout = p["listed_output_usd_per_mtok_current"]
-        listed_cost = ((prompt * lin + completion * lout) / 1_000_000
-                       if lin is not None and lout is not None else None)
-        out.append({
-            "date": a["date"],
-            "model_id": a["model_id"],
-            "variant": a["variant"],
-            "requests": a["requests"],
-            "avg_prompt_tokens_per_request": a["avg_prompt_tokens_per_request"],
-            "avg_completion_tokens_per_request": a["avg_completion_tokens_per_request"],
-            "completion_to_prompt_ratio": a["completion_to_prompt_ratio"],
-            "cache_hit_share_of_prompt": a["cache_hit_share_of_prompt"],
-            "effective_input_usd_per_mtok": ein,
-            "effective_output_usd_per_mtok": eout,
-            "blended_effective_usd_per_mtok": round(cost / total * 1_000_000, 6),
-            "blended_listed_usd_per_mtok": (round(listed_cost / total * 1_000_000, 6)
-                                            if listed_cost is not None else None),
-            "effective_usd_per_request": round(cost / a["requests"], 8) if a["requests"] else None,
-        })
-    return out
-
-
-# --------------------------------------------------------------------------- #
-# Output
-# --------------------------------------------------------------------------- #
-
-def write_csv(path: str, rows: List[Dict[str, Any]], fields: List[str]) -> None:
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
-        w.writeheader()
-        for r in rows:
-            w.writerow(r)
-    print(f"  wrote {len(rows):>7,} rows -> {os.path.relpath(path)}")
-
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--range", default="all", choices=RANGES,
                     help="history window to request (default: all)")
     ap.add_argument("--models", nargs="*", default=None,
                     help="limit to these model ids (default: every model)")
+    ap.add_argument("--all", action="store_true", help="enable every section below")
+    ap.add_argument("--catalogue", action="store_true",
+                    help="per-endpoint listed pricing, limits, data policy, p50-p99")
     ap.add_argument("--activity", action="store_true",
-                    help="also pull daily prompt/completion token volumes (last ~31 "
-                         "days) and derive per-request sequence lengths and a "
-                         "blended price")
+                    help="daily token volumes, sequence lengths and blended price")
     ap.add_argument("--performance", action="store_true",
-                    help="also pull daily throughput / time-to-first-token / "
-                         "time-to-last-token per provider endpoint, and rank "
-                         "providers per model")
+                    help="daily throughput / TTFT / time-to-last-token, ranked")
+    ap.add_argument("--reliability", action="store_true",
+                    help="uptime, cache hit rate, tool-call and structured-output errors")
+    ap.add_argument("--quality", action="store_true", help="benchmark scores")
+    ap.add_argument("--apps", action="store_true", help="top apps and datacenters")
+    ap.add_argument("--listed", action="store_true", help="listed-price change log")
     ap.add_argument("--percentile", default="p50", choices=PERCENTILES,
                     help="percentile for the performance series (default: p50)")
-    ap.add_argument("--listed", action="store_true",
-                    help="also pull the listed-price change log for comparison")
     ap.add_argument("--workers", type=int, default=8, help="parallel requests")
     ap.add_argument("--out", default=OUT_DIR, help="output directory")
-    ap.add_argument("--raw", action="store_true",
-                    help="also dump the raw API responses to raw_effective.json")
     args = ap.parse_args()
 
-    models = list_models()
+    if args.all:
+        for flag in ("catalogue", "activity", "performance", "reliability",
+                     "quality", "apps", "listed"):
+            setattr(args, flag, True)
+
+    models = pull.models()
     if args.models:
         wanted = set(args.models)
         models = [m for m in models if m["model_id"] in wanted]
         missing = wanted - {m["model_id"] for m in models}
         if missing:
             print(f"! unknown model ids: {', '.join(sorted(missing))}", file=sys.stderr)
-    print(f"fetching effective prices (range={args.range}) for {len(models)} models")
+    print(f"fetching {len(models)} models (range={args.range})")
 
-    daily_rows: List[Dict[str, Any]] = []
-    summary_rows: List[Dict[str, Any]] = []
-    model_rows: List[Dict[str, Any]] = []
-    listed_rows: List[Dict[str, Any]] = []
-    activity_rows: List[Dict[str, Any]] = []
-    perf_rows: List[Dict[str, Any]] = []
-    raw: Dict[str, Any] = {}
-    no_data: List[str] = []
+    bins = {k: [] for k in (
+        "eff_daily", "eff_summary", "model_daily", "listed", "activity", "mix",
+        "perf", "cache", "tool_err", "struct_err", "uptime", "bench", "apps",
+        "colos", "endpoints")}
+    no_data = []
 
-    def work(model: Dict[str, Any]):
-        data = fetch_effective(model, args.range)
-        listed = fetch_listed(model, args.range) if args.listed else []
-        activity = fetch_activity(model) if args.activity else []
-        perf = []
+    def work(model):
+        eff = pull.effective(model, args.range)
+        got = {"model": model, "eff": eff}
+        names = (eff or {}).get("endpointNames", {}) or {}
+        slugs = (eff or {}).get("endpointProviderSlugs", {}) or {}
+        if args.catalogue:
+            got["endpoints"] = pull.endpoints(model)
+        if args.listed:
+            got["listed"] = pull.listed(model, args.range)
+        if args.activity:
+            got["activity"] = pull.activity(model)
         if args.performance:
-            names = (data or {}).get("endpointNames", {}) or {}
-            slugs = (data or {}).get("endpointProviderSlugs", {}) or {}
-            perf = fetch_performance(model, args.range, args.percentile, names, slugs)
-        return model, data, listed, activity, perf
+            got["perf"] = pull.performance(model, args.range, args.percentile,
+                                           names, slugs)
+        if args.reliability:
+            got["cache"] = pull.cache_hit_rate(model, args.range)
+            got["tool_err"] = pull.tool_call_errors(model, args.range)
+            got["struct_err"] = pull.structured_output_errors(model, args.range)
+            got["uptime"] = pull.uptime(model)
+        if args.quality:
+            got["bench"] = pull.benchmarks(model)
+        if args.apps:
+            got["apps"] = pull.top_apps(model)
+            got["colos"] = pull.top_colos(model)
+        return got
 
     done = 0
     with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for model, data, listed, activity, perf in pool.map(work, models):
+        for got in pool.map(work, models):
             done += 1
-            if done % 25 == 0 or done == len(models):
+            if done % 50 == 0 or done == len(models):
                 print(f"  {done}/{len(models)}")
-            listed_rows.extend(listed)
-            activity_rows.extend(activity)
-            perf_rows.extend(perf)
-            if not data or not data.get("inputChartData"):
+            model, eff = got["model"], got["eff"]
+            for key in ("listed", "endpoints", "perf", "cache", "tool_err",
+                        "struct_err", "uptime", "bench", "apps", "colos"):
+                bins[key].extend(got.get(key) or [])
+            if got.get("activity"):
+                bins["activity"].extend(got["activity"])
+                bins["mix"].extend(derive.token_mix(got["activity"]))
+            if not eff or not eff.get("inputChartData"):
                 no_data.append(model["model_id"])
                 continue
-            if args.raw:
-                raw[model["model_id"]] = data
-            daily, summaries = flatten_effective(model, data)
-            daily_rows.extend(daily)
-            summary_rows.extend(summaries)
-            model_rows.extend(model_level_daily(model, data, daily))
+            daily, summary = pull.effective_rows(model, eff)
+            bins["eff_daily"].extend(daily)
+            bins["eff_summary"].extend(summary)
+            bins["model_daily"].extend(derive.model_daily_prices(model, eff, daily))
 
-    daily_rows.sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"] or ""))
-    model_rows.sort(key=lambda r: (r["model_id"], r["date"]))
-    summary_rows.sort(key=lambda r: (r["model_id"], -(r["total_tokens"] or 0)))
+    print("\nwriting to", os.path.relpath(args.out))
+    storage.write(args.out, "model_catalogue", models)
+    bins["eff_daily"].sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"] or ""))
+    bins["model_daily"].sort(key=lambda r: (r["model_id"], r["date"]))
+    bins["eff_summary"].sort(key=lambda r: (r["model_id"], -(r["total_tokens"] or 0)))
+    storage.write(args.out, "effective_prices_daily_by_endpoint", bins["eff_daily"])
+    storage.write(args.out, "effective_prices_daily_by_model", bins["model_daily"])
+    storage.write(args.out, "effective_prices_summary", bins["eff_summary"])
 
-    write_csv(os.path.join(args.out, "effective_prices_daily_by_endpoint.csv"), daily_rows,
-              ["date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
-               "provider_slug", "effective_input_usd_per_mtok",
-               "effective_output_usd_per_mtok"])
-    write_csv(os.path.join(args.out, "effective_prices_daily_by_model.csv"), model_rows,
-              ["date", "model_id", "permaslug", "variant", "n_endpoints",
-               "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
-               "listed_input_usd_per_mtok_current",
-               "listed_output_usd_per_mtok_current"])
-    write_csv(os.path.join(args.out, "effective_prices_summary.csv"), summary_rows,
-              ["model_id", "permaslug", "variant", "endpoint_id", "provider_name",
-               "provider_slug", "effective_input_usd_per_mtok",
-               "effective_output_usd_per_mtok", "cache_hit_rate", "total_tokens"])
+    if args.catalogue:
+        storage.write(args.out, "provider_catalogue", pull.providers())
+        bins["endpoints"].sort(key=lambda r: (r["model_id"], r["provider_name"] or ""))
+        storage.write(args.out, "endpoint_catalogue", bins["endpoints"])
     if args.activity:
-        activity_rows.sort(key=lambda r: (r["model_id"], r["date"]))
-        write_csv(os.path.join(args.out, "token_mix_daily_by_model.csv"), activity_rows,
-                  ["date", "model_id", "permaslug", "variant", "requests",
-                   "prompt_tokens", "completion_tokens", "cached_prompt_tokens",
-                   "reasoning_tokens", "avg_prompt_tokens_per_request",
-                   "avg_completion_tokens_per_request",
-                   "avg_reasoning_tokens_per_request", "completion_to_prompt_ratio",
-                   "cache_hit_share_of_prompt", "tool_calls", "media_prompt_requests"])
-        blended = blend(model_rows, activity_rows)
+        bins["mix"].sort(key=lambda r: (r["model_id"], r["date"]))
+        storage.write(args.out, "token_mix_daily_by_model", bins["mix"])
+        blended = derive.blended_prices(bins["model_daily"], bins["mix"])
         blended.sort(key=lambda r: (r["model_id"], r["date"]))
-        write_csv(os.path.join(args.out, "blended_price_daily_by_model.csv"), blended,
-                  ["date", "model_id", "variant", "requests",
-                   "avg_prompt_tokens_per_request", "avg_completion_tokens_per_request",
-                   "completion_to_prompt_ratio", "cache_hit_share_of_prompt",
-                   "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
-                   "blended_effective_usd_per_mtok", "blended_listed_usd_per_mtok",
-                   "effective_usd_per_request"])
+        storage.write(args.out, "blended_price_daily_by_model", blended)
     if args.performance:
-        perf_rows.sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"]))
-        write_csv(os.path.join(args.out, "performance_daily_by_endpoint.csv"), perf_rows,
-                  ["date", "model_id", "permaslug", "variant", "endpoint_id", "colo",
-                   "provider_name", "provider_slug", "percentile",
-                   "throughput_tok_s", "ttft_ms", "e2e_ms"])
-        best = best_providers(perf_rows, summary_rows)
+        bins["perf"].sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"]))
+        storage.write(args.out, "performance_daily_by_endpoint", bins["perf"])
+        best = derive.provider_ranking(bins["perf"], bins["eff_summary"])
         best.sort(key=lambda r: (r["model_id"], r["throughput_rank"]))
-        write_csv(os.path.join(args.out, "provider_performance_summary.csv"), best,
-                  ["model_id", "provider_name", "provider_slug", "colo", "endpoint_id",
-                   "percentile", "days_observed", "throughput_tok_s", "ttft_ms",
-                   "e2e_ms", "throughput_rank", "ttft_rank",
-                   "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
-                   "total_tokens"])
+        storage.write(args.out, "provider_performance_summary", best)
+    if args.reliability:
+        for stem, key in (("cache_hit_rate_daily_by_endpoint", "cache"),
+                          ("tool_call_error_rate_daily", "tool_err"),
+                          ("structured_output_error_rate_daily", "struct_err")):
+            bins[key].sort(key=lambda r: (r["model_id"], r["date"]))
+            storage.write(args.out, stem, bins[key])
+        bins["uptime"].sort(key=lambda r: (r["model_id"], r["timestamp"] or ""))
+        storage.write(args.out, "model_uptime_recent", bins["uptime"])
+    if args.quality:
+        bins["bench"].sort(key=lambda r: (r["model_id"], r["benchmark_type"] or "",
+                                          -(r["score"] or 0)))
+        storage.write(args.out, "benchmark_scores", bins["bench"])
+    if args.apps:
+        storage.write(args.out, "top_apps_by_model", bins["apps"])
+        storage.write(args.out, "top_colos_by_model", bins["colos"])
     if args.listed:
-        write_csv(os.path.join(args.out, "listed_price_changes.csv"), listed_rows,
-                  ["changed_at", "model_id", "permaslug", "variant", "endpoint_id",
-                   "provider_name", "provider_slug", "field", "value"])
-    if args.raw:
-        raw_path = os.path.join(args.out, "raw_effective.json")
-        with open(raw_path, "w", encoding="utf-8") as f:
-            json.dump(raw, f, indent=1)
-        print(f"  wrote raw responses -> {os.path.relpath(raw_path)}")
+        storage.write(args.out, "listed_price_changes", bins["listed"])
 
-    nonzero = {r["model_id"] for r in model_rows
+    covered = len({r["model_id"] for r in bins["eff_daily"]})
+    dates = sorted({r["date"] for r in bins["eff_daily"]})
+    nonzero = {r["model_id"] for r in bins["model_daily"]
                if (r["effective_input_usd_per_mtok"] or 0)
                or (r["effective_output_usd_per_mtok"] or 0)}
-    covered = len({r["model_id"] for r in daily_rows})
-    dates = sorted({r["date"] for r in daily_rows})
+    zeroed = sorted({r["model_id"] for r in bins["model_daily"]} - nonzero)
     print(f"\n{covered}/{len(models)} models have an effective-price history"
           f"{' (' + dates[0] + ' .. ' + dates[-1] + ')' if dates else ''}")
-    zeroed = sorted({r["model_id"] for r in model_rows} - nonzero)
     if zeroed:
         batch = [m for m in zeroed if m.endswith(":batch")]
         free = [m for m in zeroed if m.endswith(":free")]
