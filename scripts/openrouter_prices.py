@@ -31,6 +31,7 @@ import csv
 import gzip
 import json
 import os
+import statistics
 import sys
 import time
 import urllib.error
@@ -43,6 +44,15 @@ MODELS_URL = f"{BASE}/api/v1/models"
 EFFECTIVE_URL = f"{BASE}/api/frontend/v1/stats/effective-pricing"
 LISTED_URL = f"{BASE}/api/frontend/v1/stats/listed-pricing"
 ACTIVITY_URL = f"{BASE}/api/frontend/v1/stats/model-activity"
+# Performance series, all keyed by "<endpointId>::<colo>" and all median by
+# default. OpenRouter's own labels: LATENCY is "Time to First Token", E2E is
+# "Time to Last Token", throughput is average output tokens per second.
+PERF_URLS = {
+    "throughput_tok_s": f"{BASE}/api/frontend/v1/stats/throughput-comparison",
+    "ttft_ms": f"{BASE}/api/frontend/v1/stats/latency-comparison",
+    "e2e_ms": f"{BASE}/api/frontend/v1/stats/latency-e2e-comparison",
+}
+PERCENTILES = ("p50", "p90", "p95", "p99")
 
 # Shape versions the OpenRouter front-end currently requests. They pin the
 # response schema, so bump them only alongside the parsing code below.
@@ -249,6 +259,98 @@ def _weighted(entries: List[Dict[str, Any]], field: str,
 
 
 # --------------------------------------------------------------------------- #
+# Performance (throughput / latency)
+# --------------------------------------------------------------------------- #
+
+def fetch_performance(model: Dict[str, Any], rng: str, percentile: str,
+                      names: Dict[str, str], slugs: Dict[str, str]
+                      ) -> List[Dict[str, Any]]:
+    """Daily p50 throughput, time-to-first-token and time-to-last-token.
+
+    Three separate series, joined on (date, endpoint, colo). ``percentile`` is
+    omitted from the request for p50 because that is the API's own default.
+    Endpoint names come from the effective-pricing response we already hold;
+    an endpoint that served no billable traffic falls back to its raw id.
+    """
+    merged: Dict[Tuple[str, str], Dict[str, Any]] = {}
+    for column, url in PERF_URLS.items():
+        params = {"permaslug": model["permaslug"], "variant": model["variant"],
+                  "timeRange": rng}
+        if percentile != "p50":
+            params["percentile"] = percentile
+        payload = get_json(url, params)
+        series = payload.get("data") if isinstance(payload, dict) else None
+        for point in series or []:
+            date = str(point["x"])[:10]
+            for key, value in (point.get("y") or {}).items():
+                endpoint_id, _, colo = key.partition("::")
+                row = merged.setdefault((date, key), {
+                    "date": date,
+                    "model_id": model["model_id"],
+                    "permaslug": model["permaslug"],
+                    "variant": model["variant"],
+                    "endpoint_id": endpoint_id,
+                    "colo": colo or "default",
+                    "provider_name": names.get(endpoint_id, ""),
+                    "provider_slug": slugs.get(endpoint_id, ""),
+                    "percentile": percentile,
+                    "throughput_tok_s": None,
+                    "ttft_ms": None,
+                    "e2e_ms": None,
+                })
+                row[column] = value
+    return list(merged.values())
+
+
+def best_providers(perf_rows: List[Dict[str, Any]],
+                   summary_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Rank each model's endpoints on speed, alongside what they actually cost.
+
+    Daily points are collapsed with a median so one bad day cannot decide the
+    ranking, and the effective prices are joined on so "best" can be read as
+    fast, cheap, or the trade-off between them.
+    """
+    price = {(r["model_id"], r["endpoint_id"]): r for r in summary_rows}
+
+    grouped: Dict[Tuple[str, str, str], List[Dict[str, Any]]] = {}
+    for r in perf_rows:
+        grouped.setdefault((r["model_id"], r["endpoint_id"], r["colo"]), []).append(r)
+
+    out = []
+    for (model_id, endpoint_id, colo), rows in grouped.items():
+        p = price.get((model_id, endpoint_id), {})
+        row = {
+            "model_id": model_id,
+            "endpoint_id": endpoint_id,
+            "colo": colo,
+            "provider_name": rows[0]["provider_name"] or p.get("provider_name") or "",
+            "provider_slug": rows[0]["provider_slug"] or p.get("provider_slug") or "",
+            "percentile": rows[0]["percentile"],
+            "days_observed": len(rows),
+            "effective_input_usd_per_mtok": p.get("effective_input_usd_per_mtok"),
+            "effective_output_usd_per_mtok": p.get("effective_output_usd_per_mtok"),
+            "total_tokens": p.get("total_tokens"),
+        }
+        for column in ("throughput_tok_s", "ttft_ms", "e2e_ms"):
+            vals = [r[column] for r in rows if r[column] is not None]
+            row[column] = round(statistics.median(vals), 2) if vals else None
+        out.append(row)
+
+    # rank within each model: fastest writer first, then quickest to respond
+    by_model: Dict[str, List[Dict[str, Any]]] = {}
+    for r in out:
+        by_model.setdefault(r["model_id"], []).append(r)
+    for rows in by_model.values():
+        for rank, r in enumerate(sorted(
+                rows, key=lambda x: -(x["throughput_tok_s"] or 0)), start=1):
+            r["throughput_rank"] = rank
+        for rank, r in enumerate(sorted(
+                rows, key=lambda x: (x["ttft_ms"] is None, x["ttft_ms"] or 0)), start=1):
+            r["ttft_rank"] = rank
+    return out
+
+
+# --------------------------------------------------------------------------- #
 # Listed prices (optional companion series)
 # --------------------------------------------------------------------------- #
 
@@ -407,6 +509,12 @@ def main() -> None:
                     help="also pull daily prompt/completion token volumes (last ~31 "
                          "days) and derive per-request sequence lengths and a "
                          "blended price")
+    ap.add_argument("--performance", action="store_true",
+                    help="also pull daily throughput / time-to-first-token / "
+                         "time-to-last-token per provider endpoint, and rank "
+                         "providers per model")
+    ap.add_argument("--percentile", default="p50", choices=PERCENTILES,
+                    help="percentile for the performance series (default: p50)")
     ap.add_argument("--listed", action="store_true",
                     help="also pull the listed-price change log for comparison")
     ap.add_argument("--workers", type=int, default=8, help="parallel requests")
@@ -429,6 +537,7 @@ def main() -> None:
     model_rows: List[Dict[str, Any]] = []
     listed_rows: List[Dict[str, Any]] = []
     activity_rows: List[Dict[str, Any]] = []
+    perf_rows: List[Dict[str, Any]] = []
     raw: Dict[str, Any] = {}
     no_data: List[str] = []
 
@@ -436,16 +545,22 @@ def main() -> None:
         data = fetch_effective(model, args.range)
         listed = fetch_listed(model, args.range) if args.listed else []
         activity = fetch_activity(model) if args.activity else []
-        return model, data, listed, activity
+        perf = []
+        if args.performance:
+            names = (data or {}).get("endpointNames", {}) or {}
+            slugs = (data or {}).get("endpointProviderSlugs", {}) or {}
+            perf = fetch_performance(model, args.range, args.percentile, names, slugs)
+        return model, data, listed, activity, perf
 
     done = 0
     with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for model, data, listed, activity in pool.map(work, models):
+        for model, data, listed, activity, perf in pool.map(work, models):
             done += 1
             if done % 25 == 0 or done == len(models):
                 print(f"  {done}/{len(models)}")
             listed_rows.extend(listed)
             activity_rows.extend(activity)
+            perf_rows.extend(perf)
             if not data or not data.get("inputChartData"):
                 no_data.append(model["model_id"])
                 continue
@@ -491,6 +606,20 @@ def main() -> None:
                    "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
                    "blended_effective_usd_per_mtok", "blended_listed_usd_per_mtok",
                    "effective_usd_per_request"])
+    if args.performance:
+        perf_rows.sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"]))
+        write_csv(os.path.join(args.out, "performance_daily_by_endpoint.csv"), perf_rows,
+                  ["date", "model_id", "permaslug", "variant", "endpoint_id", "colo",
+                   "provider_name", "provider_slug", "percentile",
+                   "throughput_tok_s", "ttft_ms", "e2e_ms"])
+        best = best_providers(perf_rows, summary_rows)
+        best.sort(key=lambda r: (r["model_id"], r["throughput_rank"]))
+        write_csv(os.path.join(args.out, "provider_performance_summary.csv"), best,
+                  ["model_id", "provider_name", "provider_slug", "colo", "endpoint_id",
+                   "percentile", "days_observed", "throughput_tok_s", "ttft_ms",
+                   "e2e_ms", "throughput_rank", "ttft_rank",
+                   "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
+                   "total_tokens"])
     if args.listed:
         write_csv(os.path.join(args.out, "listed_price_changes.csv"), listed_rows,
                   ["changed_at", "model_id", "permaslug", "variant", "endpoint_id",

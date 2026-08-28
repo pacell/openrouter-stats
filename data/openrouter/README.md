@@ -10,6 +10,7 @@ Rebuild with:
 python3 scripts/openrouter_prices.py             # effective, full history
 python3 scripts/openrouter_prices.py --activity  # + token mix and blended price
 python3 scripts/openrouter_prices.py --listed    # + the listed-price change log
+python3 scripts/openrouter_prices.py --performance  # + throughput and latency
 python3 scripts/openrouter_checks.py             # validate the result
 ```
 
@@ -39,9 +40,41 @@ All prices are **USD per million tokens**.
 | `effective_prices_summary.csv` | model × provider endpoint, whole window | ~1.1k |
 | `token_mix_daily_by_model.csv` | model × day, last ~31 days | ~10k |
 | `blended_price_daily_by_model.csv` | model × day, last ~31 days | ~10k |
+| `performance_daily_by_endpoint.csv` | model × endpoint × colo × day, last 8 days | ~9k |
+| `provider_performance_summary.csv` | model × endpoint × colo, ranked | ~1.3k |
 
 `effective_prices_summary.csv` also carries `cache_hit_rate` and `total_tokens`,
 which explain most of the gap between the two prices.
+
+## Throughput and latency
+
+`--performance` pulls three median (p50) series per provider endpoint, keyed by
+`endpointId::colo`, using OpenRouter's own definitions:
+
+| column | endpoint | meaning |
+|---|---|---|
+| `throughput_tok_s` | `throughput-comparison` | output tokens per second — how fast the model writes |
+| `ttft_ms` | `latency-comparison` | Time to First Token, from when the request is sent |
+| `e2e_ms` | `latency-e2e-comparison` | Time to Last Token — full round trip |
+
+p50 is the API's default; `--percentile p90|p95|p99` switches all three.
+
+`provider_performance_summary.csv` collapses the daily points to a median per
+endpoint, joins the effective prices on, and ranks each model's providers by
+throughput and by TTFT — so "best provider" can be read as fastest, cheapest, or
+the trade-off. It is usually a trade-off:
+
+| model | | provider | tok/s | TTFT ms | eff. in $/M |
+|---|---|---|---|---|---|
+| `z-ai/glm-5.3-flash` | fastest | Baseten | 112 | 768 | 0.0618 |
+| | cheapest | Z.ai | 33 | 4,290 | 0.0227 |
+| | lowest TTFT | Together | 46 | 475 | 0.0757 |
+| `openai/gpt-oss-120b` | fastest | Cerebras | 785 | 231 | 0.3499 |
+| | cheapest | CoreWeave | 34 | 460 | 0.0299 |
+| | lowest TTFT | Baseten | 222 | 228 | 0.0999 |
+
+The cheapest endpoint is almost never the fastest — on `gpt-oss-120b` the spread
+is 23x on throughput and 12x on price, in opposite directions.
 
 ## Blended price and sequence lengths
 
@@ -139,6 +172,11 @@ each model's full life.
   line. For real listed-price history run with `--listed`, which writes
   `listed_price_changes.csv` — a change log (`changed_at`, `field`, `value`),
   sparse by design, covering input, output, cache read/write and discount.
+- **The three datasets have three different retention windows**, so anything
+  joining them is bounded by the shortest: prices ~218 days, token mix ~31 days,
+  throughput and latency **8 days**. The `timeRange` parameter on the
+  performance endpoints is accepted but ignored — `1w` and `all` both return the
+  same 8 points — so there is no way to get more.
 - **The token mix only goes back ~31 days.** `model-activity` takes no range
   parameter, so `token_mix_daily_by_model.csv` and the blend cover the last
   month even though the price history runs to 7 months. The most recent day is
