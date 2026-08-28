@@ -14,7 +14,8 @@ from typing import Any, Dict, List, Optional, Tuple
 from .api import (ACTIVITY_URL, BENCHMARK_URL, CACHE_HIT_URL, EFFECTIVE_SHAPE,
                   EFFECTIVE_URL, ENDPOINT_URL, LISTED_SHAPE, LISTED_URL,
                   MODELS_URL, PERF_URLS, PROVIDERS_URL, STRUCT_ERROR_URL,
-                  TOOL_ERROR_URL, TOP_APPS_URL, TOP_COLOS_URL, UPTIME_URL,
+                  PROVIDER_TOKENS_URL, TOOL_ERROR_URL, TOP_APPS_URL, TOP_COLOS_URL,
+                  UPTIME_URL,
                   data_of, get_json)
 
 MTOK = 1_000_000
@@ -165,6 +166,10 @@ def effective_rows(model: Dict[str, Any], data: Dict[str, Any]
     ``inputChartData``/``outputChartData`` are parallel daily series keyed by
     endpoint id, joined here on (date, endpoint). An endpoint that served no
     traffic on a day is simply absent from that day's bucket.
+
+    Note ``totalTokens`` on the summary rows measures a rolling ~24 hours, not
+    the requested range — it is a current-traffic figure sitting alongside a
+    multi-month price history.
     """
     summaries = {s["endpointId"]: s for s in data.get("providerSummaries", [])}
     names = data.get("endpointNames", {}) or {}
@@ -397,3 +402,26 @@ def top_colos(model: Dict[str, Any]) -> List[Dict[str, Any]]:
         "rank": i,
         "colo": colo,
     } for i, colo in enumerate((data or {}).get("colos", []), start=1)]
+
+
+def provider_token_chart(provider_slug: str) -> List[Dict[str, Any]]:
+    """Daily tokens served by one provider, broken out by model.
+
+    Takes a provider slug and no model, so this is the only source of a
+    provider-level volume history: 90 days, against the 24 hours behind
+    ``total_tokens`` elsewhere. Each day lists the provider's top 9 models plus
+    an ``Others`` bucket, so the **daily total is complete** even though the
+    per-model breakdown is not. ``model_permaslug`` is a permaslug, not a model
+    id — join it to ``model_catalogue.permaslug``.
+    """
+    data = data_of(get_json(PROVIDER_TOKENS_URL, {"provider": provider_slug}))
+    rows = []
+    for point in (data or {}).get("chartData", []):
+        for permaslug, tokens in (point.get("ys") or {}).items():
+            rows.append({
+                "date": str(point["x"])[:10],
+                "provider_slug": provider_slug,
+                "model_permaslug": permaslug,
+                "tokens": tokens,
+            })
+    return rows

@@ -43,6 +43,8 @@ verbatim. In the data dictionary each column is tagged:
    split (`derive.blended_prices`)
 4. **Provider ranking** — medians of the daily performance series, ranked
    (`derive.provider_ranking`)
+5. **Provider rollup** — per-model-endpoint rows aggregated to one row per
+   provider (`derive.provider_summary`)
 
 ### Source endpoints
 
@@ -60,6 +62,7 @@ verbatim. In the data dictionary each column is tagged:
 | front-end | `/stats/model-uptime-recent` | `model_uptime_recent` |
 | front-end | `/stats/benchmark-scores` | `benchmark_scores` |
 | front-end | `/stats/top-apps-for-model`, `/stats/top-colos-for-model` | `top_apps_by_model`, `top_colos_by_model` |
+| front-end | `/stats/provider-token-chart` | `provider_token_daily` |
 
 The `/api/frontend/v1/*` endpoints are undocumented — they back openrouter.ai's
 own model pages. No key is needed, but they can change without notice.
@@ -79,7 +82,7 @@ appears only in `endpoint_catalogue`, which is therefore the join table.
 | `endpoint_catalogue.csv` | model × endpoint | 1,212 | current |
 | `effective_prices_daily_by_endpoint.csv` | model × endpoint × day | 125,466 | 218d, 360 models |
 | `effective_prices_daily_by_model.csv` | model × day | 53,920 | 218d |
-| `effective_prices_summary.csv` | model × endpoint | 1,096 | whole window |
+| `effective_prices_summary.csv` | model × endpoint | 1,098 | prices whole window, volumes **~24h** |
 | `listed_price_changes.csv` | change point | 20,249 | 370 models |
 | `token_mix_daily_by_model.csv` | model × day | 10,174 | **31d**, 359 models |
 | `blended_price_daily_by_model.csv` | model × day | 10,120 | **31d** |
@@ -92,8 +95,10 @@ appears only in `endpoint_catalogue`, which is therefore the join table.
 | `benchmark_scores.csv` | model × endpoint × benchmark | 2,431 | 162 models |
 | `top_apps_by_model.csv` | model × app | 1,665 | current |
 | `top_colos_by_model.csv` | model × colo | 6,180 | current |
+| `provider_summary.csv` | provider | 74 | volumes **~24h** |
+| `provider_token_daily.csv` | provider × model × day | 37,655 | **90d** |
 
-**Five different retention windows.** Anything joining them is bounded by the
+**Six different retention windows.** Anything joining them is bounded by the
 shortest — see Caveats.
 
 ---
@@ -163,7 +168,7 @@ Exact, per endpoint. Prefer this file when a specific day or provider matters.
 |---|---|---|
 | `effective_input_usd_per_mtok`, `effective_output_usd_per_mtok` | `API` | whole-window average for that endpoint |
 | `cache_hit_rate` | `API` | fraction of prompt tokens served from cache (0–1) |
-| `total_tokens` | `API` | window-wide volume — the weights behind the model-level collapse |
+| `total_tokens` | `API` | **a rolling ~24-hour volume, not the window** — see the caveat below. These are the weights behind the model-level collapse |
 
 ### listed_price_changes.csv
 
@@ -252,6 +257,61 @@ Keyed by `endpoint_id::colo` upstream, so `colo` is a real dimension here.
 | `rank`, `app_id`, `app_title`, `app_slug`, `app_origin_url`, `app_categories` | `API` | the public apps sending most tokens; categories pipe-delimited |
 | `total_tokens`, `total_requests` | `API` | that app's volume on this model |
 | `colo` | `API` | datacenter code (`IAD`, `FRA`, …) in OpenRouter's own order |
+
+### provider_summary.csv
+
+One row per provider, across every model it serves. Ranked by volume.
+
+| column | src | meaning |
+|---|---|---|
+| `token_rank` | `CALC` | rank by `tokens_last_24h`, 1 = largest |
+| `headquarters` | `API` | joined from `provider_catalogue` |
+| `n_models`, `n_endpoints` | `CALC` | distinct counts |
+| `tokens_last_24h` | `CALC` | `SUM(total_tokens)` — inherits the ~24h window |
+| `share_of_tokens_pct` | `CALC` | that sum over all providers' |
+| `effective_input_usd_per_mtok`, `effective_output_usd_per_mtok`, `cache_hit_rate` | `CALC` | token-weighted across the provider's endpoints |
+| `median_listed_input_usd_per_mtok`, `median_listed_output_usd_per_mtok` | `CALC` | median over its endpoints in `endpoint_catalogue` |
+| `median_p50_throughput_tok_s`, `median_p50_latency_ms` | `CALC` | median of the per-endpoint p50s, which come off the API over its own 30-min window |
+| `n_endpoints_training_on_prompts` | `CALC` | count where `policy_trains_on_prompts` is true |
+
+These averages **mix models**. A provider serving mostly small models will show
+a low effective price for that reason alone, so read a provider's price against
+its `n_models`, or go to `effective_prices_summary.csv` for like-for-like.
+
+### provider_token_daily.csv
+
+The only provider-level **history** in the dataset: 90 days of tokens served.
+
+| column | src | meaning |
+|---|---|---|
+| `model_permaslug` | `API` | a permaslug — join to `model_catalogue.permaslug`, not to `model_id`. The literal value `Others` is a bucket, not a model |
+| `tokens` | `API` | tokens that provider served for that model that day |
+
+Each day lists the provider's **top 9 models plus `Others`**, so a daily total
+per provider is complete, but the per-model breakdown is not — a specific model
+missing from a day means it was outside that provider's top 9, not that it was
+unserved.
+
+---
+
+## Providers
+
+Volumes are heavily concentrated. Top of `provider_summary.csv`:
+
+| # | provider | models | tokens 24h | share | eff. in | eff. out | cache |
+|---|---|---|---|---|---|---|---|
+| 1 | OpenAI | 49 | 1,493B | 14.9% | $0.163 | $3.225 | 88% |
+| 2 | Xiaomi | 2 | 1,259B | 12.6% | $0.011 | $0.293 | 95% |
+| 3 | Z.ai | 13 | 1,037B | 10.3% | $0.071 | $0.915 | 89% |
+| 4 | Tencent Cloud | 5 | 838B | 8.4% | $0.047 | $0.604 | 91% |
+| 5 | GMICloud | 22 | 590B | 5.9% | $0.028 | $0.362 | 84% |
+| 7 | Google Vertex | 52 | 470B | 4.7% | $0.463 | $5.586 | 44% |
+| 8 | DeepInfra | 74 | 411B | 4.1% | $0.058 | $0.396 | 65% |
+
+The top four are 46% of all tokens, and two of them (Xiaomi, Tencent Cloud) reach
+that on five models or fewer. The price columns are not comparable across rows —
+Google Vertex looks expensive because it serves frontier models, not because it
+marks them up.
 
 ---
 
@@ -344,8 +404,16 @@ $3.00/M list and $0.30/M cache reads predicts $1.588/M; the chart says $1.637/M,
 
 ## Caveats
 
-- **Five retention windows.** Prices 218d, token mix 31d, performance and the
-  three reliability series 8d, uptime ~24h. Any join is bounded by the shortest.
+- **`total_tokens` is a rolling ~24 hours, not the window.** Measured across 355
+  models, it sits at 1.12x the current partial day and 0.02x the 31-day window.
+  Two consequences: it is *today's* traffic, so `provider_summary.csv` is a
+  snapshot rather than a history; and the model-level daily price weights every
+  historical day by today's routing mix. The further back the day, the weaker
+  that assumption — per-endpoint prices are exact, so prefer them for a specific
+  day. For provider volume history use `provider_token_daily.csv`.
+- **Six retention windows.** Prices 218d, token mix 31d, performance and the
+  three reliability series 8d, provider token history 90d, uptime and
+  `total_tokens` ~24h. Any join is bounded by the shortest.
   The `timeRange` parameter on the performance endpoints is accepted but
   **ignored** — `1w` and `all` return the same 8 points — so there is no way to
   get more. Historical trends beyond these windows require running the fetcher

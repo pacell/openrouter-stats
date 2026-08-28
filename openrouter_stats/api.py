@@ -39,6 +39,7 @@ STRUCT_ERROR_URL = f"{F}/structured-output-error-rate"
 UPTIME_URL = f"{F}/model-uptime-recent"
 TOP_APPS_URL = f"{F}/top-apps-for-model"
 TOP_COLOS_URL = f"{F}/top-colos-for-model"
+PROVIDER_TOKENS_URL = f"{F}/provider-token-chart"
 PERF_URLS = {
     "throughput_tok_s": f"{F}/throughput-comparison",
     "ttft_ms": f"{F}/latency-comparison",

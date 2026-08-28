@@ -89,6 +89,15 @@ SCHEMAS: Dict[str, List[str]] = {
         "model_id", "permaslug", "variant", "rank", "app_id", "app_title",
         "app_slug", "app_origin_url", "app_categories", "total_tokens",
         "total_requests"],
+    "provider_token_daily": [
+        "date", "provider_slug", "model_permaslug", "tokens"],
+    "provider_summary": [
+        "token_rank", "provider_slug", "provider_name", "headquarters", "n_models",
+        "n_endpoints", "tokens_last_24h", "share_of_tokens_pct",
+        "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
+        "cache_hit_rate", "median_listed_input_usd_per_mtok",
+        "median_listed_output_usd_per_mtok", "median_p50_throughput_tok_s",
+        "median_p50_latency_ms", "n_endpoints_training_on_prompts"],
     "top_colos_by_model": [
         "model_id", "permaslug", "variant", "rank", "colo"],
 }

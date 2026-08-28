@@ -54,6 +54,8 @@ def main() -> None:
                     help="uptime, cache hit rate, tool-call and structured-output errors")
     ap.add_argument("--quality", action="store_true", help="benchmark scores")
     ap.add_argument("--apps", action="store_true", help="top apps and datacenters")
+    ap.add_argument("--providers", action="store_true",
+                    help="provider-level rollup and 90-day tokens-served history")
     ap.add_argument("--listed", action="store_true", help="listed-price change log")
     ap.add_argument("--percentile", default="p50", choices=PERCENTILES,
                     help="percentile for the performance series (default: p50)")
@@ -63,7 +65,7 @@ def main() -> None:
 
     if args.all:
         for flag in ("catalogue", "activity", "performance", "reliability",
-                     "quality", "apps", "listed"):
+                     "quality", "apps", "providers", "listed"):
             setattr(args, flag, True)
 
     models = pull.models()
@@ -168,6 +170,20 @@ def main() -> None:
     if args.apps:
         storage.write(args.out, "top_apps_by_model", bins["apps"])
         storage.write(args.out, "top_colos_by_model", bins["colos"])
+    if args.providers:
+        providers = pull.providers()
+        slugs = sorted({r["provider_slug"] for r in bins["eff_summary"]
+                        if r.get("provider_slug")})
+        print(f"  provider token history for {len(slugs)} providers")
+        token_rows = []
+        with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
+            for rows in pool.map(pull.provider_token_chart, slugs):
+                token_rows.extend(rows)
+        token_rows.sort(key=lambda r: (r["provider_slug"], r["date"]))
+        storage.write(args.out, "provider_token_daily", token_rows)
+        storage.write(args.out, "provider_summary",
+                      derive.provider_summary(bins["eff_summary"], bins["endpoints"],
+                                              providers))
     if args.listed:
         storage.write(args.out, "listed_price_changes", bins["listed"])
 
