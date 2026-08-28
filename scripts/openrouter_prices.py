@@ -42,6 +42,7 @@ BASE = "https://openrouter.ai"
 MODELS_URL = f"{BASE}/api/v1/models"
 EFFECTIVE_URL = f"{BASE}/api/frontend/v1/stats/effective-pricing"
 LISTED_URL = f"{BASE}/api/frontend/v1/stats/listed-pricing"
+ACTIVITY_URL = f"{BASE}/api/frontend/v1/stats/model-activity"
 
 # Shape versions the OpenRouter front-end currently requests. They pin the
 # response schema, so bump them only alongside the parsing code below.
@@ -285,6 +286,103 @@ def fetch_listed(model: Dict[str, Any], rng: str) -> List[Dict[str, Any]]:
 
 
 # --------------------------------------------------------------------------- #
+# Token mix (prompt/completion sequence lengths)
+# --------------------------------------------------------------------------- #
+
+def fetch_activity(model: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Daily token volumes for one model, split prompt vs completion.
+
+    ``model-activity`` takes no range and always returns the last ~31 days —
+    much shorter than the price history, so the blend below is only defined
+    over that window.
+    """
+    payload = get_json(ACTIVITY_URL, {
+        "permaslug": model["permaslug"],
+        "variant": model["variant"],
+    })
+    data = payload.get("data") if isinstance(payload, dict) else None
+    if not data:
+        return []
+
+    rows = []
+    for a in data.get("analytics", []):
+        requests = a.get("count") or 0
+        prompt = a.get("total_prompt_tokens") or 0
+        completion = a.get("total_completion_tokens") or 0
+        cached = a.get("total_native_tokens_cached") or 0
+        reasoning = a.get("total_native_tokens_reasoning") or 0
+        rows.append({
+            "date": str(a["date"])[:10],
+            "model_id": model["model_id"],
+            "permaslug": model["permaslug"],
+            "variant": model["variant"],
+            "requests": requests,
+            "prompt_tokens": prompt,
+            "completion_tokens": completion,
+            "cached_prompt_tokens": cached,
+            "reasoning_tokens": reasoning,
+            "avg_prompt_tokens_per_request": _div(prompt, requests, 1),
+            "avg_completion_tokens_per_request": _div(completion, requests, 1),
+            "avg_reasoning_tokens_per_request": _div(reasoning, requests, 1),
+            "completion_to_prompt_ratio": _div(completion, prompt, 4),
+            "cache_hit_share_of_prompt": _div(cached, prompt, 4),
+            "tool_calls": a.get("total_tool_calls") or 0,
+            "media_prompt_requests": a.get("num_media_prompt") or 0,
+        })
+    return rows
+
+
+def _div(num: float, den: float, places: int) -> Optional[float]:
+    return round(num / den, places) if den else None
+
+
+def blend(model_rows: List[Dict[str, Any]], activity_rows: List[Dict[str, Any]]
+          ) -> List[Dict[str, Any]]:
+    """Join effective prices to the token mix to get a real blended price.
+
+    The stats API never blends: input and output are separate series, so a
+    single headline $/M figure only exists once you weight them by the actual
+    prompt:completion split, which is what this does.
+    """
+    prices = {(r["model_id"], r["date"]): r for r in model_rows}
+    out = []
+    for a in activity_rows:
+        p = prices.get((a["model_id"], a["date"]))
+        if not p:
+            continue
+        ein = p["effective_input_usd_per_mtok"]
+        eout = p["effective_output_usd_per_mtok"]
+        if ein is None or eout is None:
+            continue
+        prompt, completion = a["prompt_tokens"], a["completion_tokens"]
+        total = prompt + completion
+        if not total:
+            continue
+        cost = (prompt * ein + completion * eout) / 1_000_000
+        lin = p["listed_input_usd_per_mtok_current"]
+        lout = p["listed_output_usd_per_mtok_current"]
+        listed_cost = ((prompt * lin + completion * lout) / 1_000_000
+                       if lin is not None and lout is not None else None)
+        out.append({
+            "date": a["date"],
+            "model_id": a["model_id"],
+            "variant": a["variant"],
+            "requests": a["requests"],
+            "avg_prompt_tokens_per_request": a["avg_prompt_tokens_per_request"],
+            "avg_completion_tokens_per_request": a["avg_completion_tokens_per_request"],
+            "completion_to_prompt_ratio": a["completion_to_prompt_ratio"],
+            "cache_hit_share_of_prompt": a["cache_hit_share_of_prompt"],
+            "effective_input_usd_per_mtok": ein,
+            "effective_output_usd_per_mtok": eout,
+            "blended_effective_usd_per_mtok": round(cost / total * 1_000_000, 6),
+            "blended_listed_usd_per_mtok": (round(listed_cost / total * 1_000_000, 6)
+                                            if listed_cost is not None else None),
+            "effective_usd_per_request": round(cost / a["requests"], 8) if a["requests"] else None,
+        })
+    return out
+
+
+# --------------------------------------------------------------------------- #
 # Output
 # --------------------------------------------------------------------------- #
 
@@ -305,6 +403,10 @@ def main() -> None:
                     help="history window to request (default: all)")
     ap.add_argument("--models", nargs="*", default=None,
                     help="limit to these model ids (default: every model)")
+    ap.add_argument("--activity", action="store_true",
+                    help="also pull daily prompt/completion token volumes (last ~31 "
+                         "days) and derive per-request sequence lengths and a "
+                         "blended price")
     ap.add_argument("--listed", action="store_true",
                     help="also pull the listed-price change log for comparison")
     ap.add_argument("--workers", type=int, default=8, help="parallel requests")
@@ -326,21 +428,24 @@ def main() -> None:
     summary_rows: List[Dict[str, Any]] = []
     model_rows: List[Dict[str, Any]] = []
     listed_rows: List[Dict[str, Any]] = []
+    activity_rows: List[Dict[str, Any]] = []
     raw: Dict[str, Any] = {}
     no_data: List[str] = []
 
     def work(model: Dict[str, Any]):
         data = fetch_effective(model, args.range)
         listed = fetch_listed(model, args.range) if args.listed else []
-        return model, data, listed
+        activity = fetch_activity(model) if args.activity else []
+        return model, data, listed, activity
 
     done = 0
     with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for model, data, listed in pool.map(work, models):
+        for model, data, listed, activity in pool.map(work, models):
             done += 1
             if done % 25 == 0 or done == len(models):
                 print(f"  {done}/{len(models)}")
             listed_rows.extend(listed)
+            activity_rows.extend(activity)
             if not data or not data.get("inputChartData"):
                 no_data.append(model["model_id"])
                 continue
@@ -368,6 +473,24 @@ def main() -> None:
               ["model_id", "permaslug", "variant", "endpoint_id", "provider_name",
                "provider_slug", "effective_input_usd_per_mtok",
                "effective_output_usd_per_mtok", "cache_hit_rate", "total_tokens"])
+    if args.activity:
+        activity_rows.sort(key=lambda r: (r["model_id"], r["date"]))
+        write_csv(os.path.join(args.out, "token_mix_daily_by_model.csv"), activity_rows,
+                  ["date", "model_id", "permaslug", "variant", "requests",
+                   "prompt_tokens", "completion_tokens", "cached_prompt_tokens",
+                   "reasoning_tokens", "avg_prompt_tokens_per_request",
+                   "avg_completion_tokens_per_request",
+                   "avg_reasoning_tokens_per_request", "completion_to_prompt_ratio",
+                   "cache_hit_share_of_prompt", "tool_calls", "media_prompt_requests"])
+        blended = blend(model_rows, activity_rows)
+        blended.sort(key=lambda r: (r["model_id"], r["date"]))
+        write_csv(os.path.join(args.out, "blended_price_daily_by_model.csv"), blended,
+                  ["date", "model_id", "variant", "requests",
+                   "avg_prompt_tokens_per_request", "avg_completion_tokens_per_request",
+                   "completion_to_prompt_ratio", "cache_hit_share_of_prompt",
+                   "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
+                   "blended_effective_usd_per_mtok", "blended_listed_usd_per_mtok",
+                   "effective_usd_per_request"])
     if args.listed:
         write_csv(os.path.join(args.out, "listed_price_changes.csv"), listed_rows,
                   ["changed_at", "model_id", "permaslug", "variant", "endpoint_id",

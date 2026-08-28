@@ -7,8 +7,9 @@ providers post.
 Rebuild with:
 
 ```bash
-python3 scripts/openrouter_prices.py            # effective, full history
-python3 scripts/openrouter_prices.py --listed   # + the listed-price change log
+python3 scripts/openrouter_prices.py             # effective, full history
+python3 scripts/openrouter_prices.py --activity  # + token mix and blended price
+python3 scripts/openrouter_prices.py --listed    # + the listed-price change log
 ```
 
 ## Effective vs listed
@@ -35,9 +36,42 @@ All prices are **USD per million tokens**.
 | `effective_prices_daily_by_endpoint.csv` | model × provider endpoint × day | ~125k |
 | `effective_prices_daily_by_model.csv` | model × day (token-weighted across endpoints) | ~54k |
 | `effective_prices_summary.csv` | model × provider endpoint, whole window | ~1.1k |
+| `token_mix_daily_by_model.csv` | model × day, last ~31 days | ~10k |
+| `blended_price_daily_by_model.csv` | model × day, last ~31 days | ~10k |
 
 `effective_prices_summary.csv` also carries `cache_hit_rate` and `total_tokens`,
 which explain most of the gap between the two prices.
+
+## Blended price and sequence lengths
+
+The pricing API never blends — input and output are separate series, and a
+single headline $/M number only exists once you weight them by the actual
+prompt:completion split. That split comes from a different endpoint,
+`/api/frontend/v1/stats/model-activity`, which reports daily
+`total_prompt_tokens`, `total_completion_tokens`, `total_native_tokens_cached`,
+`total_native_tokens_reasoning` and request `count` per model.
+
+`token_mix_daily_by_model.csv` turns those into per-request sequence lengths
+(`avg_prompt_tokens_per_request`, `avg_completion_tokens_per_request`,
+`completion_to_prompt_ratio`, `cache_hit_share_of_prompt`), and
+`blended_price_daily_by_model.csv` joins them to the effective prices for a
+true `blended_effective_usd_per_mtok`, its listed counterpart, and
+`effective_usd_per_request`.
+
+Traffic on OpenRouter is overwhelmingly prompt-heavy — the week to 2026-08-27,
+weighted by requests:
+
+| model | in tok/req | out tok/req | in:out | cache | blended eff. | blended list |
+|---|---|---|---|---|---|---|
+| `deepseek/deepseek-v4-flash` | 10,322 | 533 | 19:1 | 70% | $0.06 | $0.09 |
+| `openai/gpt-5.6-luna` | 16,493 | 398 | 41:1 | 82% | $0.10 | $0.23 |
+| `google/gemini-2.5-flash-lite` | 2,630 | 239 | 11:1 | 15% | $0.11 | $0.12 |
+| `xiaomi/mimo-v2.5` | 83,241 | 569 | 146:1 | 95% | $0.01 | $0.14 |
+| `google/gemini-3.7-flash` | 45,446 | 775 | 59:1 | 77% | $0.19 | $0.40 |
+
+Sequence length is what makes the blended price sit so close to the input
+price: at 20:1 the output rate barely registers, and the models with the
+longest prompts are the ones caching hardest.
 
 ## Coverage and caveats
 
@@ -61,6 +95,14 @@ each model's full life.
   line. For real listed-price history run with `--listed`, which writes
   `listed_price_changes.csv` — a change log (`changed_at`, `field`, `value`),
   sparse by design, covering input, output, cache read/write and discount.
+- **The token mix only goes back ~31 days.** `model-activity` takes no range
+  parameter, so `token_mix_daily_by_model.csv` and the blend cover the last
+  month even though the price history runs to 7 months. The most recent day is
+  partial — request counts are cut off mid-day.
+- **`reasoning_tokens` is a native count and is not additive with
+  `completion_tokens`.** Prompt and completion totals are normalised across
+  tokenizers, reasoning is not, so on a few percent of rows reasoning exceeds
+  completion. Read it as indicative, and don't subtract it.
 - **Effective can exceed the model's listed price.** The listed figure is the
   default/cheapest route; effective is weighted over all endpoints actually
   served, and for multimodal models mixes in audio and image tokens priced well
@@ -69,8 +111,9 @@ each model's full life.
 
 ## API notes
 
-`effective-pricing` and `listed-pricing` are undocumented front-end endpoints —
-no key needed, but they can change without notice. Both take
+`effective-pricing`, `listed-pricing` and `model-activity` are undocumented
+front-end endpoints — no key needed, but they can change without notice.
+`model-activity` takes only `permaslug` and `variant`. The two pricing ones take
 `permaslug` (the model's `canonical_slug`, *not* its id), `variant`
 (`standard` | `free` | `batch`, from the `:suffix` on the id), `range`
 (`3d` `1w` `1m` `3m` `1y` `all`) and a `shape` version pinned in the script
