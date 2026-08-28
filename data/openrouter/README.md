@@ -10,6 +10,7 @@ Rebuild with:
 python3 scripts/openrouter_prices.py             # effective, full history
 python3 scripts/openrouter_prices.py --activity  # + token mix and blended price
 python3 scripts/openrouter_prices.py --listed    # + the listed-price change log
+python3 scripts/openrouter_checks.py             # validate the result
 ```
 
 ## Effective vs listed
@@ -73,6 +74,46 @@ Sequence length is what makes the blended price sit so close to the input
 price: at 20:1 the output rate barely registers, and the models with the
 longest prompts are the ones caching hardest.
 
+## Validation
+
+`scripts/openrouter_checks.py` re-derives these numbers three ways. There is no
+public per-model spend figure from OpenRouter, so none of them is an external
+ground truth — they are consistency checks, and the blended $/M has no
+independent source to be checked against.
+
+| check | result |
+|---|---|
+| our token-weighted mean vs the API's own `weightedInputPrice`/`weightedOutputPrice` | 0.01% / 0.02% median error (n=55) |
+| `effective_input` vs `listed x (1 - hit) + cache_read x hit` | exact — 0.0% median error (n=153 endpoints) |
+| cache share (activity endpoint) + listed prices (models API) vs the charted effective input | 3.6% median error, 65% within 10% (n=5,274 model-days) |
+
+The middle row is the load-bearing one. It holds exactly, which establishes two
+things the blend depends on: caching is a pure **input**-side effect, and
+`effective_input` is a cost per **total** prompt token with cached tokens in the
+denominator — the same denominator the blend uses, so the cache discount is not
+counted twice. The 3.6% residual in the third row is cache *writes* (priced
+*above* list: $3.75/M on Sonnet 4 against a $3.00 list) and long-context tier
+overrides ($6.00/M above 200k), neither of which the simple identity models.
+
+Worked example — Claude Sonnet 4, 2026-08-27: a 52.3% cache share against
+$3.00/M list and $0.30/M cache reads predicts $1.588/M; the chart says
+$1.637/M, 3.0% apart.
+
+## Caching applies to input only — but output still moves
+
+Caching never touches output tokens, and yet effective output matches listed
+output for only **23 of 55** sampled models. Two other things move it:
+
+- **Routing mix.** The listed figure is the default/cheapest endpoint; effective
+  spans every endpoint actually served. `deepseek/deepseek-v4-flash-0731` lists
+  $0.14/M and bills $0.43/M across 29 endpoints.
+- **Non-text output.** Image and audio output tokens are priced far above the
+  text rate that gets listed. `google/gemini-3.1-flash-image` lists $3.00/M and
+  bills $50.67/M.
+
+So for image and audio models the blended figure is not a text-token price at
+all, and shouldn't be read as one.
+
 ## Coverage and caveats
 
 Snapshot of 2026-08-28: **360 of 387 models**, daily from **2026-01-23** —
@@ -84,6 +125,9 @@ each model's full life.
 - **`:batch` variants also report $0, and that is not a price.** OpenRouter does
   not attribute batch spend to this stat, so treat those 24 series as missing.
   Naively differencing them against list produces a bogus −100%.
+- **The daily weighting is the weakest link.** The validation above confirms the
+  whole-window aggregate, not the day-by-day split, so a model whose routing mix
+  moved during the window will drift on individual days.
 - **The model-level daily price is a weighted mean, and the weights are
   approximate.** The API reports token volume per endpoint over the whole
   window, not per day, so `effective_prices_daily_by_model.csv` weights each
