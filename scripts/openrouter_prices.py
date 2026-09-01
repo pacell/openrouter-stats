@@ -80,7 +80,7 @@ def main() -> None:
     bins = {k: [] for k in (
         "eff_daily", "eff_summary", "model_daily", "listed", "activity", "mix",
         "perf", "cache", "tool_err", "struct_err", "uptime", "bench", "apps",
-        "colos", "endpoints")}
+        "colos", "endpoints", "headline")}
     no_data = []
 
     def work(model):
@@ -125,6 +125,7 @@ def main() -> None:
             if not eff or not eff.get("inputChartData"):
                 no_data.append(model["model_id"])
                 continue
+            bins["headline"].append(pull.effective_headline(model, eff))
             daily, summary = pull.effective_rows(model, eff)
             bins["eff_daily"].extend(daily)
             bins["eff_summary"].extend(summary)
@@ -138,6 +139,8 @@ def main() -> None:
     storage.write(args.out, "effective_prices_daily_by_endpoint", bins["eff_daily"])
     storage.write(args.out, "effective_prices_daily_by_model", bins["model_daily"])
     storage.write(args.out, "effective_prices_summary", bins["eff_summary"])
+    bins["headline"].sort(key=lambda r: r["model_id"])
+    storage.write(args.out, "model_price_headline", bins["headline"])
 
     if args.catalogue:
         storage.write(args.out, "provider_catalogue", pull.providers())

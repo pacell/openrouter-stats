@@ -1,9 +1,9 @@
 provider_name,provider_slug,headquarters,datacenters,privacy_policy_url,terms_of_service_url,status_page_url
 Cerebras,cerebras,US,,https://www.cerebras.ai/privacy-policy,https://www.cerebras.ai/terms-of-service,https://status.cerebras.ai/
 Morph,morph,US,US,https://morphllm.com/privacy,https://www.morphllm.com/privacy/tos,
+StepFun,stepfun,,,,https://platform.stepfun.ai/docs/en/agreement/userservice,
 Deepgram,deepgram,,,https://deepgram.com/privacy,https://deepgram.com/terms,
 VoyageAI by MongoDB,voyageai,,,https://www.voyageai.com/privacy,https://www.voyageai.com/tos,
-StepFun,stepfun,,,,,
 Black Forest Labs,black-forest-labs,,,https://bfl.ai/legal/privacy-policy,https://bfl.ai/legal/terms-of-service,
 Moonshot AI,moonshotai,SG,SG,https://platform.moonshot.ai/docs/agreement/userprivacy,https://platform.moonshot.ai/docs/agreement/modeluse,
 Stealth,stealth,,,,https://openrouter.ai/terms/stealth,
@@ -33,15 +33,16 @@ DeepInfra,deepinfra,US,,https://deepinfra.com/privacy,https://deepinfra.com/term
 Inflection,inflection,,,https://inflection.ai/privacy-policy,https://developers.inflection.ai/tos,
 xAI,xai,US,,https://x.ai/legal/privacy-policy,https://x.ai/legal/terms-of-service-enterprise,https://status.x.ai/
 Sail Research,sail-research,US,,https://www.sailresearch.com/privacy,https://www.sailresearch.com/terms,https://status.sailresearch.com/
+Ollama,ollama,,,,,
 Tencent,tencent,CN,SG,https://www.tencentcloud.com/en/document/product/1300/78952,https://www.tencentcloud.com/en/document/product/301/78869,https://status.tencentcloud.com
 Krea,krea,US,,https://www.krea.ai/privacy-policy,https://www.krea.ai/terms,
 Amazon Nova,amazon-nova,US,US,,,
-Xiaomi,xiaomi,CN,SG|NL,https://platform.xiaomimimo.com/#/docs/terms/privacy-policy,https://platform.xiaomimimo.com/#/docs/terms/user-agreement,
+Cosine,cosine,,,,,
+Mara,mara,US,US,https://www.mara.com/mara-legals/ai-policies#cloud-pp,https://www.mara.com/mara-legals/ai-policies#cloud-toc,
 Azure,azure,US,,https://www.microsoft.com/en-us/privacy/privacystatement,https://www.microsoft.com/en-us/legal/terms-of-use?oneroute=true,https://status.azure.com/
 InferenceNet,inference-net,US,,https://inference.net/privacy-policy,https://inference.net/terms-of-service,
 Perceptron,perceptron,US,,https://www.perceptron.inc/privacy-policy,https://www.perceptron.inc/terms-of-use,
 Sourceful,sourceful,,,https://www.sourceful.com/legal/privacy-policy,https://www.sourceful.com/legal/spring-terms-of-use,
-Mara,mara,US,US,https://www.mara.com/mara-legals/ai-policies#cloud-pp,https://www.mara.com/mara-legals/ai-policies#cloud-toc,
 Fish Audio,fish-audio,,,https://fish.audio/privacy,https://fish.audio/terms,
 Cloudflare,cloudflare,US,,https://developers.cloudflare.com/workers-ai/privacy,https://www.cloudflare.com/service-specific-terms-developer-platform/#developer-platform-terms,https://www.cloudflarestatus.com/
 Crucible,crucible,,,,,
@@ -50,6 +51,7 @@ AionLabs,aion-labs,IL,,https://www.aionlabs.ai/privacy-policy/,https://www.aionl
 Liquid,liquid,,,https://www.liquid.ai/privacy-policy,https://www.liquid.ai/terms-conditions,
 Decart,decart,US,US,https://cogito.decart.ai/legal/privacy,https://cogito.decart.ai/legal/terms,
 Recraft,recraft,,,,,
+Meta,meta,US,,https://www.facebook.com/privacy/policy/,https://ai.developer.meta.com/legal/terms-of-service,
 Seed,seed,SG,,https://docs.byteplus.com/en/docs/legal/docs-privacy-policy,https://docs.byteplus.com/en/docs/legal/docs-terms-of-service,
 CoreWeave,coreweave,US,US,https://docs.coreweave.com/policies/terms-of-service/privacy-policy,https://docs.coreweave.com/policies/terms-of-service,
 DekaLLM,dekallm,ID,ID,https://www.cloudeka.id/id/privacy-policy/,https://docs.cloudeka.ai/service-portal-ai/end-user-license-agreement,
@@ -58,7 +60,7 @@ SiliconFlow,siliconflow,SG,US,https://docs.siliconflow.com/en/legals/privacy-pol
 OpenAI,openai,US,,https://openai.com/policies/privacy-policy/,https://openai.com/policies/row-terms-of-use/,https://status.openai.com/
 Poolside,poolside,,,https://poolside.ai/legal/privacy,http://poolside.ai/legal,
 ModelRun,modelrun,US,US,https://www.modular.com/legal/privacy,https://www.modular.com/legal/terms,
-Meta,meta,US,,https://www.facebook.com/privacy/policy/,https://ai.developer.meta.com/legal/terms-of-service,
+FakeProvider,fake-provider,US,,,,
 Modular,modular,US,US,https://www.runmodelrun.com/privacy-policy.html,https://www.runmodelrun.com/TOS.html,
 Cirrascale,cirrascale,,,https://www.cirrascale.com/privacy-policy,https://www.cirrascale.com/terms-of-service,
 Ambient,ambient,,,,,
@@ -66,15 +68,16 @@ Anthropic,anthropic,US,,https://www.anthropic.com/legal/privacy,https://www.anth
 Baidu,baidu,CN,,https://intl.cloud.baidu.com/en/doc/Agreements/s/Plr0fi68q-intl-en,https://intl.cloud.baidu.com/en/doc/Agreements/s/bmesahnjh-intl-en,
 AtlasCloud,atlas-cloud,US,,https://www.atlascloud.ai/privacy,,
 Together,together,US,,https://www.together.ai/privacy,https://www.together.ai/terms-of-service,https://status.together.ai/
-FakeProvider,fake-provider,US,,,,
 Runway,runway,US,,https://runwayml.com/privacy-policy,https://runwayml.com/terms-of-use,https://status.runwayml.com
 DigitalOcean,digitalocean,,,https://www.digitalocean.com/legal/privacy-policy,https://www.digitalocean.com/legal/terms-of-service-agreement,
+Alibaba,alibaba,SG,SG|CN,https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy,https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-product-terms-of-service-v-3-8-0,https://status.alibabacloud.com/
 Nex AGI,nex-agi,CN,SG,https://api.nex-agi.cn/privacy-policy,,
 Chutes,chutes,US,,https://chutes.ai/privacy,https://chutes.ai/tos,
 Inceptron,inceptron,SE,FI,https://www.inceptron.io/privacy,https://www.inceptron.io/termsofservice,
 Upstage,upstage,,,https://www.upstage.ai/privacy-policy,https://www.upstage.ai/terms-of-service,
 Amazon Bedrock,amazon-bedrock,US,,https://aws.amazon.com/privacy,https://aws.amazon.com/service-terms/,https://health.aws.amazon.com/health/status
 Thinking Machines,thinkingmachines,,,https://thinkingmachines.ai/legal/tml-free-research-api-tier-privacy-notice.pdf,https://thinkingmachines.ai/legal/tml-free-research-api-tier-terms-of-service.pdf,
+Xiaomi,xiaomi,CN,SG|NL,https://platform.xiaomimimo.com/#/docs/terms/privacy-policy,https://platform.xiaomimimo.com/#/docs/terms/user-agreement,
 Google,google-vertex,US,,https://cloud.google.com/terms/cloud-privacy-notice,https://cloud.google.com/terms/,https://status.cloud.google.com/products/sdXM79fz1FS6ekNpu37K/history
 Google AI Studio,google-ai-studio,US,,https://cloud.google.com/terms/cloud-privacy-notice,https://cloud.google.com/terms/,
 Parasail,parasail,US,,https://www.parasail.io/legal/privacy-policy,https://parasail.io/legal/terms-of-service,
@@ -84,18 +87,17 @@ Nvidia,nvidia,US,US,https://www.nvidia.com/en-us/about-nvidia/privacy-policy/,ht
 Featherless,featherless,US,,https://featherless.ai/privacy,https://featherless.ai/terms,https://featherless.ai/status
 Makora,makora,,,,,https://makora.statuspage.io
 Relace,relace,,,https://www.relace.ai/privacy-policy,https://www.relace.ai/terms-of-use,
-Alibaba,alibaba,SG,SG|CN,https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy,https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-product-terms-of-service-v-3-8-0,https://status.alibabacloud.com/
+StreamLake,streamlake,CN,,https://www.streamlake.ai/document/DOC/mgkci47q13qr66h9i54,https://www.streamlake.ai/document/DOC/mgkchnd89grpt1961fw,https://status.streamlake.ai/
 Clarifai,clarifai,US,US,https://www.clarifai.com/company/privacy-policy,https://www.clarifai.com/company/terms,
 Quiver,quiver,,,,,
-StreamLake,streamlake,CN,,https://www.streamlake.ai/document/DOC/mgkci47q13qr66h9i54,https://www.streamlake.ai/document/DOC/mgkchnd89grpt1961fw,https://status.streamlake.ai/
 Venice,venice,US,US,https://venice.ai/legal/privacy-policy,https://venice.ai/legal/tos,
 Sakana AI,sakana,,,https://console.sakana.ai/privacy-policy,https://console.sakana.ai/terms-of-service,
 Wafer,wafer,US,,https://www.wafer.ai/privacy-policy,https://www.wafer.ai/terms,
+Inception,inception,,,https://www.inceptionlabs.ai/terms#privacy-policy,https://www.inceptionlabs.ai/terms,
 Inferact vLLM,inferact-vllm,,,,,
 Friendli,friendli,US,,https://friendli.ai/privacypolicy,https://friendli.ai/terms-of-service,https://status.friendli.ai/
 AkashML,akashml,,,https://akashml.com/privacy,https://akashml.com/terms,
 HeyGen,heygen,US,,https://www.heygen.com/privacy,https://www.heygen.com/terms,
-Inception,inception,,,https://www.inceptionlabs.ai/terms#privacy-policy,https://www.inceptionlabs.ai/terms,
 Perplexity,perplexity,US,,https://www.perplexity.ai/hub/legal/privacy-policy,https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service,https://status.perplexity.ai/
 Tenstorrent,tenstorrent,US,US,https://tenstorrent.com/privacy,https://tenstorrent.com/terms,
 GMICloud,gmicloud,US,US,https://docs.gmicloud.ai/privacy,https://www.gmicloud.ai/terms-and-conditions,

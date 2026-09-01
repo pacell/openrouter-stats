@@ -53,7 +53,7 @@ verbatim. In the data dictionary each column is tagged:
 | public | `/api/v1/models` | `model_catalogue` |
 | public | `/api/v1/providers` | `provider_catalogue` |
 | front-end | `/stats/endpoint` | `endpoint_catalogue` |
-| front-end | `/stats/effective-pricing` | the three `effective_prices_*` files |
+| front-end | `/stats/effective-pricing` | the three `effective_prices_*` files and `model_price_headline` |
 | front-end | `/stats/listed-pricing` | `listed_price_changes` |
 | front-end | `/stats/model-activity` | `token_mix_daily_by_model` |
 | front-end | `/stats/throughput-comparison`, `/stats/latency-comparison`, `/stats/latency-e2e-comparison` | `performance_daily_by_endpoint` |
@@ -83,6 +83,7 @@ appears only in `endpoint_catalogue`, which is therefore the join table.
 | `effective_prices_daily_by_endpoint.csv` | model × endpoint × day | 125,466 | 218d, 360 models |
 | `effective_prices_daily_by_model.csv` | model × day | 53,920 | 218d |
 | `effective_prices_summary.csv` | model × endpoint | 1,098 | prices whole window, volumes **~24h** |
+| `model_price_headline.csv` | model | 396 | **the numbers openrouter.ai displays** |
 | `listed_price_changes.csv` | change point | 20,249 | 370 models |
 | `token_mix_daily_by_model.csv` | model × day | 10,174 | **31d**, 359 models |
 | `blended_price_daily_by_model.csv` | model × day | 10,120 | **31d** |
@@ -161,6 +162,36 @@ Exact, per endpoint. Prefer this file when a specific day or provider matters.
 | `n_endpoints` | `CALC` | endpoints live that day |
 | `effective_input_usd_per_mtok`, `effective_output_usd_per_mtok` | `CALC` | `SUM(price_e × tokens_e) / SUM(tokens_e)` over the endpoints live that day |
 | `listed_input_usd_per_mtok_current`, `listed_output_usd_per_mtok_current` | `API×1e6` | today's headline price, repeated on every row as a reference line. **A snapshot, not history** — use `listed_price_changes.csv` for that |
+
+### model_price_headline.csv
+
+OpenRouter's own model-level effective price, carried verbatim. **These are the
+numbers openrouter.ai renders on the model page** — use this file when you need
+to agree with the site.
+
+| column | src | meaning |
+|---|---|---|
+| `weighted_input_usd_per_mtok`, `weighted_output_usd_per_mtok` | `API` | the site's headline effective prices |
+| `weighted_cache_hit_rate` | `API` | fraction of prompt tokens served from cache (0-1) |
+| `n_endpoints` | `API` | endpoints behind the figure |
+
+**Do not expect `effective_prices_daily_by_model.csv` to reproduce the output
+column here.** It reproduces the input column almost exactly (max 4.5% across
+132 models, none over 5%), but output has a fat tail: median 0.06%, **p90 4.9%,
+max 22.2%, and 13 of 132 models over 5%**. `z-ai/glm-5.2` is one of them, at
+9.6% — $3.22 derived against $2.94 headline.
+
+The cause is the weight. `total_tokens` is overwhelmingly prompt tokens, because
+traffic runs 10:1 to 100:1 input:output. Weighting the *output* price by it
+weights each endpoint by its **prompt** volume, which is the wrong weight
+whenever an endpoint's share of completions differs from its share of prompts.
+The API does not publish per-endpoint completion volumes, so there is no way to
+compute the right weight from the outside — hence this file, taken verbatim.
+
+Rule of thumb: for a model-level output price use `model_price_headline.csv`;
+for a per-endpoint price at a specific time use
+`effective_prices_daily_by_endpoint.csv`, which is exact. The derived daily
+model-level series is for shape over time, not for matching the site.
 
 ### effective_prices_summary.csv
 
@@ -404,6 +435,14 @@ $3.00/M list and $0.30/M cache reads predicts $1.588/M; the chart says $1.637/M,
 
 ## Caveats
 
+- **The derived model-level *output* price does not match the site for some
+  models.** Input is fine everywhere; output is off by more than 5% on ~10% of
+  models (worst seen: 22%). Use `model_price_headline.csv` to agree with
+  openrouter.ai. Full explanation under that file above.
+- **The data is a snapshot and goes stale.** Every series has a moving end date,
+  and the last day is partial while it is being written — a value fetched
+  mid-day settles later (GLM 5.2 on 2026-08-28: $3.88 output when captured
+  mid-day, $3.45 once complete). Re-run before comparing against the live site.
 - **`total_tokens` is a rolling ~24 hours, not the window.** Measured across 355
   models, it sits at 1.12x the current partial day and 0.02x the 31-day window.
   Two consequences: it is *today's* traffic, so `provider_summary.csv` is a

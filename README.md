@@ -63,6 +63,10 @@ different retention windows, and the validation results.
 - **`:batch` variants report $0, and that is not a price.** Treat as missing.
 - **Caching applies to input only, but effective output still moves** — routing
   mix and non-text modalities, not caching.
+- **To agree with openrouter.ai, use `model_price_headline.csv`.** The derived
+  model-level series reproduces the site's input price but not always its output
+  price — off by >5% on about a tenth of models, because the only weight the API
+  exposes is prompt-dominated. Per-endpoint prices are exact.
 - **No external ground truth.** OpenRouter publishes no per-model spend figure,
   so the validation checks are internal consistency, not verification against a
   reported number.

@@ -39,9 +39,18 @@ SAMPLE = 60
 
 
 def _pct(xs: List[float]) -> str:
-    q = statistics.quantiles(xs, n=4)
-    return (f"median {statistics.median(xs) * 100:5.2f}%  "
-            f"p25 {q[0] * 100:.2f}%  p75 {q[2] * 100:.2f}%  n={len(xs)}")
+    """Report the tail, not just the middle.
+
+    An earlier version of this script printed only a median, which hid a fat
+    tail on the output-price check: the median was 0.06% while a tenth of models
+    were off by 5% or more.
+    """
+    xs = sorted(xs)
+    over = sum(1 for v in xs if v > 0.05)
+    return (f"median {statistics.median(xs) * 100:6.3f}%  "
+            f"p90 {xs[int(len(xs) * 0.9)] * 100:6.2f}%  "
+            f"max {max(xs) * 100:6.2f}%  "
+            f">5%: {over}/{len(xs)}")
 
 
 def main() -> None:
@@ -71,6 +80,7 @@ def main() -> None:
             mine = sum((s.get(field) or 0) * (s.get("totalTokens") or 0) for s in ss) / tot
             bucket.append(abs(mine - api) / api)
     print("A. weighting reproduces the API's own weighted price")
+    print("   (input should be tight; output has a known tail — see the README)")
     print(f"   input   {_pct(a_in)}")
     print(f"   output  {_pct(a_out)}")
 

@@ -159,6 +159,25 @@ def effective(model: Dict[str, Any], rng: str) -> Optional[Dict[str, Any]]:
         "shape": EFFECTIVE_SHAPE, "range": rng}))
 
 
+def effective_headline(model: Dict[str, Any], data: Dict[str, Any]) -> Dict[str, Any]:
+    """OpenRouter's own model-level effective price — the number the site shows.
+
+    Carried verbatim. Prefer this over the derived model-level daily series when
+    you want to agree with openrouter.ai: the site renders exactly these values,
+    and for output they are **not** reproducible by weighting the per-endpoint
+    prices by totalTokens (see the output-weighting caveat in the README).
+    """
+    return {
+        "model_id": model["model_id"],
+        "permaslug": model["permaslug"],
+        "variant": model["variant"],
+        "n_endpoints": len(data.get("providerSummaries") or []),
+        "weighted_input_usd_per_mtok": data.get("weightedInputPrice"),
+        "weighted_output_usd_per_mtok": data.get("weightedOutputPrice"),
+        "weighted_cache_hit_rate": data.get("weightedCacheHitRate"),
+    }
+
+
 def effective_rows(model: Dict[str, Any], data: Dict[str, Any]
                    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     """Split one effective-pricing response into daily rows and summary rows.

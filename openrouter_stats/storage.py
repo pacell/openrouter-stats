@@ -41,6 +41,10 @@ SCHEMAS: Dict[str, List[str]] = {
         "date", "model_id", "permaslug", "variant", "n_endpoints",
         "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
         "listed_input_usd_per_mtok_current", "listed_output_usd_per_mtok_current"],
+    "model_price_headline": [
+        "model_id", "permaslug", "variant", "n_endpoints",
+        "weighted_input_usd_per_mtok", "weighted_output_usd_per_mtok",
+        "weighted_cache_hit_rate"],
     "effective_prices_summary": [
         "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
         "provider_slug", "effective_input_usd_per_mtok",
