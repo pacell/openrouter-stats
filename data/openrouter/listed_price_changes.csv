@@ -835,6 +835,14 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-03T15:50:40.860Z,qwen/qwen3.8-max,qwen/qwen3.8-max-20260803,standard,6332e9fd-e0c4-4cae-8c17-d25bc774864a,Alibaba Cloud Int.,alibaba,listed_cache_read_usd_per_mtok,0.25
 2026-08-03T15:50:40.860Z,qwen/qwen3.8-max,qwen/qwen3.8-max-20260803,standard,6332e9fd-e0c4-4cae-8c17-d25bc774864a,Alibaba Cloud Int.,alibaba,listed_cache_write_usd_per_mtok,2.5
 2026-08-03T15:50:40.860Z,qwen/qwen3.8-max,qwen/qwen3.8-max-20260803,standard,6332e9fd-e0c4-4cae-8c17-d25bc774864a,Alibaba Cloud Int.,alibaba,discount_fraction,0
+2026-08-04T14:32:50.654Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_input_usd_per_mtok,0.14
+2026-08-28T10:16:15.331Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_input_usd_per_mtok,0.1
+2026-08-30T22:45:33.683Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_input_usd_per_mtok,0.065
+2026-08-04T14:32:50.654Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_output_usd_per_mtok,0.28
+2026-08-30T22:45:33.683Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_output_usd_per_mtok,0.18
+2026-08-04T14:32:50.654Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_cache_read_usd_per_mtok,0.02
+2026-08-30T22:45:33.683Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,listed_cache_read_usd_per_mtok,0.016
+2026-08-04T14:32:50.654Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,akashml,discount_fraction,0
 2026-08-04T15:56:31.598Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.14
 2026-08-08T15:06:12.119Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.0896
 2026-08-10T03:10:44.769Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.14

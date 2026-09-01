@@ -27,10 +27,13 @@ Twenty CSVs from ten API surfaces, no API key, ~5,400 requests in ~4 minutes:
   policies and capacity
 - **Volumes** — daily prompt/completion tokens, per-request sequence lengths,
   cache hit rates, and 90 days of tokens served per provider
-- **Performance** — p50 (or p90/p95/p99) throughput, time-to-first-token and
-  time-to-last-token per provider endpoint
-- **Reliability & quality** — uptime, tool-call and structured-output error
-  rates, benchmark scores
+- **Performance** — throughput, time-to-first-token and time-to-last-token per
+  provider endpoint, at p50/p90/p95/p99, each percentile its own row
+- **Reliability & quality** — uptime per endpoint per hour, tool-call and
+  structured-output error rates, benchmark scores
+
+Stored at the finest grain the API publishes, with no summary statistics
+computed on the way in — no medians anywhere. Aggregate with your own weights.
 
 ```bash
 python3 scripts/openrouter_prices.py --all     # everything

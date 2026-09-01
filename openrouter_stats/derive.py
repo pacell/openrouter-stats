@@ -12,15 +12,20 @@ Three things are derived:
    and request counts.
 3. ``blended_prices`` — a single $/M figure, weighting input against output by
    the actual prompt:completion split.
-4. ``provider_ranking`` — per-endpoint medians of the daily performance series,
-   ranked, with prices joined on.
-5. ``provider_summary`` — the per-model-endpoint rows rolled up to one row per
-   provider.
+4. ``provider_summary`` — a lossless count/sum index of what each provider
+   serves.
+
+No medians, and no averaging of prices across models. Those discard the
+distribution, and the granular rows are all stored, so any summary a consumer
+wants is one groupby away — computed with weights they chose rather than ones we
+picked. The two remaining weighted means (the model-level daily price, and the
+blend built on it) are kept because the blend was asked for explicitly, and both
+carry the caveats below; ``model_price_headline.csv`` holds OpenRouter's own
+model-level figures, pulled verbatim, for when matching the site is what matters.
 """
 
 from __future__ import annotations
 
-import statistics
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 MTOK = 1_000_000
@@ -165,72 +170,20 @@ def blended_prices(model_rows: List[Dict[str, Any]],
     return out
 
 
-def provider_ranking(perf_rows: List[Dict[str, Any]],
-                     summary_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Median each endpoint's daily performance, join prices, and rank.
-
-    A median over the daily points stops one bad day deciding the ranking. Two
-    rankings are given because they disagree constantly: ``throughput_rank``
-    (fastest writer first) and ``ttft_rank`` (quickest to respond first). The
-    cheapest endpoint is rarely either, which is why the prices ride along.
-
-    Only 8 days of performance data exist, so a rank is a current snapshot.
-    """
-    price = {(r["model_id"], r["endpoint_id"]): r for r in summary_rows}
-
-    grouped: Dict[Tuple[str, str, str], List[Dict[str, Any]]] = {}
-    for r in perf_rows:
-        grouped.setdefault((r["model_id"], r["endpoint_id"], r["colo"]), []).append(r)
-
-    out = []
-    for (model_id, endpoint_id, colo), rows in grouped.items():
-        p = price.get((model_id, endpoint_id), {})
-        row = {
-            "model_id": model_id,
-            "endpoint_id": endpoint_id,
-            "colo": colo,
-            "provider_name": rows[0]["provider_name"] or p.get("provider_name") or "",
-            "provider_slug": rows[0]["provider_slug"] or p.get("provider_slug") or "",
-            "percentile": rows[0]["percentile"],
-            "days_observed": len(rows),
-            "effective_input_usd_per_mtok": p.get("effective_input_usd_per_mtok"),
-            "effective_output_usd_per_mtok": p.get("effective_output_usd_per_mtok"),
-            "total_tokens": p.get("total_tokens"),
-        }
-        for column in ("throughput_tok_s", "ttft_ms", "e2e_ms"):
-            vals = [r[column] for r in rows if r[column] is not None]
-            row[column] = round(statistics.median(vals), 2) if vals else None
-        out.append(row)
-
-    by_model: Dict[str, List[Dict[str, Any]]] = {}
-    for r in out:
-        by_model.setdefault(r["model_id"], []).append(r)
-    for rows in by_model.values():
-        for rank, r in enumerate(sorted(
-                rows, key=lambda x: -(x["throughput_tok_s"] or 0)), start=1):
-            r["throughput_rank"] = rank
-        for rank, r in enumerate(sorted(
-                rows, key=lambda x: (x["ttft_ms"] is None, x["ttft_ms"] or 0)), start=1):
-            r["ttft_rank"] = rank
-    return out
-
-
 def provider_summary(summary_rows: List[Dict[str, Any]],
                      endpoint_rows: List[Dict[str, Any]],
                      provider_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Roll the per-model-endpoint rows up to one row per provider.
+    """An index of what each provider serves: counts and sums only.
 
-    Volumes and the price weighting both come from ``total_tokens``, which is a
-    rolling **~24 hour** figure, not the price history's window — so this is a
-    snapshot of who is serving what today, not a history. For a 90-day volume
-    history per provider use ``provider_token_daily.csv``.
+    Deliberately carries **no average price**. Prices vary by orders of magnitude
+    across a provider's models, so any single figure is a choice of weighting,
+    and picking one here would hide that. For price by provider, group
+    ``effective_prices_summary.csv`` by ``provider_slug`` with whatever weight
+    suits the question — those rows are exact.
 
-        effective_input  = SUM(price_e x tokens_e) / SUM(tokens_e)
-        share_of_tokens  = provider tokens / all tokens
-
-    Latency and throughput are medians of the per-endpoint p50s the catalogue
-    reports over its own rolling 30-minute window, so they mix models: read them
-    as "this provider's typical endpoint", not as a per-model comparison.
+    ``tokens_last_24h`` sums ``total_tokens``, which measures a rolling ~24
+    hours, so this is a snapshot of current traffic. For a 90-day volume history
+    use ``provider_token_daily.csv``.
     """
     meta = {p["provider_slug"]: p for p in provider_rows}
 
@@ -252,21 +205,6 @@ def provider_summary(summary_rows: List[Dict[str, Any]],
         tokens = sum(float(r.get("total_tokens") or 0) for r in rows)
         eps = endpoints_by.get(slug, [])
         info = meta.get(slug, {})
-
-        def weighted(field: str) -> Optional[float]:
-            pairs = [(r[field], float(r.get("total_tokens") or 0))
-                     for r in rows if r.get(field) is not None]
-            total = sum(w for _, w in pairs)
-            if not pairs:
-                return None
-            if total <= 0:
-                return round(sum(v for v, _ in pairs) / len(pairs), 6)
-            return round(sum(v * w for v, w in pairs) / total, 6)
-
-        def median_of(source: List[Dict[str, Any]], field: str) -> Optional[float]:
-            vals = [v for v in (r.get(field) for r in source) if v not in (None, "")]
-            return round(statistics.median(float(v) for v in vals), 2) if vals else None
-
         out.append({
             "provider_slug": slug,
             "provider_name": rows[0].get("provider_name") or info.get("provider_name"),
@@ -275,13 +213,6 @@ def provider_summary(summary_rows: List[Dict[str, Any]],
             "n_endpoints": len({r["endpoint_id"] for r in rows}),
             "tokens_last_24h": int(tokens),
             "share_of_tokens_pct": round(tokens / all_tokens * 100, 4),
-            "effective_input_usd_per_mtok": weighted("effective_input_usd_per_mtok"),
-            "effective_output_usd_per_mtok": weighted("effective_output_usd_per_mtok"),
-            "cache_hit_rate": weighted("cache_hit_rate"),
-            "median_listed_input_usd_per_mtok": median_of(eps, "listed_input_usd_per_mtok"),
-            "median_listed_output_usd_per_mtok": median_of(eps, "listed_output_usd_per_mtok"),
-            "median_p50_throughput_tok_s": median_of(eps, "p50_throughput_tok_s"),
-            "median_p50_latency_ms": median_of(eps, "p50_latency_ms"),
             "n_endpoints_training_on_prompts": sum(
                 1 for e in eps if e.get("policy_trains_on_prompts") is True),
         })

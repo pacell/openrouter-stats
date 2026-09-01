@@ -30,9 +30,21 @@ SCHEMAS: Dict[str, List[str]] = {
         "tier_min_prompt_tokens", "tier_input_usd_per_mtok",
         "tier_output_usd_per_mtok", "policy_trains_on_prompts",
         "policy_retains_prompts", "policy_can_publish", "policy_requires_user_ids",
-        "p50_throughput_tok_s", "p90_throughput_tok_s", "p99_throughput_tok_s",
-        "p50_latency_ms", "p90_latency_ms", "p99_latency_ms", "stats_request_count",
-        "stats_window_minutes", "created_at"],
+        "p50_throughput_tok_s", "p75_throughput_tok_s", "p90_throughput_tok_s",
+        "p95_throughput_tok_s", "p99_throughput_tok_s", "p50_latency_ms",
+        "p75_latency_ms", "p90_latency_ms", "p95_latency_ms", "p99_latency_ms",
+        "stats_request_count", "stats_window_minutes", "created_at"],
+    "endpoint_price_tiers": [
+        "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "sku_label", "tier_index", "tier_label", "price", "unit_label",
+        "display_multiplier"],
+    "endpoint_pricing_raw": [
+        "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "pricing_key", "value"],
+    "endpoint_uptime_daily": [
+        "date", "model_id", "permaslug", "variant", "endpoint_id", "uptime_pct"],
+    "endpoint_uptime_hourly": [
+        "hour", "endpoint_id", "uptime_pct"],
     "effective_prices_daily_by_endpoint": [
         "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
         "provider_slug", "effective_input_usd_per_mtok",
@@ -69,11 +81,6 @@ SCHEMAS: Dict[str, List[str]] = {
         "date", "model_id", "permaslug", "variant", "endpoint_id", "colo",
         "provider_name", "provider_slug", "percentile", "throughput_tok_s",
         "ttft_ms", "e2e_ms"],
-    "provider_performance_summary": [
-        "model_id", "provider_name", "provider_slug", "colo", "endpoint_id",
-        "percentile", "days_observed", "throughput_tok_s", "ttft_ms", "e2e_ms",
-        "throughput_rank", "ttft_rank", "effective_input_usd_per_mtok",
-        "effective_output_usd_per_mtok", "total_tokens"],
     "cache_hit_rate_daily_by_endpoint": [
         "date", "model_id", "permaslug", "variant", "endpoint_id",
         "cache_hit_rate_pct"],
@@ -98,10 +105,7 @@ SCHEMAS: Dict[str, List[str]] = {
     "provider_summary": [
         "token_rank", "provider_slug", "provider_name", "headquarters", "n_models",
         "n_endpoints", "tokens_last_24h", "share_of_tokens_pct",
-        "effective_input_usd_per_mtok", "effective_output_usd_per_mtok",
-        "cache_hit_rate", "median_listed_input_usd_per_mtok",
-        "median_listed_output_usd_per_mtok", "median_p50_throughput_tok_s",
-        "median_p50_latency_ms", "n_endpoints_training_on_prompts"],
+        "n_endpoints_training_on_prompts"],
     "top_colos_by_model": [
         "model_id", "permaslug", "variant", "rank", "colo"],
 }

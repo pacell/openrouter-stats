@@ -57,8 +57,9 @@ def main() -> None:
     ap.add_argument("--providers", action="store_true",
                     help="provider-level rollup and 90-day tokens-served history")
     ap.add_argument("--listed", action="store_true", help="listed-price change log")
-    ap.add_argument("--percentile", default="p50", choices=PERCENTILES,
-                    help="percentile for the performance series (default: p50)")
+    ap.add_argument("--percentile", default="all", choices=PERCENTILES + ("all",),
+                    help="percentile(s) for the performance series; 'all' (the "
+                         "default) keeps each as its own row")
     ap.add_argument("--workers", type=int, default=8, help="parallel requests")
     ap.add_argument("--out", default=OUT_DIR, help="output directory")
     args = ap.parse_args()
@@ -80,7 +81,8 @@ def main() -> None:
     bins = {k: [] for k in (
         "eff_daily", "eff_summary", "model_daily", "listed", "activity", "mix",
         "perf", "cache", "tool_err", "struct_err", "uptime", "bench", "apps",
-        "colos", "endpoints", "headline")}
+        "colos", "endpoints", "headline", "tiers", "pricing_raw",
+        "ep_uptime_daily", "ep_uptime_hourly")}
     no_data = []
 
     def work(model):
@@ -89,19 +91,23 @@ def main() -> None:
         names = (eff or {}).get("endpointNames", {}) or {}
         slugs = (eff or {}).get("endpointProviderSlugs", {}) or {}
         if args.catalogue:
-            got["endpoints"] = pull.endpoints(model)
+            raw = pull.endpoints_raw(model)
+            got["endpoints"] = pull.endpoints(model, raw)
+            got["tiers"] = pull.endpoint_price_tiers(model, raw)
+            got["pricing_raw"] = pull.endpoint_pricing_raw(model, raw)
         if args.listed:
             got["listed"] = pull.listed(model, args.range)
         if args.activity:
             got["activity"] = pull.activity(model)
         if args.performance:
-            got["perf"] = pull.performance(model, args.range, args.percentile,
-                                           names, slugs)
+            pcts = PERCENTILES if args.percentile == "all" else (args.percentile,)
+            got["perf"] = pull.performance(model, args.range, pcts, names, slugs)
         if args.reliability:
             got["cache"] = pull.cache_hit_rate(model, args.range)
             got["tool_err"] = pull.tool_call_errors(model, args.range)
             got["struct_err"] = pull.structured_output_errors(model, args.range)
             got["uptime"] = pull.uptime(model)
+            got["ep_uptime_daily"] = pull.endpoint_uptime_daily(model)
         if args.quality:
             got["bench"] = pull.benchmarks(model)
         if args.apps:
@@ -117,7 +123,8 @@ def main() -> None:
                 print(f"  {done}/{len(models)}")
             model, eff = got["model"], got["eff"]
             for key in ("listed", "endpoints", "perf", "cache", "tool_err",
-                        "struct_err", "uptime", "bench", "apps", "colos"):
+                        "struct_err", "uptime", "bench", "apps", "colos",
+                        "tiers", "pricing_raw", "ep_uptime_daily"):
                 bins[key].extend(got.get(key) or [])
             if got.get("activity"):
                 bins["activity"].extend(got["activity"])
@@ -146,6 +153,12 @@ def main() -> None:
         storage.write(args.out, "provider_catalogue", pull.providers())
         bins["endpoints"].sort(key=lambda r: (r["model_id"], r["provider_name"] or ""))
         storage.write(args.out, "endpoint_catalogue", bins["endpoints"])
+        bins["tiers"].sort(key=lambda r: (r["model_id"], r["endpoint_id"] or "",
+                                          r["sku_label"] or "", r["tier_index"]))
+        storage.write(args.out, "endpoint_price_tiers", bins["tiers"])
+        bins["pricing_raw"].sort(key=lambda r: (r["model_id"], r["endpoint_id"] or "",
+                                                r["pricing_key"]))
+        storage.write(args.out, "endpoint_pricing_raw", bins["pricing_raw"])
     if args.activity:
         bins["mix"].sort(key=lambda r: (r["model_id"], r["date"]))
         storage.write(args.out, "token_mix_daily_by_model", bins["mix"])
@@ -153,11 +166,9 @@ def main() -> None:
         blended.sort(key=lambda r: (r["model_id"], r["date"]))
         storage.write(args.out, "blended_price_daily_by_model", blended)
     if args.performance:
-        bins["perf"].sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"]))
+        bins["perf"].sort(key=lambda r: (r["model_id"], r["date"],
+                                         r["provider_name"], r["percentile"]))
         storage.write(args.out, "performance_daily_by_endpoint", bins["perf"])
-        best = derive.provider_ranking(bins["perf"], bins["eff_summary"])
-        best.sort(key=lambda r: (r["model_id"], r["throughput_rank"]))
-        storage.write(args.out, "provider_performance_summary", best)
     if args.reliability:
         for stem, key in (("cache_hit_rate_daily_by_endpoint", "cache"),
                           ("tool_call_error_rate_daily", "tool_err"),
@@ -166,6 +177,18 @@ def main() -> None:
             storage.write(args.out, stem, bins[key])
         bins["uptime"].sort(key=lambda r: (r["model_id"], r["timestamp"] or ""))
         storage.write(args.out, "model_uptime_recent", bins["uptime"])
+        bins["ep_uptime_daily"].sort(key=lambda r: (r["model_id"], r["endpoint_id"],
+                                                    r["date"]))
+        storage.write(args.out, "endpoint_uptime_daily", bins["ep_uptime_daily"])
+        endpoint_ids = sorted({r["endpoint_id"] for r in bins["eff_summary"]
+                               if r.get("endpoint_id")})
+        print(f"  hourly uptime for {len(endpoint_ids)} endpoints")
+        hourly = []
+        with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
+            for rows in pool.map(pull.endpoint_uptime_hourly, endpoint_ids):
+                hourly.extend(rows)
+        hourly.sort(key=lambda r: (r["endpoint_id"], r["hour"] or ""))
+        storage.write(args.out, "endpoint_uptime_hourly", hourly)
     if args.quality:
         bins["bench"].sort(key=lambda r: (r["model_id"], r["benchmark_type"] or "",
                                           -(r["score"] or 0)))

@@ -16,6 +16,23 @@ A full `--all` run is ~5,400 requests over ~4.5 minutes and needs no API key.
 
 ---
 
+## No summary statistics
+
+Every series is stored at the finest grain the API publishes, and nothing is
+collapsed on the way in. There are no medians anywhere in this dataset: a median
+throws away the distribution, and the rows it was computed from are all here, so
+any summary is a groupby away — computed with weights you chose rather than ones
+we picked.
+
+Concretely: performance keeps all four percentiles as separate rows rather than
+one; uptime is stored per endpoint per hour, not per model; every price tier and
+every upstream price key is kept rather than the first; and `provider_summary`
+carries counts and sums only.
+
+The two exceptions are the model-level daily price and the blended price built
+on it, both weighted means, both flagged below — and for the model-level figure
+`model_price_headline.csv` holds OpenRouter's own, pulled verbatim.
+
 ## Pulled vs calculated
 
 **Almost everything here is pulled.** Four things are ours, and the split is
@@ -41,10 +58,8 @@ verbatim. In the data dictionary each column is tagged:
    (`derive.token_mix`)
 3. **Blended price** — input weighted against output by the real prompt:completion
    split (`derive.blended_prices`)
-4. **Provider ranking** — medians of the daily performance series, ranked
-   (`derive.provider_ranking`)
-5. **Provider rollup** — per-model-endpoint rows aggregated to one row per
-   provider (`derive.provider_summary`)
+4. **Provider rollup** — counts and sums per provider, no averages
+   (`derive.provider_summary`)
 
 ### Source endpoints
 
@@ -59,7 +74,7 @@ verbatim. In the data dictionary each column is tagged:
 | front-end | `/stats/throughput-comparison`, `/stats/latency-comparison`, `/stats/latency-e2e-comparison` | `performance_daily_by_endpoint` |
 | front-end | `/stats/cache-hit-rate-comparison` | `cache_hit_rate_daily_by_endpoint` |
 | front-end | `/stats/tool-call-error-rate`, `/stats/structured-output-error-rate` | the two `*_error_rate_*` files |
-| front-end | `/stats/model-uptime-recent` | `model_uptime_recent` |
+| front-end | `/stats/model-uptime-recent`, `/stats/uptime-recent`, `/stats/uptime-hourly` | the three uptime files |
 | front-end | `/stats/benchmark-scores` | `benchmark_scores` |
 | front-end | `/stats/top-apps-for-model`, `/stats/top-colos-for-model` | `top_apps_by_model`, `top_colos_by_model` |
 | front-end | `/stats/provider-token-chart` | `provider_token_daily` |
@@ -87,8 +102,11 @@ appears only in `endpoint_catalogue`, which is therefore the join table.
 | `listed_price_changes.csv` | change point | 20,249 | 370 models |
 | `token_mix_daily_by_model.csv` | model × day | 10,174 | **31d**, 359 models |
 | `blended_price_daily_by_model.csv` | model × day | 10,120 | **31d** |
-| `performance_daily_by_endpoint.csv` | model × endpoint × colo × day | 9,269 | **8d**, 344 models |
-| `provider_performance_summary.csv` | model × endpoint × colo | 1,258 | **8d** |
+| `performance_daily_by_endpoint.csv` | model × endpoint × colo × day × percentile | 36,404 | **8d** |
+| `endpoint_price_tiers.csv` | endpoint × SKU × tier | 1,266 | current |
+| `endpoint_pricing_raw.csv` | endpoint × upstream price key | 6,617 | current |
+| `endpoint_uptime_daily.csv` | model × endpoint × day | 7,131 | **~3d** |
+| `endpoint_uptime_hourly.csv` | endpoint × hour | 75,894 | **~3d** |
 | `cache_hit_rate_daily_by_endpoint.csv` | model × endpoint × day | 11,323 | **8d**, 376 models |
 | `tool_call_error_rate_daily.csv` | model × endpoint × day | 9,307 | **8d**, 311 models |
 | `structured_output_error_rate_daily.csv` | model × endpoint × day | 7,403 | **8d**, 295 models |
@@ -142,7 +160,7 @@ The join table, and the richest single call in the dataset.
 | `discount` | `API` | fraction already taken off the upstream list price (0.5 = the price shown is half list) |
 | `n_price_tiers`, `tier_min_prompt_tokens`, `tier_input_usd_per_mtok`, `tier_output_usd_per_mtok` | `API`/`API×1e6` | long-context tier. 119 endpoints have one — e.g. Sonnet 4 doubles above 200k prompt tokens |
 | `policy_trains_on_prompts`, `policy_retains_prompts`, `policy_can_publish`, `policy_requires_user_ids` | `API` | data policy. 16 endpoints train on prompts |
-| `p50_throughput_tok_s`, `p90_throughput_tok_s`, `p99_throughput_tok_s`, `p50_latency_ms`, `p90_latency_ms`, `p99_latency_ms` | `API` | OpenRouter's own percentiles over a rolling **30-minute** window — distinct from the daily series in `performance_daily_by_endpoint` |
+| `p50_throughput_tok_s`, `p75_throughput_tok_s`, `p90_throughput_tok_s`, `p95_throughput_tok_s`, `p99_throughput_tok_s`, `p50_latency_ms`, `p75_latency_ms`, `p90_latency_ms`, `p95_latency_ms`, `p99_latency_ms` | `API` | OpenRouter's own percentiles over a rolling **30-minute** window — distinct from the daily series in `performance_daily_by_endpoint` |
 | `stats_request_count`, `stats_window_minutes` | `API` | sample size behind those percentiles |
 | `created_at` | `API` | when the endpoint was added to OpenRouter |
 
@@ -237,19 +255,44 @@ Keyed by `endpoint_id::colo` upstream, so `colo` is a real dimension here.
 
 | column | src | meaning |
 |---|---|---|
-| `percentile` | — | which percentile was requested; p50 is the API default |
+| `percentile` | `API` | `p50`, `p90`, `p95` or `p99`. **Each is its own row** — a full run keeps all four rather than picking one |
 | `throughput_tok_s` | `API` | output tokens per second — how fast the model writes |
 | `ttft_ms` | `API` | Time to First Token, from when the request is sent |
 | `e2e_ms` | `API` | Time to Last Token — full round trip |
 
-### provider_performance_summary.csv
+### endpoint_price_tiers.csv
+
+Every pricing tier for every endpoint. `endpoint_catalogue` flattens only the
+first override, which loses the rest for a model with several breakpoints.
 
 | column | src | meaning |
 |---|---|---|
-| `days_observed` | `CALC` | daily points behind the medians |
-| `throughput_tok_s`, `ttft_ms`, `e2e_ms` | `CALC` | median of the daily series |
-| `throughput_rank`, `ttft_rank` | `CALC` | rank within the model, 1 = best. They disagree constantly |
-| `effective_input_usd_per_mtok`, `effective_output_usd_per_mtok`, `total_tokens` | `API` | joined from `effective_prices_summary` so speed can be read against cost |
+| `sku_label` | `API` | which price: Input Price, Output Price, Cache Read, Cache Write, Cache Write (1h) |
+| `tier_index`, `tier_label` | `API` | 0-based position, and the breakpoint as the site labels it (`≤200K`, `>200K`) |
+| `price` | `API` | $ per token — multiply by `display_multiplier` for the site's unit |
+| `unit_label`, `display_multiplier` | `API` | e.g. `/M tokens`, `1000000` |
+
+### endpoint_pricing_raw.csv
+
+The upstream provider's own price keys, **before** OpenRouter's discount. Long
+format, one row per key, because the key set differs per provider and cannot be
+columnised. This is where long-context variants and the 5m/1h cache-write split
+survive intact (`anthropic:cache_write_5m_tokens_long_context`, etc.).
+
+| column | src | meaning |
+|---|---|---|
+| `pricing_key` | `API` | provider-native key, e.g. `anthropic:prompt_tokens` |
+| `value` | `API` | raw value as published — $ per token, or a token count for `*_threshold` keys |
+
+### endpoint_uptime_daily.csv / endpoint_uptime_hourly.csv
+
+Per-**endpoint** uptime, finer than the model-wide `model_uptime_recent.csv`.
+The hourly file is the finest reliability grain OpenRouter publishes.
+
+| column | src | meaning |
+|---|---|---|
+| `hour` | `API` | hourly bucket timestamp (hourly file only) |
+| `uptime_pct` | `API` | 0–100 for that endpoint over that day or hour |
 
 ### cache_hit_rate_daily_by_endpoint.csv
 
@@ -300,14 +343,14 @@ One row per provider, across every model it serves. Ranked by volume.
 | `n_models`, `n_endpoints` | `CALC` | distinct counts |
 | `tokens_last_24h` | `CALC` | `SUM(total_tokens)` — inherits the ~24h window |
 | `share_of_tokens_pct` | `CALC` | that sum over all providers' |
-| `effective_input_usd_per_mtok`, `effective_output_usd_per_mtok`, `cache_hit_rate` | `CALC` | token-weighted across the provider's endpoints |
-| `median_listed_input_usd_per_mtok`, `median_listed_output_usd_per_mtok` | `CALC` | median over its endpoints in `endpoint_catalogue` |
-| `median_p50_throughput_tok_s`, `median_p50_latency_ms` | `CALC` | median of the per-endpoint p50s, which come off the API over its own 30-min window |
 | `n_endpoints_training_on_prompts` | `CALC` | count where `policy_trains_on_prompts` is true |
 
-These averages **mix models**. A provider serving mostly small models will show
-a low effective price for that reason alone, so read a provider's price against
-its `n_models`, or go to `effective_prices_summary.csv` for like-for-like.
+**Deliberately carries no average price.** A provider's prices span orders of
+magnitude across its models, so any single figure is a choice of weighting, and
+baking one in here would hide that — the same mistake that made the model-level
+output price disagree with the site. For price by provider, group
+`effective_prices_summary.csv` by `provider_slug` with whatever weight suits the
+question; those rows are exact.
 
 ### provider_token_daily.csv
 
@@ -412,7 +455,10 @@ pointing opposite ways.
 
 ## Validation
 
-`scripts/openrouter_checks.py` re-derives the numbers three ways. There is no
+`scripts/openrouter_checks.py` re-derives the numbers three ways. It reports
+error distributions with a median *and* p90, max and a count over 5% — an
+earlier version printed only the median, which is how the output-price tail went
+unnoticed. That is a printed diagnostic; nothing it computes is stored. There is no
 public per-model spend figure from OpenRouter, so **none is an external ground
 truth** — the blended price has no independent source to be checked against.
 

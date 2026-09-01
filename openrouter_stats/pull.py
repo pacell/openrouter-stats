@@ -14,8 +14,9 @@ from typing import Any, Dict, List, Optional, Tuple
 from .api import (ACTIVITY_URL, BENCHMARK_URL, CACHE_HIT_URL, EFFECTIVE_SHAPE,
                   EFFECTIVE_URL, ENDPOINT_URL, LISTED_SHAPE, LISTED_URL,
                   MODELS_URL, PERF_URLS, PROVIDERS_URL, STRUCT_ERROR_URL,
-                  PROVIDER_TOKENS_URL, TOOL_ERROR_URL, TOP_APPS_URL, TOP_COLOS_URL,
-                  UPTIME_URL,
+                  PERCENTILES, PROVIDER_TOKENS_URL, TOOL_ERROR_URL, TOP_APPS_URL,
+                  TOP_COLOS_URL, UPTIME_ENDPOINT_DAILY_URL,
+                  UPTIME_ENDPOINT_HOURLY_URL, UPTIME_URL,
                   data_of, get_json)
 
 MTOK = 1_000_000
@@ -80,7 +81,67 @@ def providers() -> List[Dict[str, Any]]:
     return rows
 
 
-def endpoints(model: Dict[str, Any]) -> List[Dict[str, Any]]:
+def endpoint_price_tiers(model: Dict[str, Any], raw: List[Dict[str, Any]]
+                         ) -> List[Dict[str, Any]]:
+    """Every pricing tier for every endpoint, one row each.
+
+    ``endpoint_catalogue`` flattens only the first override; a model with two or
+    more long-context breakpoints loses the rest there. This keeps all of them,
+    from ``display_pricing``, which is the tier list the site renders.
+    """
+    rows = []
+    for e in raw:
+        for sku in (e.get("pricing") or {}).get("display_pricing") or []:
+            tiers = sku.get("tiers") or []
+            for i, tier in enumerate(tiers):
+                rows.append({
+                    "model_id": model["model_id"],
+                    "permaslug": model["permaslug"],
+                    "variant": model["variant"],
+                    "endpoint_id": e.get("id"),
+                    "provider_name": e.get("provider_display_name"),
+                    "sku_label": sku.get("sku_label"),
+                    "tier_index": i,
+                    "tier_label": tier.get("sku_label"),
+                    "price": tier.get("price"),
+                    "unit_label": sku.get("unitLabel"),
+                    "display_multiplier": sku.get("displayMultiplier"),
+                })
+    return rows
+
+
+def endpoint_pricing_raw(model: Dict[str, Any], raw: List[Dict[str, Any]]
+                         ) -> List[Dict[str, Any]]:
+    """The upstream provider's own price keys, before OpenRouter's discount.
+
+    ``pricing_json`` carries provider-native keys (``anthropic:prompt_tokens``,
+    ``anthropic:long_context_threshold``, separate 5m and 1h cache writes) that
+    the flattened ``pricing`` object drops. Kept long — one row per key — because
+    the key set differs per provider and cannot be columnised.
+    """
+    rows = []
+    for e in raw:
+        for key, value in (e.get("pricing_json") or {}).items():
+            rows.append({
+                "model_id": model["model_id"],
+                "permaslug": model["permaslug"],
+                "variant": model["variant"],
+                "endpoint_id": e.get("id"),
+                "provider_name": e.get("provider_display_name"),
+                "pricing_key": key,
+                "value": value,
+            })
+    return rows
+
+
+def endpoints_raw(model: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """One fetch of the endpoint records, shared by the three parsers below."""
+    return data_of(get_json(ENDPOINT_URL, {"permaslug": model["permaslug"],
+                                           "variant": model["variant"]})) or []
+
+
+def endpoints(model: Dict[str, Any], raw: Optional[List[Dict[str, Any]]] = None
+              ) -> List[Dict[str, Any]]:
     """The full per-endpoint record: listed pricing, limits, policy, p50-p99.
 
     This is the only source that carries the endpoint **id**, which is what
@@ -89,8 +150,7 @@ def endpoints(model: Dict[str, Any]) -> List[Dict[str, Any]]:
     daily performance series in ``performance()``.
     """
     rows = []
-    for e in data_of(get_json(ENDPOINT_URL, {"permaslug": model["permaslug"],
-                                             "variant": model["variant"]})) or []:
+    for e in (raw if raw is not None else endpoints_raw(model)):
         pricing = e.get("pricing") or {}
         stats = e.get("stats") or {}
         policy = e.get("data_policy") or {}
@@ -136,10 +196,14 @@ def endpoints(model: Dict[str, Any]) -> List[Dict[str, Any]]:
             "policy_can_publish": policy.get("canPublish"),
             "policy_requires_user_ids": policy.get("requiresUserIDs"),
             "p50_throughput_tok_s": stats.get("p50_throughput"),
+            "p75_throughput_tok_s": stats.get("p75_throughput"),
             "p90_throughput_tok_s": stats.get("p90_throughput"),
+            "p95_throughput_tok_s": stats.get("p95_throughput"),
             "p99_throughput_tok_s": stats.get("p99_throughput"),
             "p50_latency_ms": stats.get("p50_latency"),
+            "p75_latency_ms": stats.get("p75_latency"),
             "p90_latency_ms": stats.get("p90_latency"),
+            "p95_latency_ms": stats.get("p95_latency"),
             "p99_latency_ms": stats.get("p99_latency"),
             "stats_request_count": stats.get("request_count"),
             "stats_window_minutes": stats.get("window_minutes"),
@@ -289,34 +353,37 @@ def activity(model: Dict[str, Any]) -> List[Dict[str, Any]]:
     return rows
 
 
-def performance(model: Dict[str, Any], rng: str, percentile: str,
+def performance(model: Dict[str, Any], rng: str, percentiles: Tuple[str, ...],
                 names: Dict[str, str], slugs: Dict[str, str]) -> List[Dict[str, Any]]:
     """Daily throughput, time-to-first-token and time-to-last-token.
 
-    Three series joined on (date, endpoint, colo). ``percentile`` is omitted for
-    p50 because that is the API's own default. Despite accepting a timeRange,
-    these endpoints always return the last 8 days.
+    One row per (date, endpoint, colo, percentile) — every percentile requested
+    is kept as its own row rather than collapsed, because the API publishes no
+    per-request figures and these percentiles are the finest grain that exists.
+    ``percentile`` is omitted from the request for p50, which is the API default.
+    Despite accepting a timeRange, these endpoints always return the last 8 days.
     """
-    merged: Dict[Tuple[str, str], Dict[str, Any]] = {}
-    for column, url in PERF_URLS.items():
-        params = {"permaslug": model["permaslug"], "variant": model["variant"],
-                  "timeRange": rng}
-        if percentile != "p50":
-            params["percentile"] = percentile
-        for point in data_of(get_json(url, params)) or []:
-            date = str(point["x"])[:10]
-            for key, value in (point.get("y") or {}).items():
-                endpoint_id, _, colo = key.partition("::")
-                row = merged.setdefault((date, key), {
-                    "date": date, "model_id": model["model_id"],
-                    "permaslug": model["permaslug"], "variant": model["variant"],
-                    "endpoint_id": endpoint_id, "colo": colo or "default",
-                    "provider_name": names.get(endpoint_id, ""),
-                    "provider_slug": slugs.get(endpoint_id, ""),
-                    "percentile": percentile,
-                    "throughput_tok_s": None, "ttft_ms": None, "e2e_ms": None,
-                })
-                row[column] = value
+    merged: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
+    for percentile in percentiles:
+        for column, url in PERF_URLS.items():
+            params = {"permaslug": model["permaslug"], "variant": model["variant"],
+                      "timeRange": rng}
+            if percentile != "p50":
+                params["percentile"] = percentile
+            for point in data_of(get_json(url, params)) or []:
+                date = str(point["x"])[:10]
+                for key, value in (point.get("y") or {}).items():
+                    endpoint_id, _, colo = key.partition("::")
+                    row = merged.setdefault((date, key, percentile), {
+                        "date": date, "model_id": model["model_id"],
+                        "permaslug": model["permaslug"], "variant": model["variant"],
+                        "endpoint_id": endpoint_id, "colo": colo or "default",
+                        "provider_name": names.get(endpoint_id, ""),
+                        "provider_slug": slugs.get(endpoint_id, ""),
+                        "percentile": percentile,
+                        "throughput_tok_s": None, "ttft_ms": None, "e2e_ms": None,
+                    })
+                    row[column] = value
     return list(merged.values())
 
 
@@ -444,3 +511,36 @@ def provider_token_chart(provider_slug: str) -> List[Dict[str, Any]]:
                 "tokens": tokens,
             })
     return rows
+
+
+def endpoint_uptime_daily(model: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Daily uptime per **endpoint** — finer than the model-wide bucket series.
+
+    One call per model returns a dict keyed by endpoint id, so this is the
+    cheapest way to get provider-level reliability rather than the blended
+    model-level number.
+    """
+    data = data_of(get_json(UPTIME_ENDPOINT_DAILY_URL,
+                            {"permaslug": model["permaslug"],
+                             "variant": model["variant"]})) or {}
+    return [{
+        "date": str(point["date"])[:10],
+        "model_id": model["model_id"],
+        "permaslug": model["permaslug"],
+        "variant": model["variant"],
+        "endpoint_id": endpoint_id,
+        "uptime_pct": point.get("uptime"),
+    } for endpoint_id, points in data.items() for point in points or []]
+
+
+def endpoint_uptime_hourly(endpoint_id: str) -> List[Dict[str, Any]]:
+    """Hourly uptime for one endpoint — the finest reliability grain published.
+
+    Costs one call per endpoint, so it is the most expensive series here.
+    """
+    data = data_of(get_json(UPTIME_ENDPOINT_HOURLY_URL, {"id": endpoint_id})) or {}
+    return [{
+        "hour": point.get("date"),
+        "endpoint_id": endpoint_id,
+        "uptime_pct": point.get("uptime"),
+    } for point in data.get("history") or []]

@@ -37,6 +37,8 @@ CACHE_HIT_URL = f"{F}/cache-hit-rate-comparison"
 TOOL_ERROR_URL = f"{F}/tool-call-error-rate"
 STRUCT_ERROR_URL = f"{F}/structured-output-error-rate"
 UPTIME_URL = f"{F}/model-uptime-recent"
+UPTIME_ENDPOINT_DAILY_URL = f"{F}/uptime-recent"
+UPTIME_ENDPOINT_HOURLY_URL = f"{F}/uptime-hourly"
 TOP_APPS_URL = f"{F}/top-apps-for-model"
 TOP_COLOS_URL = f"{F}/top-colos-for-model"
 PROVIDER_TOKENS_URL = f"{F}/provider-token-chart"
@@ -50,6 +52,8 @@ EFFECTIVE_SHAPE = "v7"
 LISTED_SHAPE = "v4"
 RANGES = ("3d", "1w", "1m", "3m", "1y", "all")
 PERCENTILES = ("p50", "p90", "p95", "p99")
+# The API exposes no finer grain than these percentiles: per-request
+# throughput and latency are not published.
 
 USER_AGENT = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
