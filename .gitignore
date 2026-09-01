@@ -3,3 +3,9 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
+
+# Consolidated CSVs are rebuilt from data/history by
+# scripts/openrouter_consolidate.py. Committing them would add a fresh
+# compressed copy of every changed table to git history on every daily run
+# (~16MB/commit, ~6GB/year); the partitions cost under 1MB/day.
+data/openrouter/*.csv

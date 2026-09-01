@@ -26,14 +26,17 @@ import argparse
 import concurrent.futures as futures
 import os
 import sys
+from datetime import datetime, timezone
+from typing import Any, Dict, List
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from openrouter_stats import derive, pull, storage  # noqa: E402
+from openrouter_stats import derive, history, pull, storage  # noqa: E402
 from openrouter_stats.api import PERCENTILES, RANGES  # noqa: E402
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                       "data", "openrouter")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT_DIR = os.path.join(ROOT, "data", "openrouter")
+HISTORY_DIR = os.path.join(ROOT, "data", "history")
 
 
 def main() -> None:
@@ -61,13 +64,35 @@ def main() -> None:
                     help="percentile(s) for the performance series; 'all' (the "
                          "default) keeps each as its own row")
     ap.add_argument("--workers", type=int, default=8, help="parallel requests")
-    ap.add_argument("--out", default=OUT_DIR, help="output directory")
+    ap.add_argument("--out", default=OUT_DIR, help="consolidated CSV directory")
+    ap.add_argument("--history", action="store_true",
+                    help="also append to the partitioned history under "
+                         "data/history, which accumulates the 8-day series past "
+                         "what the API retains")
+    ap.add_argument("--history-dir", default=HISTORY_DIR)
+    ap.add_argument("--no-consolidated", action="store_true",
+                    help="skip the consolidated CSVs (the daily job does; they "
+                         "are rebuilt by openrouter_consolidate.py)")
     args = ap.parse_args()
 
     if args.all:
         for flag in ("catalogue", "activity", "performance", "reliability",
                      "quality", "apps", "providers", "listed"):
             setattr(args, flag, True)
+
+    run_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    written = unchanged = 0
+
+    def emit(stem: str, rows: List[Dict[str, Any]]) -> None:
+        nonlocal written, unchanged
+        if not args.no_consolidated:
+            storage.write(args.out, stem, rows)
+        if args.history:
+            w, u = history.write(args.history_dir, stem, rows, run_date)
+            written += w
+            unchanged += u
+            if args.no_consolidated:
+                print(f"  {len(rows):>8,} rows -> {stem} ({w} partitions written)")
 
     models = pull.models()
     if args.models:
@@ -140,47 +165,47 @@ def main() -> None:
             bins["model_daily"].extend(derive.model_daily_prices(model, eff, daily))
 
     print("\nwriting to", os.path.relpath(args.out))
-    storage.write(args.out, "model_catalogue", models)
+    emit("model_catalogue", models)
     bins["eff_daily"].sort(key=lambda r: (r["model_id"], r["date"], r["provider_name"] or ""))
     bins["model_daily"].sort(key=lambda r: (r["model_id"], r["date"]))
     bins["eff_summary"].sort(key=lambda r: (r["model_id"], -(r["total_tokens"] or 0)))
-    storage.write(args.out, "effective_prices_daily_by_endpoint", bins["eff_daily"])
-    storage.write(args.out, "effective_prices_daily_by_model", bins["model_daily"])
-    storage.write(args.out, "effective_prices_summary", bins["eff_summary"])
+    emit("effective_prices_daily_by_endpoint", bins["eff_daily"])
+    emit("effective_prices_daily_by_model", bins["model_daily"])
+    emit("effective_prices_summary", bins["eff_summary"])
     bins["headline"].sort(key=lambda r: r["model_id"])
-    storage.write(args.out, "model_price_headline", bins["headline"])
+    emit("model_price_headline", bins["headline"])
 
     if args.catalogue:
-        storage.write(args.out, "provider_catalogue", pull.providers())
+        emit("provider_catalogue", pull.providers())
         bins["endpoints"].sort(key=lambda r: (r["model_id"], r["provider_name"] or ""))
-        storage.write(args.out, "endpoint_catalogue", bins["endpoints"])
+        emit("endpoint_catalogue", bins["endpoints"])
         bins["tiers"].sort(key=lambda r: (r["model_id"], r["endpoint_id"] or "",
                                           r["sku_label"] or "", r["tier_index"]))
-        storage.write(args.out, "endpoint_price_tiers", bins["tiers"])
+        emit("endpoint_price_tiers", bins["tiers"])
         bins["pricing_raw"].sort(key=lambda r: (r["model_id"], r["endpoint_id"] or "",
                                                 r["pricing_key"]))
-        storage.write(args.out, "endpoint_pricing_raw", bins["pricing_raw"])
+        emit("endpoint_pricing_raw", bins["pricing_raw"])
     if args.activity:
         bins["mix"].sort(key=lambda r: (r["model_id"], r["date"]))
-        storage.write(args.out, "token_mix_daily_by_model", bins["mix"])
+        emit("token_mix_daily_by_model", bins["mix"])
         blended = derive.blended_prices(bins["model_daily"], bins["mix"])
         blended.sort(key=lambda r: (r["model_id"], r["date"]))
-        storage.write(args.out, "blended_price_daily_by_model", blended)
+        emit("blended_price_daily_by_model", blended)
     if args.performance:
         bins["perf"].sort(key=lambda r: (r["model_id"], r["date"],
                                          r["provider_name"], r["percentile"]))
-        storage.write(args.out, "performance_daily_by_endpoint", bins["perf"])
+        emit("performance_daily_by_endpoint", bins["perf"])
     if args.reliability:
         for stem, key in (("cache_hit_rate_daily_by_endpoint", "cache"),
                           ("tool_call_error_rate_daily", "tool_err"),
                           ("structured_output_error_rate_daily", "struct_err")):
             bins[key].sort(key=lambda r: (r["model_id"], r["date"]))
-            storage.write(args.out, stem, bins[key])
+            emit(stem, bins[key])
         bins["uptime"].sort(key=lambda r: (r["model_id"], r["timestamp"] or ""))
-        storage.write(args.out, "model_uptime_recent", bins["uptime"])
+        emit("model_uptime_recent", bins["uptime"])
         bins["ep_uptime_daily"].sort(key=lambda r: (r["model_id"], r["endpoint_id"],
                                                     r["date"]))
-        storage.write(args.out, "endpoint_uptime_daily", bins["ep_uptime_daily"])
+        emit("endpoint_uptime_daily", bins["ep_uptime_daily"])
         labels = {r["endpoint_id"]: {"model_id": r["model_id"],
                                      "provider_name": r.get("provider_name") or "",
                                      "provider_slug": r.get("provider_slug") or ""}
@@ -191,14 +216,14 @@ def main() -> None:
             for rows in pool.map(pull.endpoint_uptime_hourly, sorted(labels.items())):
                 hourly.extend(rows)
         hourly.sort(key=lambda r: (r["endpoint_id"], r["hour"] or ""))
-        storage.write(args.out, "endpoint_uptime_hourly", hourly)
+        emit("endpoint_uptime_hourly", hourly)
     if args.quality:
         bins["bench"].sort(key=lambda r: (r["model_id"], r["benchmark_type"] or "",
                                           -(r["score"] or 0)))
-        storage.write(args.out, "benchmark_scores", bins["bench"])
+        emit("benchmark_scores", bins["bench"])
     if args.apps:
-        storage.write(args.out, "top_apps_by_model", bins["apps"])
-        storage.write(args.out, "top_colos_by_model", bins["colos"])
+        emit("top_apps_by_model", bins["apps"])
+        emit("top_colos_by_model", bins["colos"])
     if args.providers:
         providers = pull.providers()
         slugs = sorted({r["provider_slug"] for r in bins["eff_summary"]
@@ -209,13 +234,15 @@ def main() -> None:
             for rows in pool.map(pull.provider_token_chart, slugs):
                 token_rows.extend(rows)
         token_rows.sort(key=lambda r: (r["provider_slug"], r["date"]))
-        storage.write(args.out, "provider_token_daily", token_rows)
-        storage.write(args.out, "provider_summary",
-                      derive.provider_summary(bins["eff_summary"], bins["endpoints"],
-                                              providers))
+        emit("provider_token_daily", token_rows)
+        emit("provider_summary",
+             derive.provider_summary(bins["eff_summary"], bins["endpoints"],
+                                     providers))
     if args.listed:
-        storage.write(args.out, "listed_price_changes", bins["listed"])
+        emit("listed_price_changes", bins["listed"])
 
+    if args.history:
+        print(f"\nhistory: {written} partitions written, {unchanged} unchanged")
     covered = len({r["model_id"] for r in bins["eff_daily"]})
     dates = sorted({r["date"] for r in bins["eff_daily"]})
     nonzero = {r["model_id"] for r in bins["model_daily"]

@@ -36,10 +36,24 @@ Stored at the finest grain the API publishes, with no summary statistics
 computed on the way in — no medians anywhere. Aggregate with your own weights.
 
 ```bash
-python3 scripts/openrouter_prices.py --all     # everything
-python3 scripts/openrouter_prices.py           # prices only
-python3 scripts/openrouter_checks.py           # validate the result
+python3 scripts/openrouter_prices.py --all              # everything
+python3 scripts/openrouter_prices.py --all --history    # ...and append to data/history
+python3 scripts/openrouter_consolidate.py               # rebuild CSVs from history
+python3 scripts/openrouter_checks.py                    # validate the result
 ```
+
+## Collected daily
+
+`.github/workflows/daily.yml` runs at 06:00 UTC and commits new partitions to
+`data/history/`. That is not just freshness: OpenRouter serves only the last
+**8 days** of cache-hit, throughput, latency and error-rate data, so appending
+daily builds a record longer than the source retains.
+
+Storage is append-only — one gzipped CSV per table per data date. A run rewrites
+only the dates it fetched, and only when their contents changed, so git grows by
+well under a megabyte a day rather than the ~16 MB a commit that rewriting whole
+tables would cost. The consolidated CSVs are gitignored and rebuilt with
+`openrouter_consolidate.py`.
 
 Standard library only, Python 3.10+. No `pip install`.
 

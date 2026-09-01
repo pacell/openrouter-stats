@@ -113,6 +113,44 @@ SCHEMAS: Dict[str, List[str]] = {
 }
 
 
+# (time column, identity columns) per table. The time column decides how history
+# partitions are cut; the identity columns are the row key used to dedupe when
+# partitions overlap. None means the table is a current snapshot with no time
+# dimension of its own.
+TABLE_KEYS: Dict[str, tuple] = {
+    "model_catalogue": (None, ["model_id"]),
+    "provider_catalogue": (None, ["provider_slug"]),
+    "endpoint_catalogue": (None, ["model_id", "endpoint_id"]),
+    "endpoint_price_tiers": (None, ["endpoint_id", "sku_label", "tier_index"]),
+    "endpoint_pricing_raw": (None, ["endpoint_id", "pricing_key"]),
+    "model_price_headline": (None, ["model_id"]),
+    "effective_prices_summary": (None, ["model_id", "endpoint_id"]),
+    "provider_summary": (None, ["provider_slug"]),
+    "benchmark_scores": (None, ["model_id", "endpoint_id", "benchmark_type",
+                                "provider_name"]),
+    "top_apps_by_model": (None, ["model_id", "variant", "app_id"]),
+    "top_colos_by_model": (None, ["model_id", "variant", "colo"]),
+    "effective_prices_daily_by_endpoint": ("date", ["date", "model_id", "endpoint_id"]),
+    "effective_prices_daily_by_model": ("date", ["date", "model_id"]),
+    "listed_price_changes": ("changed_at", ["changed_at", "endpoint_id", "field"]),
+    "token_mix_daily_by_model": ("date", ["date", "model_id"]),
+    "blended_price_daily_by_model": ("date", ["date", "model_id"]),
+    "performance_daily_by_endpoint": ("date", ["date", "model_id", "endpoint_id",
+                                               "colo", "percentile"]),
+    "cache_hit_rate_daily_by_endpoint": ("date", ["date", "model_id", "endpoint_id"]),
+    "tool_call_error_rate_daily": ("date", ["date", "model_id", "endpoint_id"]),
+    "structured_output_error_rate_daily": ("date", ["date", "model_id", "endpoint_id"]),
+    "model_uptime_recent": ("timestamp", ["timestamp", "model_id"]),
+    "endpoint_uptime_daily": ("date", ["date", "model_id", "endpoint_id"]),
+    "endpoint_uptime_hourly": ("hour", ["hour", "endpoint_id"]),
+    "provider_token_daily": ("date", ["date", "provider_slug", "model_permaslug"]),
+}
+
+assert set(TABLE_KEYS) == set(SCHEMAS), (
+    "TABLE_KEYS and SCHEMAS must cover the same tables: "
+    f"{set(TABLE_KEYS) ^ set(SCHEMAS)}")
+
+
 def write(out_dir: str, stem: str, rows: List[Dict[str, Any]]) -> None:
     path = os.path.join(out_dir, f"{stem}.csv")
     os.makedirs(out_dir, exist_ok=True)

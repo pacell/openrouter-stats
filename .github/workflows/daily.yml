@@ -1,0 +1,74 @@
+name: Daily collection
+
+# OpenRouter serves only the last 8 days of cache-hit, throughput, latency and
+# error-rate data. Running daily and appending to data/history keeps those days
+# after the API drops them, which is the point of the schedule: the record grows
+# past what the source retains.
+on:
+  schedule:
+    # 06:00 UTC — yesterday is complete by then, today is still settling and
+    # gets rewritten by tomorrow's run.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      range:
+        description: "History window to request"
+        required: false
+        default: "all"
+        type: choice
+        options: ["3d", "1w", "1m", "3m", "1y", "all"]
+
+concurrency:
+  # Never let two collections write partitions at once.
+  group: daily-collection
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # No pip install: the fetcher is standard library only.
+
+      - name: Collect
+        run: |
+          python3 scripts/openrouter_prices.py \
+            --all \
+            --range "${{ inputs.range || 'all' }}" \
+            --history \
+            --no-consolidated \
+            --workers 8
+
+      - name: Report what changed
+        run: |
+          python3 scripts/openrouter_history_report.py
+          echo "--- partitions touched ---"
+          git status --porcelain data/history | head -40
+          echo "total: $(git status --porcelain data/history | wc -l) files"
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history
+          if git diff --staged --quiet; then
+            echo "No partitions changed — nothing to commit."
+            exit 0
+          fi
+          git commit -m "Daily collection $(date -u +%Y-%m-%d)" \
+                     -m "$(python3 scripts/openrouter_history_report.py --oneline)"
+          # A concurrent run or a manual push may have landed first.
+          for attempt in 1 2 3 4; do
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
+            echo "push failed (attempt $attempt), retrying"
+            sleep $((attempt * 5))
+          done
+          exit 1
