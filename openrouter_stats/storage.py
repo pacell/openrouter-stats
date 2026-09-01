@@ -42,9 +42,11 @@ SCHEMAS: Dict[str, List[str]] = {
         "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
         "pricing_key", "value"],
     "endpoint_uptime_daily": [
-        "date", "model_id", "permaslug", "variant", "endpoint_id", "uptime_pct"],
+        "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "provider_slug", "uptime_pct"],
     "endpoint_uptime_hourly": [
-        "hour", "endpoint_id", "uptime_pct"],
+        "hour", "model_id", "endpoint_id", "provider_name", "provider_slug",
+        "uptime_pct"],
     "effective_prices_daily_by_endpoint": [
         "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
         "provider_slug", "effective_input_usd_per_mtok",
@@ -82,14 +84,14 @@ SCHEMAS: Dict[str, List[str]] = {
         "provider_name", "provider_slug", "percentile", "throughput_tok_s",
         "ttft_ms", "e2e_ms"],
     "cache_hit_rate_daily_by_endpoint": [
-        "date", "model_id", "permaslug", "variant", "endpoint_id",
-        "cache_hit_rate_pct"],
+        "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "provider_slug", "cache_hit_rate_pct"],
     "tool_call_error_rate_daily": [
-        "date", "model_id", "permaslug", "variant", "endpoint_id",
-        "tool_call_error_rate_pct", "tool_call_volume"],
+        "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "provider_slug", "tool_call_error_rate_pct", "tool_call_volume"],
     "structured_output_error_rate_daily": [
-        "date", "model_id", "permaslug", "variant", "endpoint_id",
-        "structured_output_error_rate_pct", "structured_output_volume"],
+        "date", "model_id", "permaslug", "variant", "endpoint_id", "provider_name",
+        "provider_slug", "structured_output_error_rate_pct", "structured_output_volume"],
     "model_uptime_recent": [
         "timestamp", "model_id", "permaslug", "variant", "availability_pct",
         "availability_without_routing_pct"],

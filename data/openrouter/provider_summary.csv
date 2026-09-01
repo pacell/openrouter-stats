@@ -1,75 +1,75 @@
 token_rank,provider_slug,provider_name,headquarters,n_models,n_endpoints,tokens_last_24h,share_of_tokens_pct,n_endpoints_training_on_prompts
-1,tencent,Tencent Cloud,CN,5,5,2047943471828,16.8698,0
-2,openai,OpenAI,US,78,104,1587350739792,13.0757,0
-3,z-ai,Z.ai,SG,13,13,998826670601,8.2278,0
-4,gmicloud,GMICloud,US,23,23,780340099591,6.428,0
-5,google-vertex,Google Vertex,US,51,97,678791365020,5.5915,0
-6,nvidia,NVIDIA,US,5,5,487174910744,4.0131,5
-7,novita,NovitaAI,US,71,71,460704433237,3.795,0
-8,xiaomi,Xiaomi,CN,2,2,402084328073,3.3122,0
-9,streamlake,StreamLake,CN,22,22,397466036608,3.2741,0
-10,deepinfra,DeepInfra,US,74,78,332883904676,2.7421,0
-11,relace,Relace,,3,3,307297419409,2.5313,0
-12,deepseek,DeepSeek,CN,3,3,274339458537,2.2599,4
-13,alibaba,Alibaba Cloud Int.,SG,53,54,213906414345,1.762,0
-14,amazon-bedrock,Amazon Bedrock (1),US,30,48,204860483930,1.6875,0
-15,coreweave,CoreWeave,US,23,23,197644122673,1.6281,0
-16,claude-on-aws,Claude Platform on AWS,US,9,9,190992446966,1.5733,0
-17,together,Together,US,29,29,173082053956,1.4258,0
-18,poolside,Poolside,,4,4,170554217942,1.4049,2
-19,parasail,Parasail,US,39,39,160001121239,1.318,0
-20,baidu,Baidu Qianfan,CN,8,8,158773915719,1.3079,0
-21,minimax,MiniMax,SG,8,11,138567919463,1.1414,0
-22,anthropic,Anthropic,US,20,22,130098213044,1.0717,0
-23,upstage,Upstage,,2,3,129516646117,1.0669,0
-24,azure,Azure (BYOK Only),US,44,70,122343163908,1.0078,0
-25,siliconflow,SiliconFlow,SG,38,38,113906540556,0.9383,0
-26,google-ai-studio,Google AI Studio (1),US,22,47,111197378013,0.916,0
-27,digitalocean,DigitalOcean,,19,19,104857755441,0.8638,0
-28,modal,Modal,US,4,4,100885664501,0.831,0
-29,baseten,Baseten,US,12,13,90771117042,0.7477,0
-30,fireworks,Fireworks,US,10,14,82748715886,0.6816,0
-31,xai,SpaceXAI (1),US,6,24,67591654868,0.5568,0
-32,atlas-cloud,AtlasCloud,US,29,29,66964509810,0.5516,0
-33,stepfun,StepFun,,1,1,64276441496,0.5295,0
-34,moonshotai,Moonshot AI,SG,3,4,60034743184,0.4945,0
-35,venice,Venice,US,33,33,38319970445,0.3157,0
-36,cloudflare,Cloudflare,US,18,18,36005485160,0.2966,0
-37,wafer,Wafer,US,3,3,34133151369,0.2812,0
-38,thinkingmachines,Thinking Machines,,2,2,33555779942,0.2764,2
-39,friendli,Friendli,US,7,7,31074075191,0.256,0
-40,meta,Meta,US,3,3,28144379228,0.2318,1
-41,sail-research,Sail Research,US,4,4,26072169830,0.2148,0
-42,phala,Phala,US,22,22,25057101144,0.2064,0
-43,groq,Groq,US,6,6,23582631703,0.1943,0
-44,akashml,AkashML,,5,5,23238409985,0.1914,0
-45,reka,Reka AI,,7,7,21399345692,0.1763,0
-46,inceptron,Inceptron,SE,5,5,21147604153,0.1742,0
-47,nextbit,NextBit,ES,12,12,19614244155,0.1616,0
-48,mistral,Mistral (2),FR,16,42,19201738594,0.1582,0
-49,open-inference,OpenInference,US,1,1,19100930636,0.1573,0
-50,decart,Decart,US,4,4,18904399427,0.1557,0
-51,morph,Morph,US,6,7,15852828583,0.1306,0
-52,cohere,Cohere,US,5,5,11681099458,0.0962,0
-53,crusoe,Crusoe,US,7,7,11370242516,0.0937,0
-54,makora,Makora,,3,3,10082698061,0.0831,0
-55,ambient,Ambient,,3,3,9045112954,0.0745,0
-56,chutes,Chutes,US,6,6,8474687521,0.0698,0
-57,darkbloom,Darkbloom,,4,4,7320976433,0.0603,0
-58,modelrun,ModelRun [by Modular],US,3,3,6743516629,0.0555,0
-59,cerebras,Cerebras,US,2,2,6260576704,0.0516,0
-60,io-net,io.net,US,5,5,4388076461,0.0361,0
-61,nebius,Nebius Token Factory,NL,11,11,3928677656,0.0324,0
-62,ionstream,Ionstream,US,2,2,3381783124,0.0279,0
-63,mancer,Mancer,,8,8,2661597382,0.0219,0
-64,seed,Seed,SG,6,6,2649416556,0.0218,0
-65,inception,Inception,,2,2,1862872781,0.0153,0
-66,aion-labs,AionLabs,IL,4,4,1372203819,0.0113,0
-67,sambanova,SambaNova,US,7,7,1330028258,0.011,0
-68,nex-agi,Nex AGI,CN,2,2,1322679969,0.0109,0
-69,liquid,Liquid,,1,1,1067375918,0.0088,1
-70,mara,MARA,US,4,4,773163646,0.0064,0
-71,perplexity,Perplexity,US,5,5,558619982,0.0046,0
-72,arcee-ai,Arcee AI,US,1,1,116814797,0.001,0
-73,sakana,Sakana,,2,2,52480993,0.0004,1
-74,perceptron,Perceptron,US,1,1,48513309,0.0004,0
+1,tencent,Tencent Cloud,CN,5,5,2055421986313,16.7516,0
+2,openai,OpenAI,US,78,104,1608403697502,13.1084,0
+3,z-ai,Z.ai,SG,13,13,1009454228313,8.227,0
+4,gmicloud,GMICloud,US,23,23,789933801338,6.4379,0
+5,google-vertex,Google Vertex,US,51,97,686112236056,5.5918,0
+6,nvidia,NVIDIA,US,5,5,492403145217,4.0131,5
+7,novita,NovitaAI,US,71,71,465638187865,3.7949,0
+8,xiaomi,Xiaomi,CN,2,2,406940249865,3.3165,0
+9,streamlake,StreamLake,CN,22,22,401522519762,3.2724,0
+10,deepinfra,DeepInfra,US,74,78,335665737839,2.7357,0
+11,relace,Relace,,3,3,309959976222,2.5262,0
+12,deepseek,DeepSeek,CN,3,3,277174713043,2.259,4
+13,alibaba,Alibaba Cloud Int.,SG,53,54,216457042365,1.7641,0
+14,amazon-bedrock,Amazon Bedrock (1),US,30,48,207649132999,1.6923,0
+15,coreweave,CoreWeave,US,23,23,199180781155,1.6233,0
+16,claude-on-aws,Claude Platform on AWS,US,9,9,193469961412,1.5768,0
+17,together,Together,US,29,29,174519313118,1.4223,0
+18,poolside,Poolside,,4,4,172444083583,1.4054,2
+19,baidu,Baidu Qianfan,CN,8,8,168328410105,1.3719,0
+20,parasail,Parasail,US,39,39,161830767953,1.3189,0
+21,minimax,MiniMax,SG,8,11,139926709622,1.1404,0
+22,anthropic,Anthropic,US,20,22,131716296317,1.0735,0
+23,upstage,Upstage,,2,3,130918224667,1.067,0
+24,azure,Azure (BYOK Only),US,44,70,123644019184,1.0077,0
+25,siliconflow,SiliconFlow,SG,38,38,114604765816,0.934,0
+26,google-ai-studio,Google AI Studio (1),US,22,47,112732382970,0.9188,0
+27,digitalocean,DigitalOcean,,19,19,105769407579,0.862,0
+28,modal,Modal,US,4,4,101795606963,0.8296,0
+29,baseten,Baseten,US,12,15,91703325107,0.7474,0
+30,fireworks,Fireworks,US,10,14,83641849391,0.6817,0
+31,xai,SpaceXAI (1),US,6,24,68415069359,0.5576,0
+32,atlas-cloud,AtlasCloud,US,29,29,67583735383,0.5508,0
+33,stepfun,StepFun,,1,1,64957968364,0.5294,0
+34,moonshotai,Moonshot AI,SG,3,4,61218901087,0.4989,0
+35,venice,Venice,US,33,33,38689227616,0.3153,0
+36,cloudflare,Cloudflare,US,18,18,36323043912,0.296,0
+37,wafer,Wafer,US,3,3,34406180284,0.2804,0
+38,thinkingmachines,Thinking Machines,,2,2,33966121184,0.2768,2
+39,friendli,Friendli,US,7,7,31461959489,0.2564,0
+40,meta,Meta,US,3,3,28540336157,0.2326,1
+41,sail-research,Sail Research,US,4,4,26345274445,0.2147,0
+42,akashml,AkashML,,6,6,25744233674,0.2098,0
+43,phala,Phala,US,22,22,25252986336,0.2058,0
+44,groq,Groq,US,6,6,23828032744,0.1942,0
+45,reka,Reka AI,,7,7,21637407278,0.1763,0
+46,inceptron,Inceptron,SE,5,5,21308612747,0.1737,0
+47,nextbit,NextBit,ES,12,12,19828929537,0.1616,0
+48,mistral,Mistral (2),FR,16,42,19506871436,0.159,0
+49,open-inference,OpenInference,US,1,1,19300069602,0.1573,0
+50,decart,Decart,US,4,4,19215498063,0.1566,0
+51,morph,Morph,US,6,7,15958919250,0.1301,0
+52,cohere,Cohere,US,5,5,11785567894,0.0961,0
+53,crusoe,Crusoe,US,7,7,11465455857,0.0934,0
+54,makora,Makora,,3,3,10184595420,0.083,0
+55,ambient,Ambient,,3,3,9172089197,0.0748,0
+56,chutes,Chutes,US,6,6,8573390868,0.0699,0
+57,darkbloom,Darkbloom,,4,4,7382050797,0.0602,0
+58,modelrun,ModelRun [by Modular],US,3,3,6875827595,0.056,0
+59,cerebras,Cerebras,US,2,2,6340058068,0.0517,0
+60,io-net,io.net,US,5,5,4421417842,0.036,0
+61,nebius,Nebius Token Factory,NL,11,11,3966611786,0.0323,0
+62,ionstream,Ionstream,US,2,2,3411792063,0.0278,0
+63,mancer,Mancer,,8,8,2698949776,0.022,0
+64,seed,Seed,SG,6,6,2672634341,0.0218,0
+65,inception,Inception,,2,2,1905761536,0.0155,0
+66,aion-labs,AionLabs,IL,4,4,1388032039,0.0113,0
+67,sambanova,SambaNova,US,7,7,1356504386,0.0111,0
+68,nex-agi,Nex AGI,CN,2,2,1328126591,0.0108,0
+69,liquid,Liquid,,1,1,1079026105,0.0088,1
+70,mara,MARA,US,4,4,783277441,0.0064,0
+71,perplexity,Perplexity,US,5,5,564181339,0.0046,0
+72,arcee-ai,Arcee AI,US,1,1,117511612,0.001,0
+73,sakana,Sakana,,2,2,52483941,0.0004,1
+74,perceptron,Perceptron,US,1,1,48858467,0.0004,0

@@ -388,8 +388,15 @@ def performance(model: Dict[str, Any], rng: str, percentiles: Tuple[str, ...],
 
 
 def _keyed_daily(url: str, model: Dict[str, Any], rng: str, column: str,
+                 names: Dict[str, str], slugs: Dict[str, str],
                  volume_column: Optional[str] = None) -> List[Dict[str, Any]]:
-    """Shared shape: [{x: date, y: {endpointId: value}, volume?: {...}}]."""
+    """Shared shape: [{x: date, y: {endpointId: value}, volume?: {...}}].
+
+    The provider is carried on every row. The API keys these series by endpoint
+    id alone, which would force a join against the catalogue just to learn who
+    served the traffic — these are per-provider series, so they should read as
+    such without one.
+    """
     rows = []
     for point in data_of(get_json(url, {"permaslug": model["permaslug"],
                                         "variant": model["variant"],
@@ -398,28 +405,35 @@ def _keyed_daily(url: str, model: Dict[str, Any], rng: str, column: str,
         for endpoint_id, value in (point.get("y") or {}).items():
             row = {"date": str(point["x"])[:10], "model_id": model["model_id"],
                    "permaslug": model["permaslug"], "variant": model["variant"],
-                   "endpoint_id": endpoint_id, column: value}
+                   "endpoint_id": endpoint_id,
+                   "provider_name": names.get(endpoint_id, ""),
+                   "provider_slug": slugs.get(endpoint_id, ""),
+                   column: value}
             if volume_column:
                 row[volume_column] = volumes.get(endpoint_id)
             rows.append(row)
     return rows
 
 
-def cache_hit_rate(model: Dict[str, Any], rng: str) -> List[Dict[str, Any]]:
+def cache_hit_rate(model: Dict[str, Any], rng: str, names: Dict[str, str],
+                   slugs: Dict[str, str]) -> List[Dict[str, Any]]:
     """Daily per-endpoint cache hit rate, as a percentage (0-100)."""
-    return _keyed_daily(CACHE_HIT_URL, model, rng, "cache_hit_rate_pct")
+    return _keyed_daily(CACHE_HIT_URL, model, rng, "cache_hit_rate_pct", names, slugs)
 
 
-def tool_call_errors(model: Dict[str, Any], rng: str) -> List[Dict[str, Any]]:
+def tool_call_errors(model: Dict[str, Any], rng: str, names: Dict[str, str],
+                     slugs: Dict[str, str]) -> List[Dict[str, Any]]:
     """Daily per-endpoint tool-call error rate (%) and the call volume behind it."""
     return _keyed_daily(TOOL_ERROR_URL, model, rng, "tool_call_error_rate_pct",
-                        "tool_call_volume")
+                        names, slugs, "tool_call_volume")
 
 
-def structured_output_errors(model: Dict[str, Any], rng: str) -> List[Dict[str, Any]]:
+def structured_output_errors(model: Dict[str, Any], rng: str, names: Dict[str, str],
+                             slugs: Dict[str, str]) -> List[Dict[str, Any]]:
     """Daily per-endpoint structured-output error rate (%) and request volume."""
     return _keyed_daily(STRUCT_ERROR_URL, model, rng,
-                        "structured_output_error_rate_pct", "structured_output_volume")
+                        "structured_output_error_rate_pct", names, slugs,
+                        "structured_output_volume")
 
 
 def uptime(model: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -513,7 +527,8 @@ def provider_token_chart(provider_slug: str) -> List[Dict[str, Any]]:
     return rows
 
 
-def endpoint_uptime_daily(model: Dict[str, Any]) -> List[Dict[str, Any]]:
+def endpoint_uptime_daily(model: Dict[str, Any], names: Dict[str, str],
+                          slugs: Dict[str, str]) -> List[Dict[str, Any]]:
     """Daily uptime per **endpoint** — finer than the model-wide bucket series.
 
     One call per model returns a dict keyed by endpoint id, so this is the
@@ -529,18 +544,26 @@ def endpoint_uptime_daily(model: Dict[str, Any]) -> List[Dict[str, Any]]:
         "permaslug": model["permaslug"],
         "variant": model["variant"],
         "endpoint_id": endpoint_id,
+        "provider_name": names.get(endpoint_id, ""),
+        "provider_slug": slugs.get(endpoint_id, ""),
         "uptime_pct": point.get("uptime"),
     } for endpoint_id, points in data.items() for point in points or []]
 
 
-def endpoint_uptime_hourly(endpoint_id: str) -> List[Dict[str, Any]]:
+def endpoint_uptime_hourly(entry: Tuple[str, Dict[str, str]]) -> List[Dict[str, Any]]:
     """Hourly uptime for one endpoint — the finest reliability grain published.
 
-    Costs one call per endpoint, so it is the most expensive series here.
+    Costs one call per endpoint, so it is the most expensive series here. Takes
+    an ``(endpoint_id, labels)`` pair so the model and provider can be carried
+    on each row; the API returns the history alone.
     """
+    endpoint_id, labels = entry
     data = data_of(get_json(UPTIME_ENDPOINT_HOURLY_URL, {"id": endpoint_id})) or {}
     return [{
         "hour": point.get("date"),
+        "model_id": labels.get("model_id", ""),
         "endpoint_id": endpoint_id,
+        "provider_name": labels.get("provider_name", ""),
+        "provider_slug": labels.get("provider_slug", ""),
         "uptime_pct": point.get("uptime"),
     } for point in data.get("history") or []]

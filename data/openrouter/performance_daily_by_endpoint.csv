@@ -6175,10 +6175,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,60,5711.800000000001,57317.200000000004
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,65,12169.8,92321.14999999998
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,74,26418.110000000026,245258.62000000066
-2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,54,418,1302
-2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,140,972.9000000000005,9442.400000000016
-2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,151,1398,23282.049999999996
-2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,167,2567.0800000000017,61141.780000000006
+2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,54,418,1302
+2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,140,972.9000000000005,9442.400000000016
+2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,151,1398,23282.049999999996
+2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,167,2567.0800000000017,61141.780000000006
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,59,482,3290
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,72,1620.3000000000002,28967.300000000017
 2026-08-25,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,74,2744.6499999999996,63943.6
@@ -6239,10 +6239,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,67,3037.800000000001,31505.100000000006
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,73,4486.349999999999,52944.24999999999
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,82,11817.830000000013,127643.71000000002
-2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,54,423,1357
-2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,140,989,8039.20000000001
-2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,150,1414.4499999999998,20278.99999999999
-2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,168.09000000000015,2727.2700000000004,60760.00000000003
+2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,54,423,1357
+2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,140,989,8039.20000000001
+2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,150,1414.4499999999998,20278.99999999999
+2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,168.09000000000015,2727.2700000000004,60760.00000000003
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,57.5,468,2872.5
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,71,1952.7000000000016,18347.70000000001
 2026-08-26,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,3701.2999999999975,40566.39999999998
@@ -6303,10 +6303,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,67,2673.9000000000005,37997.400000000045
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,72,3883.699999999999,62796.44999999997
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,80,9953.460000000014,140697.75000000003
-2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,53.5,423,1348
-2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,137,925,8877.000000000033
-2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,147,1340.7999999999993,22989.449999999997
-2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,167,2560.9900000000016,61624.000000000015
+2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,53.5,423,1348
+2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,137,925,8877.000000000033
+2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,147,1340.7999999999993,22989.449999999997
+2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,167,2560.9900000000016,61624.000000000015
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,58,486,3014
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,71,1694.4000000000005,20030.800000000003
 2026-08-27,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,3003.0999999999995,41018.09999999999
@@ -6371,10 +6371,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,66,2279,35646.8
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,70,3528.7999999999993,57307.049999999996
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,77.09000000000015,10515.430000000004,135478.33000000005
-2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,57,429,1439.5
-2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,141,1158.9000000000005,9471.400000000003
-2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,152,2543.3499999999995,21924.749999999985
-2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,164,3608.7100000000028,60738.30000000007
+2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,57,429,1439.5
+2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,141,1158.9000000000005,9471.400000000003
+2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,152,2543.3499999999995,21924.749999999985
+2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,164,3608.7100000000028,60738.30000000007
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,58,498,3450.5
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,72,1836,21974.5
 2026-08-28,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,3320.75,43229.75
@@ -6435,10 +6435,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,67,1917,30944.500000000015
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,71,2709.3499999999995,54100.19999999998
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,78,6489.27,130786.31000000003
-2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,54,417,1379
-2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,140,933,6695.400000000003
-2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,151,1442.249999999999,13894.949999999993
-2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,165,3363.8100000000013,35815.49000000002
+2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,54,417,1379
+2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,140,933,6695.400000000003
+2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,151,1442.249999999999,13894.949999999993
+2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,165,3363.8100000000013,35815.49000000002
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,57,510,3465
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,71,1385,22539
 2026-08-29,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,2757,46352
@@ -6499,10 +6499,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,65,1419,23551.50000000006
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,69.44999999999982,2002.4499999999998,46492.149999999994
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,78,4686.990000000002,128092.83000000006
-2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,48,397,1185
-2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,122,936,5189.0000000000055
-2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,142,1267,11855.649999999998
-2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,157,3049.1800000000003,31407.66000000004
+2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,48,397,1185
+2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,122,936,5189.0000000000055
+2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,142,1267,11855.649999999998
+2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,157,3049.1800000000003,31407.66000000004
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,50,470,2040.5
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,70,1146.9000000000005,15270.600000000008
 2026-08-30,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,2123.5999999999985,34978.899999999994
@@ -6563,10 +6563,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,68,2005.800000000001,31419.400000000023
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,73,2666.45,54250.24999999997
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,80,6157.310000000023,130010.56000000001
-2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,42,490,1681.5
-2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,121,1093,9989.500000000007
-2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,135,1497.8999999999996,24897.549999999996
-2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,153,3001.230000000007,65090.80000000002
+2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,42,490,1681.5
+2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,121,1093,9989.500000000007
+2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,135,1497.8999999999996,24897.549999999996
+2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,153,3001.230000000007,65090.80000000002
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,57,499,2967.5
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,71,1484.9000000000005,21662.400000000023
 2026-08-31,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,73,2872.499999999998,46981.149999999994
@@ -6627,10 +6627,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p90,67,1626,30791.40000000002
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p95,71,2062,57214.999999999956
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,default,Baidu Qianfan,baidu,p99,78,4456.540000000015,115608.77000000005
-2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p50,48,446,1496.5
-2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p90,128,935.9000000000005,8248.000000000005
-2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p95,139,1311,15043.099999999993
-2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten,baseten,p99,155.09000000000015,3251.1800000000003,43457.14000000002
+2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p50,48,446,1496.5
+2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p90,128,935.9000000000005,8248.000000000005
+2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p95,139,1311,15043.099999999993
+2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,default,Baseten (2),baseten,p99,155.09000000000015,3251.1800000000003,43457.14000000002
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p50,59,516,4179.5
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p90,70,1596.3000000000002,21557.5
 2026-09-01,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,819ca738-f870-440a-a4bc-a87f9b105fc9,default,CoreWeave,coreweave,p95,72,2560,47759.299999999996
@@ -20547,10 +20547,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,143,1785.2000000000003,4692.400000000001
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,173.20000000000005,2071.0000000000005,6558.300000000002
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,248.64000000000033,2906.880000000001,10485.500000000015
-2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,216,240,1309.5
-2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,351,388,3261
-2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,397,493,4457.45
-2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,541.0900000000001,835.3600000000006,9709.550000000014
+2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,216,240,1309.5
+2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,351,388,3261
+2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,397,493,4457.45
+2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,541.0900000000001,835.3600000000006,9709.550000000014
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,858.5,231,761
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1691,660,2399.800000000001
 2026-08-25,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1942.4499999999998,977,3401.7999999999993
@@ -20627,10 +20627,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,152.10000000000002,1304.9,3813.7000000000016
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,176.0999999999999,3707.149999999997,7924.599999999989
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,215.40999999999957,5827.019999999999,12159.31
-2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,221.5,262,1765
-2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,336,384,3794.9000000000005
-2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,377,468,4927.249999999999
-2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,498.1800000000003,826.0900000000001,9813.630000000001
+2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,221.5,262,1765
+2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,336,384,3794.9000000000005
+2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,377,468,4927.249999999999
+2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,498.1800000000003,826.0900000000001,9813.630000000001
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,766,241,733.5
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1544.9000000000005,688.9000000000005,2362.7000000000016
 2026-08-26,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1766,1037.4499999999998,3532.3499999999995
@@ -20707,10 +20707,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,179.80000000000007,937.4000000000002,27762.6
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,187.79999999999995,1262,47024.39999999993
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,244,1929.3599999999976,337014.7599999999
-2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,196,248,1687
-2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,295,400.90000000000055,4186.900000000001
-2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,331,475,5376.45
-2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,419.09000000000015,816.260000000002,10983.440000000002
+2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,196,248,1687
+2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,295,400.90000000000055,4186.900000000001
+2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,331,475,5376.45
+2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,419.09000000000015,816.260000000002,10983.440000000002
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,717,262.5,845
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1609.9000000000005,912,2974
 2026-08-27,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1917.4499999999998,1478.7999999999993,4483.749999999997
@@ -20787,10 +20787,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,213.3,776.2,11226.500000000007
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,236.25,810.8499999999997,15119.999999999998
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,306.77000000000004,1483.2600000000004,18885.690000000002
-2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,199,250,1604.5
-2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,295,395,3805.800000000001
-2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,323,469.4499999999998,5060.149999999999
-2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,393.09000000000015,754.0900000000001,9908.94000000001
+2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,199,250,1604.5
+2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,295,395,3805.800000000001
+2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,323,469.4499999999998,5060.149999999999
+2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,393.09000000000015,754.0900000000001,9908.94000000001
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,750,235,737.5
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1550,810.9000000000005,2511
 2026-08-28,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1855.8999999999996,1287,3643.5499999999965
@@ -20867,10 +20867,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,236,886.4000000000003,192955.4000000001
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,260,1261.399999999997,258213.19999999998
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,313.27999999999975,2388.4799999999896,412186.7199999972
-2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,212,220,1400
-2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,298,393,2965.9000000000005
-2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,329,532.8999999999996,4161.349999999999
-2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,417.09000000000015,893.0900000000001,11107.510000000006
+2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,212,220,1400
+2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,298,393,2965.9000000000005
+2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,329,532.8999999999996,4161.349999999999
+2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,417.09000000000015,893.0900000000001,11107.510000000006
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,820,223,670
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1550,671.9000000000005,2014.9000000000005
 2026-08-29,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1798,1002.4499999999998,2765.7999999999993
@@ -20943,10 +20943,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,b3f80c05-e31a-44f6-b63f-414467b87553,default,Amazon Bedrock (1),amazon-bedrock,p90,413,592,3342.9000000000005
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,b3f80c05-e31a-44f6-b63f-414467b87553,default,Amazon Bedrock (1),amazon-bedrock,p95,434,711.4499999999998,6510.699999999999
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,b3f80c05-e31a-44f6-b63f-414467b87553,default,Amazon Bedrock (1),amazon-bedrock,p99,469,1003,19104.36
-2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,217,201,1494
-2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,293,346.90000000000055,2943
-2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,317,453.4499999999998,3943.8999999999996
-2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,375.09000000000015,874.0900000000001,8213.76000000001
+2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,217,201,1494
+2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,293,346.90000000000055,2943
+2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,317,453.4499999999998,3943.8999999999996
+2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,375.09000000000015,874.0900000000001,8213.76000000001
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,696,197,550
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1460.9000000000005,527.9000000000005,1692.9000000000005
 2026-08-30,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1679,823.4499999999998,2327.45
@@ -21023,10 +21023,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,190.89999999999998,1520.5,5368.9
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,228.6499999999999,1652.9499999999998,8536.499999999987
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,269.32,2162.3899999999994,18337.109999999993
-2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,147,239,1418
-2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,229,405.90000000000055,3331
-2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,253,480,4512.45
-2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,307.09000000000015,762.1800000000003,10436.440000000002
+2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,147,239,1418
+2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,229,405.90000000000055,3331
+2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,253,480,4512.45
+2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,307.09000000000015,762.1800000000003,10436.440000000002
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,693,247,679
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1447,776,2390.9000000000005
 2026-08-31,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1666,1248.4499999999998,3702.45
@@ -21103,10 +21103,10 @@ date,model_id,permaslug,variant,endpoint_id,colo,provider_name,provider_slug,per
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p90,176.80000000000007,1144.2,3563.6000000000004
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p95,192.89999999999998,1388.8999999999992,5781.25
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,eda49f69-50b8-4385-9ecd-8452c15a8253,default,Amazon Bedrock (2),amazon-bedrock,p99,247.5199999999993,2155.2400000000025,10044.239999999942
-2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p50,139,249,1689
-2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p90,211,432.90000000000055,4949.900000000001
-2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p95,237,514,6633.5999999999985
-2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten,baseten,p99,283,730.0900000000001,12104.900000000001
+2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p50,139,249,1689
+2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p90,211,432.90000000000055,4949.900000000001
+2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p95,237,514,6633.5999999999985
+2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,default,Baseten (1),baseten,p99,283,730.0900000000001,12104.900000000001
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p50,729,225,608
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p90,1502,555,1763.800000000001
 2026-09-01,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,20cbeb96-747f-42b6-a371-266a1bcd1e6c,default,Cerebras,cerebras,p95,1741.8999999999996,911.3499999999995,2850.3499999999995

@@ -911,6 +911,9 @@ deepseek/deepseek-v4-flash,deepseek/deepseek-v4-flash-20260423,standard,f371f6c3
 deepseek/deepseek-v4-flash,deepseek/deepseek-v4-flash-20260423,standard,fa22fe84-7ea9-49b0-a8eb-4d87ede9de31,Baidu Qianfan,openai:cached_prompt_tokens,0.000000028
 deepseek/deepseek-v4-flash,deepseek/deepseek-v4-flash-20260423,standard,fa22fe84-7ea9-49b0-a8eb-4d87ede9de31,Baidu Qianfan,openai:completion_tokens,0.00000028
 deepseek/deepseek-v4-flash,deepseek/deepseek-v4-flash-20260423,standard,fa22fe84-7ea9-49b0-a8eb-4d87ede9de31,Baidu Qianfan,openai:prompt_tokens,0.00000014
+deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:cached_prompt_tokens,0.000000016
+deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:completion_tokens,0.00000018
+deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:prompt_tokens,0.000000065
 deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:cached_prompt_tokens,0.000000028
 deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:completion_tokens,0.00000028
 deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:prompt_tokens,0.00000014
@@ -3353,6 +3356,9 @@ moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,40cb12bf-2
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,openai:cached_prompt_tokens,0.00000038
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,openai:completion_tokens,0.000008
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,openai:prompt_tokens,0.0000019
+moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,openai:cached_prompt_tokens,0.00000016
+moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,openai:completion_tokens,0.000004
+moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,openai:prompt_tokens,0.00000095
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,openai:cached_prompt_tokens,0.00000019
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,openai:completion_tokens,0.000004
 moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,openai:prompt_tokens,0.00000095
@@ -5640,6 +5646,9 @@ z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,442ea97f-ad5e-40d5-b9a6-66e9e0417dce
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,openai:cached_prompt_tokens,0.00000026
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,openai:completion_tokens,0.0000044
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,openai:prompt_tokens,0.0000014
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (ZDR) (fp8),openai:cached_prompt_tokens,0.00000021
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (ZDR) (fp8),openai:completion_tokens,0.0000066
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (ZDR) (fp8),openai:prompt_tokens,0.0000021
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,openai:cached_prompt_tokens,0.00000026
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,openai:completion_tokens,0.0000044
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,openai:prompt_tokens,0.0000014
@@ -5652,6 +5661,9 @@ z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,6260c35a-6fd4-44be-98c0-3c3d4edbb56f
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,openai:cached_prompt_tokens,0.0000002
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,openai:completion_tokens,0.000004
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,openai:prompt_tokens,0.0000012
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (ZDR) (fp8),openai:cached_prompt_tokens,0.00000014
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (ZDR) (fp8),openai:completion_tokens,0.0000044
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (ZDR) (fp8),openai:prompt_tokens,0.0000014
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba:cached_prompt_tokens,0.000000462
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba:completion_tokens,0.00000726
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba:prompt_tokens,0.00000231
@@ -5688,12 +5700,12 @@ z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c3c46551-27ab-4359-9191-e58d767aafcc
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,openai:cached_prompt_tokens,0.00000022
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,openai:completion_tokens,0.000003
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,openai:prompt_tokens,0.00000126
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,openai:cached_prompt_tokens,0.00000014
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,openai:completion_tokens,0.0000044
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,openai:prompt_tokens,0.0000014
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,openai:cached_prompt_tokens,0.00000021
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,openai:completion_tokens,0.0000066
-z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,openai:prompt_tokens,0.0000021
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (ZDR) (fp8),openai:cached_prompt_tokens,0.00000014
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (ZDR) (fp8),openai:completion_tokens,0.0000044
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (ZDR) (fp8),openai:prompt_tokens,0.0000014
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (ZDR) (fp8),openai:cached_prompt_tokens,0.00000021
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (ZDR) (fp8),openai:completion_tokens,0.0000066
+z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (ZDR) (fp8),openai:prompt_tokens,0.0000021
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,openai:cached_prompt_tokens,0.00000026
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,openai:completion_tokens,0.0000044
 z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,openai:prompt_tokens,0.0000014
@@ -6046,6 +6058,9 @@ z-ai/glm-5v-turbo,z-ai/glm-5v-turbo-20260401,standard,a3b0220b-6a75-47bd-aa99-70
 ~anthropic/claude-sonnet-latest,~anthropic/claude-sonnet-latest,standard,ed4b5a4b-5211-41ac-8fb5-b7a268d7bb89,Google Vertex (Europe),anthropic:completion_tokens,0.000011
 ~anthropic/claude-sonnet-latest,~anthropic/claude-sonnet-latest,standard,ed4b5a4b-5211-41ac-8fb5-b7a268d7bb89,Google Vertex (Europe),anthropic:prompt_tokens,0.0000022
 ~anthropic/claude-sonnet-latest,~anthropic/claude-sonnet-latest,standard,ed4b5a4b-5211-41ac-8fb5-b7a268d7bb89,Google Vertex (Europe),anthropic:web_search_calls,0.01
+~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:cached_prompt_tokens,0.000000016
+~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:completion_tokens,0.00000018
+~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,14c4df90-c7af-42ff-99e7-69d62a89e7d5,AkashML,openai:prompt_tokens,0.000000065
 ~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:cached_prompt_tokens,0.000000028
 ~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:completion_tokens,0.00000028
 ~deepseek/deepseek-v4-flash-latest,~deepseek/deepseek-v4-flash-latest,standard,223c54e7-4db1-4098-980f-47741e7637ab,Baidu Qianfan,openai:prompt_tokens,0.00000014

@@ -199,6 +199,14 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-28T23:47:12.684Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,14352c48-92c0-4e0f-b73a-dcafd16057bf,Parasail,parasail,listed_output_usd_per_mtok,4.4
 2026-08-28T23:47:12.684Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,14352c48-92c0-4e0f-b73a-dcafd16057bf,Parasail,parasail,listed_cache_read_usd_per_mtok,0.26
 2026-08-28T23:47:12.684Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,14352c48-92c0-4e0f-b73a-dcafd16057bf,Parasail,parasail,discount_fraction,0
+2026-08-28T19:58:12.735Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_input_usd_per_mtok,1.3
+2026-08-31T21:01:25.212Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_input_usd_per_mtok,1.17
+2026-08-28T19:58:12.735Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_output_usd_per_mtok,4.4
+2026-08-31T21:01:25.212Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_output_usd_per_mtok,3.96
+2026-08-28T19:58:12.735Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_cache_read_usd_per_mtok,0.26
+2026-08-31T21:01:25.212Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,listed_cache_read_usd_per_mtok,0.234
+2026-08-28T19:58:12.735Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,discount_fraction,0
+2026-08-31T21:01:25.212Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,21452c02-0c70-4fcc-8e93-73f1eeab8f52,AkashML,akashml,discount_fraction,0.1
 2026-08-28T15:38:51.258Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,235a0f49-0546-4324-a5f1-e4f21d824302,Friendli,friendli,listed_input_usd_per_mtok,1.4
 2026-08-31T09:06:22.718Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,235a0f49-0546-4324-a5f1-e4f21d824302,Friendli,friendli,listed_input_usd_per_mtok,1.26
 2026-08-28T15:38:51.258Z,z-ai/glm-5.3,z-ai/glm-5.3-20260816,standard,235a0f49-0546-4324-a5f1-e4f21d824302,Friendli,friendli,listed_output_usd_per_mtok,4.4
@@ -623,10 +631,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-21T13:44:57.544Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,6811c06b-8624-4796-ad6e-807e33b97ae6,Sail Research,sail-research,listed_output_usd_per_mtok,3.96
 2026-08-21T13:44:57.544Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,6811c06b-8624-4796-ad6e-807e33b97ae6,Sail Research,sail-research,listed_cache_read_usd_per_mtok,0.044
 2026-08-21T13:44:57.544Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,6811c06b-8624-4796-ad6e-807e33b97ae6,Sail Research,sail-research,discount_fraction,0
-2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten,baseten,listed_input_usd_per_mtok,1.32
-2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten,baseten,listed_output_usd_per_mtok,3.96
-2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten,baseten,listed_cache_read_usd_per_mtok,0.132
-2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten,baseten,discount_fraction,0
+2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten (1),baseten,listed_input_usd_per_mtok,1.32
+2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten (1),baseten,listed_output_usd_per_mtok,3.96
+2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.132
+2026-08-14T18:03:32.018Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,85bb5a4a-983d-4d11-b97b-c7e5b348375f,Baseten (1),baseten,discount_fraction,0
 2026-08-17T15:52:39.589Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,928ab2e9-a85f-427f-adcb-15b2394c70d5,DigitalOcean,digitalocean,listed_input_usd_per_mtok,1.32
 2026-08-17T15:52:39.589Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,928ab2e9-a85f-427f-adcb-15b2394c70d5,DigitalOcean,digitalocean,listed_output_usd_per_mtok,3.96
 2026-08-17T15:52:39.589Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,928ab2e9-a85f-427f-adcb-15b2394c70d5,DigitalOcean,digitalocean,listed_cache_read_usd_per_mtok,0.044
@@ -719,6 +727,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-16T16:44:18.317Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bb1fb528-2000-460c-a65e-b82dc347c019,Phala,phala,listed_cache_read_usd_per_mtok,0.132
 2026-08-21T23:43:33.666Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bb1fb528-2000-460c-a65e-b82dc347c019,Phala,phala,listed_cache_read_usd_per_mtok,0.15
 2026-08-16T16:44:18.317Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bb1fb528-2000-460c-a65e-b82dc347c019,Phala,phala,discount_fraction,0
+2026-09-01T18:00:57.559Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bc1be763-ca65-4d43-84ff-5d6c16560713,Baseten (2),baseten,listed_input_usd_per_mtok,1.32
+2026-09-01T18:00:57.559Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bc1be763-ca65-4d43-84ff-5d6c16560713,Baseten (2),baseten,listed_output_usd_per_mtok,3.96
+2026-09-01T18:00:57.559Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bc1be763-ca65-4d43-84ff-5d6c16560713,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.132
+2026-09-01T18:00:57.559Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,bc1be763-ca65-4d43-84ff-5d6c16560713,Baseten (2),baseten,discount_fraction,0
 2026-08-31T14:55:24.427Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,ca5f0ff9-8764-4809-b5fa-968219bdfc4e,NextBit,nextbit,listed_input_usd_per_mtok,1.32
 2026-09-01T11:40:34.986Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,ca5f0ff9-8764-4809-b5fa-968219bdfc4e,NextBit,nextbit,listed_input_usd_per_mtok,1.15
 2026-09-01T15:45:53.171Z,deepseek/deepseek-v4-pro-0813,deepseek/deepseek-v4-pro-20260813,standard,ca5f0ff9-8764-4809-b5fa-968219bdfc4e,NextBit,nextbit,listed_input_usd_per_mtok,1.32
@@ -1074,6 +1086,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-07-31T20:38:36.934Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,3dc8bdba-8bee-42b8-9c9e-0d295c28e385,Parasail,parasail,listed_cache_read_usd_per_mtok,0.07
 2026-08-28T00:10:50.105Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,3dc8bdba-8bee-42b8-9c9e-0d295c28e385,Parasail,parasail,listed_cache_read_usd_per_mtok,0.05
 2026-07-31T20:38:36.934Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,3dc8bdba-8bee-42b8-9c9e-0d295c28e385,Parasail,parasail,discount_fraction,0
+2026-09-01T18:01:03.157Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,47a93b18-a9c6-485b-9a47-2afb6ca790dc,Baseten (1),baseten,listed_input_usd_per_mtok,0.13
+2026-09-01T18:01:03.157Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,47a93b18-a9c6-485b-9a47-2afb6ca790dc,Baseten (1),baseten,listed_output_usd_per_mtok,0.26
+2026-09-01T18:01:03.157Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,47a93b18-a9c6-485b-9a47-2afb6ca790dc,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.028
+2026-09-01T18:01:03.157Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,47a93b18-a9c6-485b-9a47-2afb6ca790dc,Baseten (1),baseten,discount_fraction,0
 2026-08-20T04:50:26.962Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,497727f1-91e7-4775-a469-ccdd96e0f0d8,Reka AI,reka,listed_input_usd_per_mtok,0.22
 2026-09-01T17:30:52.337Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,497727f1-91e7-4775-a469-ccdd96e0f0d8,Reka AI,reka,listed_input_usd_per_mtok,0.11
 2026-08-20T04:50:26.962Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,497727f1-91e7-4775-a469-ccdd96e0f0d8,Reka AI,reka,listed_output_usd_per_mtok,0.66
@@ -1386,10 +1402,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-05T17:08:57.779Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,cbfecbd7-9a18-45ea-bcd1-fabaa868db5c,CoreWeave,coreweave,listed_output_usd_per_mtok,0.28
 2026-08-05T17:08:57.779Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,cbfecbd7-9a18-45ea-bcd1-fabaa868db5c,CoreWeave,coreweave,listed_cache_read_usd_per_mtok,0.07
 2026-08-05T17:08:57.779Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,cbfecbd7-9a18-45ea-bcd1-fabaa868db5c,CoreWeave,coreweave,discount_fraction,0
-2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten,baseten,listed_input_usd_per_mtok,0.13
-2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten,baseten,listed_output_usd_per_mtok,0.26
-2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten,baseten,listed_cache_read_usd_per_mtok,0.028
-2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten,baseten,discount_fraction,0
+2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten (2),baseten,listed_input_usd_per_mtok,0.13
+2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten (2),baseten,listed_output_usd_per_mtok,0.26
+2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.028
+2026-08-05T03:55:57.002Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,ceaae883-4cba-45dd-b986-5cd0e6bf06af,Baseten (2),baseten,discount_fraction,0
 2026-08-06T12:56:15.772Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,d880a270-04ff-479c-b312-6246c0f985b0,StreamLake,streamlake,listed_input_usd_per_mtok,0.14
 2026-08-08T09:11:13.420Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,d880a270-04ff-479c-b312-6246c0f985b0,StreamLake,streamlake,listed_input_usd_per_mtok,0.112
 2026-08-09T10:50:59.351Z,deepseek/deepseek-v4-flash-0731,deepseek/deepseek-v4-flash-20260731,standard,d880a270-04ff-479c-b312-6246c0f985b0,StreamLake,streamlake,listed_input_usd_per_mtok,0.098
@@ -1756,6 +1772,9 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-28T15:16:29.320Z,thinkingmachines/inkling-small:batch,thinkingmachines/inkling-small-20260730,batch,cfe8b278-814f-4586-93cc-ff65dbd33fb0,Together,together,listed_output_usd_per_mtok,1.2
 2026-08-28T15:16:29.320Z,thinkingmachines/inkling-small:batch,thinkingmachines/inkling-small-20260730,batch,cfe8b278-814f-4586-93cc-ff65dbd33fb0,Together,together,listed_cache_read_usd_per_mtok,0.1
 2026-08-28T15:16:29.320Z,thinkingmachines/inkling-small:batch,thinkingmachines/inkling-small-20260730,batch,cfe8b278-814f-4586-93cc-ff65dbd33fb0,Together,together,discount_fraction,0
+2026-09-01T18:02:54.515Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,42bc576a-2579-4e64-8811-5b2d68408d6a,Baseten,baseten,listed_input_usd_per_mtok,0
+2026-09-01T18:02:54.515Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,42bc576a-2579-4e64-8811-5b2d68408d6a,Baseten,baseten,listed_output_usd_per_mtok,0
+2026-09-01T18:02:54.515Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,42bc576a-2579-4e64-8811-5b2d68408d6a,Baseten,baseten,discount_fraction,0
 2026-07-31T22:31:35.283Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,e27a9a6d-1451-4be4-876e-292ffcbf1e71,Thinking Machines,thinkingmachines,listed_input_usd_per_mtok,0
 2026-07-31T22:31:35.283Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,e27a9a6d-1451-4be4-876e-292ffcbf1e71,Thinking Machines,thinkingmachines,listed_output_usd_per_mtok,0
 2026-07-31T22:31:35.283Z,thinkingmachines/inkling-small:free,thinkingmachines/inkling-small-20260730,free,e27a9a6d-1451-4be4-876e-292ffcbf1e71,Thinking Machines,thinkingmachines,discount_fraction,0
@@ -1974,14 +1993,18 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-07-21T02:21:18.426Z,meituan/longcat-2.0,meituan/longcat-2.0-20260720,standard,1c1713d4-6398-47a1-9ff7-a6488c16e6c0,AtlasCloud,atlas-cloud,listed_cache_read_usd_per_mtok,0.006
 2026-07-20T13:41:23.876Z,meituan/longcat-2.0,meituan/longcat-2.0-20260720,standard,1c1713d4-6398-47a1-9ff7-a6488c16e6c0,AtlasCloud,atlas-cloud,discount_fraction,0
 2026-07-21T02:21:17.755Z,meituan/longcat-2.0,meituan/longcat-2.0-20260720,standard,1c1713d4-6398-47a1-9ff7-a6488c16e6c0,AtlasCloud,atlas-cloud,discount_fraction,0.6
+2026-09-01T18:01:23.919Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,691c185e-aaed-4f04-aa1e-69cba3df74ea,Baseten (1),baseten,listed_input_usd_per_mtok,1
+2026-09-01T18:01:23.919Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,691c185e-aaed-4f04-aa1e-69cba3df74ea,Baseten (1),baseten,listed_output_usd_per_mtok,4.05
+2026-09-01T18:01:23.919Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,691c185e-aaed-4f04-aa1e-69cba3df74ea,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.17
+2026-09-01T18:01:23.919Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,691c185e-aaed-4f04-aa1e-69cba3df74ea,Baseten (1),baseten,discount_fraction,0
 2026-07-17T22:05:48.361Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,9911deb9-f44e-4e18-87fe-9d7b60acee72,Together,together,listed_input_usd_per_mtok,1
 2026-07-17T22:05:48.361Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,9911deb9-f44e-4e18-87fe-9d7b60acee72,Together,together,listed_output_usd_per_mtok,4.05
 2026-07-17T22:05:48.361Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,9911deb9-f44e-4e18-87fe-9d7b60acee72,Together,together,listed_cache_read_usd_per_mtok,0.17
 2026-07-17T22:05:48.361Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,9911deb9-f44e-4e18-87fe-9d7b60acee72,Together,together,discount_fraction,0
-2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten,baseten,listed_input_usd_per_mtok,1
-2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten,baseten,listed_output_usd_per_mtok,4.05
-2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten,baseten,listed_cache_read_usd_per_mtok,0.17
-2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten,baseten,discount_fraction,0
+2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten (2),baseten,listed_input_usd_per_mtok,1
+2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten (2),baseten,listed_output_usd_per_mtok,4.05
+2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.17
+2026-07-23T15:08:57.169Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,ba2df08c-c0a0-4e0e-9f31-d79a9c475b70,Baseten (2),baseten,discount_fraction,0
 2026-07-23T15:26:26.388Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,d6b9d68e-115a-49d7-81cd-1ad1c6942b0e,DeepInfra,deepinfra,listed_input_usd_per_mtok,1
 2026-08-02T09:36:08.269Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,d6b9d68e-115a-49d7-81cd-1ad1c6942b0e,DeepInfra,deepinfra,listed_input_usd_per_mtok,0.95
 2026-07-23T15:26:26.388Z,thinkingmachines/inkling,thinkingmachines/inkling-20260715,standard,d6b9d68e-115a-49d7-81cd-1ad1c6942b0e,DeepInfra,deepinfra,listed_output_usd_per_mtok,4.05
@@ -6495,6 +6518,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-06-17T14:27:58.694Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,atlas-cloud,discount_fraction,0
 2026-06-24T09:31:15.486Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,atlas-cloud,discount_fraction,0.05
 2026-07-08T02:56:03.840Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,47a0f2e1-dedb-4d26-9148-a7bb40a5b40c,AtlasCloud,atlas-cloud,discount_fraction,0.1
+2026-09-01T18:01:08.160Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (1),baseten,listed_input_usd_per_mtok,2.1
+2026-09-01T18:01:08.160Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (1),baseten,listed_output_usd_per_mtok,6.6
+2026-09-01T18:01:08.160Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (1),baseten,listed_cache_read_usd_per_mtok,0.21
+2026-09-01T18:01:08.160Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,4c134f42-ca48-4e2b-9668-3b7f118f90ba,Baseten Fast (1),baseten,discount_fraction,0
 2026-07-01T14:52:01.861Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,baidu,listed_input_usd_per_mtok,1.12
 2026-07-08T14:00:38.142Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.97
 2026-07-17T14:35:39.093Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,515ff417-d0f5-4455-9f58-b5a82be6d842,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.291
@@ -7193,6 +7220,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-17T11:40:45.996Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,decart,discount_fraction,0.4
 2026-08-17T13:42:57.363Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,decart,discount_fraction,0.36
 2026-08-18T00:41:07.420Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,70e7c90a-8bde-453d-9906-c49b37167e24,Decart,decart,discount_fraction,0.43
+2026-09-01T18:01:15.706Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (1),baseten,listed_input_usd_per_mtok,1.4
+2026-09-01T18:01:15.706Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (1),baseten,listed_output_usd_per_mtok,4.4
+2026-09-01T18:01:15.706Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.14
+2026-09-01T18:01:15.706Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,78c8ae59-a960-4a40-bb26-0c94381848c9,Baseten (1),baseten,discount_fraction,0
 2026-07-21T14:54:38.848Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba,listed_input_usd_per_mtok,2.8
 2026-07-21T14:57:48.525Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba,listed_input_usd_per_mtok,2.31
 2026-07-28T20:37:04.811Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,7bd34824-0f4a-4ef4-a9b6-94856b97b491,Alibaba Fast,alibaba,listed_input_usd_per_mtok,2.8
@@ -7320,15 +7351,15 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-07T00:40:25.970Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,phala,listed_cache_read_usd_per_mtok,0.2106
 2026-08-19T05:05:47.160Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,phala,listed_cache_read_usd_per_mtok,0.22
 2026-06-18T15:12:36.538Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,c9bb54c3-988a-461c-974f-b6bf474b22e9,Phala,phala,discount_fraction,0
-2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,baseten,listed_input_usd_per_mtok,1.4
-2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,baseten,listed_output_usd_per_mtok,4.4
-2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,baseten,listed_cache_read_usd_per_mtok,0.26
-2026-07-22T04:30:36.775Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,baseten,listed_cache_read_usd_per_mtok,0.14
-2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten,baseten,discount_fraction,0
-2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,baseten,listed_input_usd_per_mtok,2.1
-2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,baseten,listed_output_usd_per_mtok,6.6
-2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,baseten,listed_cache_read_usd_per_mtok,0.21
-2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast,baseten,discount_fraction,0
+2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (2),baseten,listed_input_usd_per_mtok,1.4
+2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (2),baseten,listed_output_usd_per_mtok,4.4
+2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.26
+2026-07-22T04:30:36.775Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.14
+2026-06-23T22:02:27.279Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cd46df79-a451-442a-8522-77b509c7dd8d,Baseten (2),baseten,discount_fraction,0
+2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (2),baseten,listed_input_usd_per_mtok,2.1
+2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (2),baseten,listed_output_usd_per_mtok,6.6
+2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (2),baseten,listed_cache_read_usd_per_mtok,0.21
+2026-07-23T23:59:18.743Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,cec37412-e6c6-4859-8b2c-a3f547f49178,Baseten Fast (2),baseten,discount_fraction,0
 2026-06-17T22:27:24.892Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,streamlake,listed_input_usd_per_mtok,1.4
 2026-06-24T04:20:29.238Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,streamlake,listed_input_usd_per_mtok,1.33
 2026-06-25T02:55:57.623Z,z-ai/glm-5.2,z-ai/glm-5.2-20260616,standard,d3402db2-8df2-4611-8495-9c1c08ebc154,StreamLake,streamlake,listed_input_usd_per_mtok,1.302
@@ -11124,6 +11155,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-06-16T11:11:01.876Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,moonshotai,listed_output_usd_per_mtok,8
 2026-06-16T11:11:01.876Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,moonshotai,listed_cache_read_usd_per_mtok,0.38
 2026-06-16T11:11:01.876Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,571461af-99ef-45f0-8b18-b13b9d4fa17e,Moonshot AI Highspeed,moonshotai,discount_fraction,0
+2026-09-01T18:01:46.349Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,baseten,listed_input_usd_per_mtok,0.95
+2026-09-01T18:01:46.349Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,baseten,listed_output_usd_per_mtok,4
+2026-09-01T18:01:46.349Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,baseten,listed_cache_read_usd_per_mtok,0.16
+2026-09-01T18:01:46.349Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,5973274f-d658-4434-beb1-22057a2ec683,Baseten,baseten,discount_fraction,0
 2026-06-12T12:24:25.832Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,moonshotai,listed_input_usd_per_mtok,0.95
 2026-06-12T12:24:25.832Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,moonshotai,listed_output_usd_per_mtok,4
 2026-06-12T12:24:25.832Z,moonshotai/kimi-k2.7-code,moonshotai/kimi-k2.7-code-20260612,standard,71c89bc8-f596-4940-a9d6-fc996d99e5b1,Moonshot AI,moonshotai,listed_cache_read_usd_per_mtok,0.19
@@ -12021,10 +12056,14 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-07-09T16:38:31.105Z,openai/gpt-5.5:batch,openai/gpt-5.5-20260423,batch,34bd7c03-d5bf-4981-93d8-0f8bd0423045,OpenAI,openai,listed_output_usd_per_mtok,15
 2026-07-09T16:38:31.105Z,openai/gpt-5.5:batch,openai/gpt-5.5-20260423,batch,34bd7c03-d5bf-4981-93d8-0f8bd0423045,OpenAI,openai,listed_cache_read_usd_per_mtok,0.25
 2026-07-09T16:38:31.105Z,openai/gpt-5.5:batch,openai/gpt-5.5-20260423,batch,34bd7c03-d5bf-4981-93d8-0f8bd0423045,OpenAI,openai,discount_fraction,0
-2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten,baseten,listed_input_usd_per_mtok,1.74
-2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten,baseten,listed_output_usd_per_mtok,3.48
-2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten,baseten,listed_cache_read_usd_per_mtok,0.145
-2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten,baseten,discount_fraction,0
+2026-09-01T18:01:34.437Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,115fa517-477f-4b89-9d4d-a036cf9d2c32,Baseten (1),baseten,listed_input_usd_per_mtok,1.74
+2026-09-01T18:01:34.437Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,115fa517-477f-4b89-9d4d-a036cf9d2c32,Baseten (1),baseten,listed_output_usd_per_mtok,3.48
+2026-09-01T18:01:34.437Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,115fa517-477f-4b89-9d4d-a036cf9d2c32,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.145
+2026-09-01T18:01:34.437Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,115fa517-477f-4b89-9d4d-a036cf9d2c32,Baseten (1),baseten,discount_fraction,0
+2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten (2),baseten,listed_input_usd_per_mtok,1.74
+2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten (2),baseten,listed_output_usd_per_mtok,3.48
+2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.145
+2026-07-06T20:07:57.895Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,349baf29-4833-4f15-8313-bf17b7b7b37a,Baseten (2),baseten,discount_fraction,0
 2026-05-13T14:34:00.939Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,Baidu Qianfan,baidu,listed_input_usd_per_mtok,1.521
 2026-05-29T15:10:37.270Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.7605
 2026-07-10T04:51:03.676Z,deepseek/deepseek-v4-pro,deepseek/deepseek-v4-pro-20260423,standard,48f7c1a9-3b0c-4f31-a55b-4650d37e35f3,Baidu Qianfan,baidu,listed_input_usd_per_mtok,0.74529
@@ -16515,10 +16554,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-08-31T23:26:23.838Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,78cbd7eb-84cd-46ea-8347-0578e3415f83,Baidu Qianfan,baidu,discount_fraction,0
 2026-09-01T12:35:53.209Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,78cbd7eb-84cd-46ea-8347-0578e3415f83,Baidu Qianfan,baidu,discount_fraction,0.001
 2026-09-01T13:36:01.228Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,78cbd7eb-84cd-46ea-8347-0578e3415f83,Baidu Qianfan,baidu,discount_fraction,0.443
-2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten,baseten,listed_input_usd_per_mtok,0.95
-2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten,baseten,listed_output_usd_per_mtok,4
-2026-06-17T18:05:30.144Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten,baseten,listed_cache_read_usd_per_mtok,0.16
-2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten,baseten,discount_fraction,0
+2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten (1),baseten,listed_input_usd_per_mtok,0.95
+2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten (1),baseten,listed_output_usd_per_mtok,4
+2026-06-17T18:05:30.144Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.16
+2026-04-22T16:19:52.829Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85421399-264f-405d-9ad9-67835b01a3e0,Baseten (1),baseten,discount_fraction,0
 2026-04-20T18:48:07.576Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,listed_input_usd_per_mtok,0.95
 2026-05-21T11:41:12.304Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,listed_input_usd_per_mtok,0.74
 2026-06-21T21:15:36.158Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,listed_input_usd_per_mtok,0.95
@@ -16529,6 +16568,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-05-21T11:41:12.304Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,listed_cache_read_usd_per_mtok,0.35
 2026-06-21T21:15:36.158Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,listed_cache_read_usd_per_mtok,0.16
 2026-04-20T18:48:07.576Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,85e7870f-601c-4891-98ab-f7ac2ed4d718,Cloudflare,cloudflare,discount_fraction,0
+2026-09-01T18:04:19.356Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,8ef401c9-419b-4d2c-9dee-dacf8ee5d6f6,Baseten (2),baseten,listed_input_usd_per_mtok,0.95
+2026-09-01T18:04:19.356Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,8ef401c9-419b-4d2c-9dee-dacf8ee5d6f6,Baseten (2),baseten,listed_output_usd_per_mtok,4
+2026-09-01T18:04:19.356Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,8ef401c9-419b-4d2c-9dee-dacf8ee5d6f6,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.16
+2026-09-01T18:04:19.356Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,8ef401c9-419b-4d2c-9dee-dacf8ee5d6f6,Baseten (2),baseten,discount_fraction,0
 2026-04-20T15:50:00.970Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,90b5957c-b5ba-485a-9b23-d3e9a8abffc1,Moonshot AI,moonshotai,listed_input_usd_per_mtok,0.95
 2026-04-20T15:50:00.970Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,90b5957c-b5ba-485a-9b23-d3e9a8abffc1,Moonshot AI,moonshotai,listed_output_usd_per_mtok,4
 2026-04-20T15:50:00.970Z,moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,90b5957c-b5ba-485a-9b23-d3e9a8abffc1,Moonshot AI,moonshotai,listed_cache_read_usd_per_mtok,0.16
@@ -19806,10 +19849,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-06-23T22:23:10.862Z,openai/gpt-5-nano:batch,openai/gpt-5-nano-2025-08-07,batch,1745e1e7-4a49-4e0c-8464-b08e3465ebb3,OpenAI,openai,listed_output_usd_per_mtok,0.2
 2026-06-23T22:23:10.862Z,openai/gpt-5-nano:batch,openai/gpt-5-nano-2025-08-07,batch,1745e1e7-4a49-4e0c-8464-b08e3465ebb3,OpenAI,openai,listed_cache_read_usd_per_mtok,0.0025
 2026-06-23T22:23:10.862Z,openai/gpt-5-nano:batch,openai/gpt-5-nano-2025-08-07,batch,1745e1e7-4a49-4e0c-8464-b08e3465ebb3,OpenAI,openai,discount_fraction,0
-2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten,baseten,listed_input_usd_per_mtok,0.1
-2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten,baseten,listed_output_usd_per_mtok,0.5
-2026-06-17T18:05:27.046Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten,baseten,listed_cache_read_usd_per_mtok,0.1
-2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten,baseten,discount_fraction,0
+2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten (1),baseten,listed_input_usd_per_mtok,0.1
+2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten (1),baseten,listed_output_usd_per_mtok,0.5
+2026-06-17T18:05:27.046Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten (1),baseten,listed_cache_read_usd_per_mtok,0.1
+2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,000e507a-4d52-4dee-927a-8ece3a7b0c28,Baseten (1),baseten,discount_fraction,0
 2026-08-07T20:34:32.049Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,08a6dab7-09b5-4875-8f9b-f498f8f4173a,AkashML,akashml,listed_input_usd_per_mtok,0.037
 2026-08-25T14:20:24.529Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,08a6dab7-09b5-4875-8f9b-f498f8f4173a,AkashML,akashml,listed_input_usd_per_mtok,0.03
 2026-08-07T20:34:32.049Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,08a6dab7-09b5-4875-8f9b-f498f8f4173a,AkashML,akashml,listed_output_usd_per_mtok,0.49
@@ -19847,6 +19890,10 @@ changed_at,model_id,permaslug,variant,endpoint_id,provider_name,provider_slug,fi
 2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,85835306-dba3-4334-87bc-ab9ffa5c9c62,DeepInfra,deepinfra,listed_output_usd_per_mtok,0.19
 2026-07-01T00:56:10.324Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,85835306-dba3-4334-87bc-ab9ffa5c9c62,DeepInfra,deepinfra,listed_output_usd_per_mtok,0.17
 2026-01-25T19:26:46.983Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,85835306-dba3-4334-87bc-ab9ffa5c9c62,DeepInfra,deepinfra,discount_fraction,0
+2026-09-01T18:01:41.143Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,8727923e-c4b6-4dac-b5d5-6f2238b35a25,Baseten (2),baseten,listed_input_usd_per_mtok,0.1
+2026-09-01T18:01:41.143Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,8727923e-c4b6-4dac-b5d5-6f2238b35a25,Baseten (2),baseten,listed_output_usd_per_mtok,0.5
+2026-09-01T18:01:41.143Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,8727923e-c4b6-4dac-b5d5-6f2238b35a25,Baseten (2),baseten,listed_cache_read_usd_per_mtok,0.1
+2026-09-01T18:01:41.143Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,8727923e-c4b6-4dac-b5d5-6f2238b35a25,Baseten (2),baseten,discount_fraction,0
 2026-01-26T00:20:09.548Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,900c5273-4931-4e9f-bb52-57935dd154b4,Groq,groq,listed_input_usd_per_mtok,0.15
 2026-01-26T00:20:09.548Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,900c5273-4931-4e9f-bb52-57935dd154b4,Groq,groq,listed_output_usd_per_mtok,0.6
 2026-01-26T00:20:09.548Z,openai/gpt-oss-120b,openai/gpt-oss-120b,standard,900c5273-4931-4e9f-bb52-57935dd154b4,Groq,groq,listed_cache_read_usd_per_mtok,0.075

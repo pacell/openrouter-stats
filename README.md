@@ -53,7 +53,9 @@ enforced by the code, not just documented:
 | `openrouter_stats/pull.py` | every API call. Renames and unnests; converts $/token to $/M tokens. **No arithmetic.** |
 | `openrouter_stats/derive.py` | every calculation. **No API calls.** |
 
-**[`data/openrouter/README.md`](data/openrouter/README.md)** documents every
+**[`data/openrouter/README.md`](data/openrouter/README.md)** opens with a table
+inventory — what is a time series and what is a static snapshot, at what grain,
+over what span — then documents every
 column of all twenty files, each tagged `API` (verbatim), `API×1e6` (unit change
 only) or `CALC` (with its formula), alongside the source-endpoint map, six
 different retention windows, and the validation results.

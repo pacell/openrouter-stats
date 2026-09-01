@@ -103,11 +103,12 @@ def main() -> None:
             pcts = PERCENTILES if args.percentile == "all" else (args.percentile,)
             got["perf"] = pull.performance(model, args.range, pcts, names, slugs)
         if args.reliability:
-            got["cache"] = pull.cache_hit_rate(model, args.range)
-            got["tool_err"] = pull.tool_call_errors(model, args.range)
-            got["struct_err"] = pull.structured_output_errors(model, args.range)
+            got["cache"] = pull.cache_hit_rate(model, args.range, names, slugs)
+            got["tool_err"] = pull.tool_call_errors(model, args.range, names, slugs)
+            got["struct_err"] = pull.structured_output_errors(model, args.range,
+                                                              names, slugs)
             got["uptime"] = pull.uptime(model)
-            got["ep_uptime_daily"] = pull.endpoint_uptime_daily(model)
+            got["ep_uptime_daily"] = pull.endpoint_uptime_daily(model, names, slugs)
         if args.quality:
             got["bench"] = pull.benchmarks(model)
         if args.apps:
@@ -180,12 +181,14 @@ def main() -> None:
         bins["ep_uptime_daily"].sort(key=lambda r: (r["model_id"], r["endpoint_id"],
                                                     r["date"]))
         storage.write(args.out, "endpoint_uptime_daily", bins["ep_uptime_daily"])
-        endpoint_ids = sorted({r["endpoint_id"] for r in bins["eff_summary"]
-                               if r.get("endpoint_id")})
-        print(f"  hourly uptime for {len(endpoint_ids)} endpoints")
+        labels = {r["endpoint_id"]: {"model_id": r["model_id"],
+                                     "provider_name": r.get("provider_name") or "",
+                                     "provider_slug": r.get("provider_slug") or ""}
+                  for r in bins["eff_summary"] if r.get("endpoint_id")}
+        print(f"  hourly uptime for {len(labels)} endpoints")
         hourly = []
         with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-            for rows in pool.map(pull.endpoint_uptime_hourly, endpoint_ids):
+            for rows in pool.map(pull.endpoint_uptime_hourly, sorted(labels.items())):
                 hourly.extend(rows)
         hourly.sort(key=lambda r: (r["endpoint_id"], r["hour"] or ""))
         storage.write(args.out, "endpoint_uptime_hourly", hourly)

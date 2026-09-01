@@ -45,8 +45,8 @@ tencent/hy-mt2-1.8b,tencent/hy-mt2-1.8b-20260521,standard,3,4866664,auction-tran
 tencent/hy-mt2-1.8b,tencent/hy-mt2-1.8b-20260521,standard,4,4768024,HashSQL solver-bound simulation,,https://github.com/hashsql/sim,,1950535,5949
 tencent/hy-mt2-1.8b,tencent/hy-mt2-1.8b-20260521,standard,6,4684585,Irish Property Map,,https://irish-property-map.local/,,1572935,2488
 tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,1,2604926,TranslateBookWithLLM,,https://github.com/hydropix/TranslateBookWithLLM,,13132435,6153
-tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,2,2269224,Immersive Translate,,https://immersivetranslate.com/,,10140308,31750
-tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,3,4148949,DOPE i18n,,https://dope.xyz/,,8782985,5896
+tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,2,2269224,Immersive Translate,,https://immersivetranslate.com/,,10188914,31843
+tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,3,4148949,DOPE i18n-fill,,https://dope.xyz/,,8931844,5990
 tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,4,4875248,ZTAITrans,,https://ztaitran.local/,,8174683,10858
 tencent/hy-mt2-30b-a3b,tencent/hy-mt2-30b-a3b-20260521,standard,5,2275362,SkyrimNet,,https://github.com/SkyrimNet,game,7046129,2105
 tencent/hy-mt2-7b,tencent/hy-mt2-7b-20260521,standard,1,4647822,FinePrint,,https://fineprint.bench/,,1889671,482
@@ -164,11 +164,11 @@ anthropic/claude-opus-5,anthropic/claude-opus-5-20260723,standard,2,3067167,Herm
 anthropic/claude-opus-5,anthropic/claude-opus-5-20260723,standard,6,3335353,Framer,framer,https://www.framer.com/,,115367764379,518730
 anthropic/claude-opus-5,anthropic/claude-opus-5-20260723,standard,8,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,85339503920,470956
 anthropic/claude-opus-5,anthropic/claude-opus-5-20260723,standard,9,2853275,pi,pi,https://pi.dev/,cli-agent,81878174161,660461
-inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,26286753407,350003
-inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,4,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,4084270011,55109
-inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,5,2853275,pi,pi,https://pi.dev/,cli-agent,3965981985,72340
+inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,26358120941,350786
+inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,4,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,4094955638,55282
+inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,5,2853275,pi,pi,https://pi.dev/,cli-agent,3967914680,72392
 inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,6,2231987,Roblox,,https://www.roblox.com/,,3628770232,2159838
-inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,7,2605040,claude-mem,,https://github.com/thedotmack/claude-mem,,3546902791,155349
+inclusionai/ling-3.0-flash,inclusionai/ling-3.0-flash-20260723,standard,7,2605040,claude-mem,,https://github.com/thedotmack/claude-mem,,3548860137,155520
 poolside/laguna-s-2.1,poolside/laguna-s-2.1-20260720,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,25657038659,188336
 poolside/laguna-s-2.1,poolside/laguna-s-2.1-20260720,standard,4,3682314,omp,,https://omp.sh/,cli-agent,12411450098,68039
 poolside/laguna-s-2.1,poolside/laguna-s-2.1-20260720,standard,5,2853275,pi,pi,https://pi.dev/,cli-agent,7226947599,57804
@@ -249,11 +249,11 @@ openai/gpt-5.6-sol,openai/gpt-5.6-sol-20260709,standard,3,3067167,Hermes Agent,h
 openai/gpt-5.6-sol,openai/gpt-5.6-sol-20260709,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,265178278612,1817925
 openai/gpt-5.6-sol,openai/gpt-5.6-sol-20260709,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,100782121050,972271
 openai/gpt-5.6-sol,openai/gpt-5.6-sol-20260709,standard,8,3682314,omp,,https://omp.sh/,cli-agent,76466921726,429768
-x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,117793663335,1169324
-x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,48887268170,1643253
-x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,33397178874,454920
-x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,7,171054,HackerAI,,https://hackerai.co/,,31832323951,570637
-x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,8,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,19894512814,275128
+x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,117829673940,1169768
+x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,49234977629,1655301
+x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,33422682594,455188
+x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,7,171054,HackerAI,,https://hackerai.co/,,31833523053,570678
+x-ai/grok-4.5,x-ai/grok-4.5-20260708,standard,8,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,19902433218,275317
 aion-labs/aion-3.0-mini,aion-labs/aion-3.0-mini-20260707,standard,1,2235067,HammerAI,hammerai,https://www.hammerai.com/,roleplay,801849672,55776
 aion-labs/aion-3.0-mini,aion-labs/aion-3.0-mini-20260707,standard,2,2699842,ISEKAI ZERO,isekai-zero,https://www.isekai.world/,game,635315638,17880
 aion-labs/aion-3.0-mini,aion-labs/aion-3.0-mini-20260707,standard,3,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,459357920,22982
@@ -264,21 +264,21 @@ aion-labs/aion-3.0,aion-labs/aion-3.0-20260707,standard,2,142576,SillyTavern,sil
 aion-labs/aion-3.0,aion-labs/aion-3.0-20260707,standard,3,2699842,ISEKAI ZERO,isekai-zero,https://www.isekai.world/,game,276523967,8015
 aion-labs/aion-3.0,aion-labs/aion-3.0-20260707,standard,5,2400879,Bary,,https://lorebary.com/,roleplay,209031419,12196
 aion-labs/aion-3.0,aion-labs/aion-3.0-20260707,standard,6,158029,novelcrafter,novelcrafter,https://novelcrafter.com/,writing-assistant|creative-writing,206329288,6729
-tencent/hy3,tencent/hy3-20260706,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,5989505661457,70799840
-tencent/hy3,tencent/hy3-20260706,standard,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,1732205970618,26292681
-tencent/hy3,tencent/hy3-20260706,standard,4,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,222711997437,6526877
-tencent/hy3,tencent/hy3-20260706,standard,6,2637375,Lemonade,lemonade,https://lemonade.gg/,programming-app,115101596384,2019095
-tencent/hy3,tencent/hy3-20260706,standard,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,72207475485,871561
+tencent/hy3,tencent/hy3-20260706,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,5989887695790,70804944
+tencent/hy3,tencent/hy3-20260706,standard,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,1732222778686,26292865
+tencent/hy3,tencent/hy3-20260706,standard,4,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,222737297284,6527242
+tencent/hy3,tencent/hy3-20260706,standard,6,2637375,Lemonade,lemonade,https://lemonade.gg/,programming-app,116068181576,2035870
+tencent/hy3,tencent/hy3-20260706,standard,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,72215731310,871669
 poolside/laguna-xs-2.1,poolside/laguna-xs-2.1-20260625,standard,2,2275362,SkyrimNet,,https://github.com/SkyrimNet,game,1223696437,327042
 poolside/laguna-xs-2.1,poolside/laguna-xs-2.1-20260625,standard,3,2853275,pi,pi,https://pi.dev/,cli-agent,918506446,12188
 poolside/laguna-xs-2.1,poolside/laguna-xs-2.1-20260625,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,817132363,13609
 poolside/laguna-xs-2.1,poolside/laguna-xs-2.1-20260625,standard,5,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,600825680,7696
 poolside/laguna-xs-2.1,poolside/laguna-xs-2.1-20260625,standard,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,371518354,6104
-poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,282863863407,4042710
-poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,132910315536,1889809
-poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,23604827607,482929
-poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,6,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,21497423576,591948
-poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,18917877484,253714
+poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,283292250086,4048850
+poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,133007746200,1891495
+poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,23625014821,483276
+poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,6,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,21545180500,592980
+poolside/laguna-xs-2.1:free,poolside/laguna-xs-2.1-20260625,free,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,18943632141,254024
 anthropic/claude-sonnet-5,anthropic/claude-sonnet-5-20260630,standard,1,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,725415209320,6696144
 anthropic/claude-sonnet-5,anthropic/claude-sonnet-5-20260630,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,548076187265,3778910
 anthropic/claude-sonnet-5,anthropic/claude-sonnet-5-20260630,standard,3,2308106,Descript,descript,https://descript.com/,video-gen,440684297759,2323991
@@ -289,26 +289,26 @@ google/gemini-3.1-flash-lite-image,google/gemini-3.1-flash-lite-image-20260630,s
 google/gemini-3.1-flash-lite-image,google/gemini-3.1-flash-lite-image-20260630,standard,3,3435247,Snowfall AI,,https://snowfall.ai/,,257850342,170466
 google/gemini-3.1-flash-lite-image,google/gemini-3.1-flash-lite-image-20260630,standard,6,4594821,NINETY Product Image Gen,,https://www.ninetyjersey.com/,,90937947,19070
 google/gemini-3.1-flash-lite-image,google/gemini-3.1-flash-lite-image-20260630,standard,7,143214,Deeply,,https://deeply.cz/,,62370138,22208
-nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,15844615497,114289
+nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,15844641631,114299
 nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,2,2853275,pi,pi,https://pi.dev/,cli-agent,15744402574,125148
-nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,6819360290,73356
-nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,6,3405727,Lumi,,https://lumi.gens.codes/,,1896361085,356204
-nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,7,2560331,OpenMind,,https://openmind.design/,,1713742126,1246579
+nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,6835644879,73525
+nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,6,3405727,Lumi,,https://lumi.gens.codes/,,1898284894,356483
+nex-agi/nex-n2-mini,nex-agi/nex-n2-mini,standard,7,2560331,OpenMind,,https://openmind.design/,,1714823446,1247305
 sakana/fugu-ultra,sakana/fugu-ultra-20260615,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,3197007184,18707
 sakana/fugu-ultra,sakana/fugu-ultra-20260615,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,849075471,8004
 sakana/fugu-ultra,sakana/fugu-ultra-20260615,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,72349311,944
 sakana/fugu-ultra,sakana/fugu-ultra-20260615,standard,7,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,59183762,1022
 sakana/fugu-ultra,sakana/fugu-ultra-20260615,standard,8,2625848,Claudish - OpenRouter Proxy,,https://claudish.com/,,46922972,321
 google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,1,4271612,Pelican audio-reference augmentation,,https://blackforestlabs.ai/,,499073127,207500
-google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,3,2479028,ThetaWave,,https://thetawave.ai/,,265805901,61777
-google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,4,2525323,AssetHub (Free),,https://assethub.io/,,197917267,71560
-google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,7,3277972,Edwin TOOLS-4982,,https://edwin.app/,,109807075,10441
+google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,3,2479028,ThetaWave,,https://thetawave.ai/,,266134402,61854
+google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,4,2525323,AssetHub Parts Separation correct_design,,https://assethub.io/,,198328037,71707
+google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,7,3277972,Edwin TOOLS-4982 prefilter,,https://edwin.app/,,111894418,10635
 google/gemini-3.1-flash-image,google/gemini-3.1-flash-image-20260528,standard,8,4431301,ai-image-gen-service,,https://ai-image-gen-service.internal/,,70312837,13403
 google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,2,3089148,ForgeGUI,,https://forgegui.com/,,94893654,19075
-google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,8,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,74077896,13692
-google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,4,3682314,omp,,https://omp.sh/,cli-agent,59998314,1014
+google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,8,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,74104737,13709
+google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,4,3682314,omp,,https://omp.sh/,cli-agent,70069344,1119
 google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,6,4181217,RUREAL Studio,,https://rureal.app/,,49448908,10929
-google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,7,2716091,Molnia Worker,,https://molnia.rf/,,48586678,14857
+google/gemini-3-pro-image,google/gemini-3-pro-image-20260528,standard,7,2716091,Molnia Worker,,https://molnia.rf/,,48747154,14918
 cohere/north-mini-code:free,cohere/north-mini-code-20260617,free,1,2640550,Peezy Gateway,,https://p0.systems/,programming-app|personal-agent|general-chat|cli-agent,520321657617,9484100
 cohere/north-mini-code:free,cohere/north-mini-code-20260617,free,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,60676803300,2218806
 cohere/north-mini-code:free,cohere/north-mini-code-20260617,free,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,39037509276,993879
@@ -339,11 +339,11 @@ nex-agi/nex-n2-pro,nex-agi/nex-n2-pro,standard,2,2262242,Kilo Code,kilo-code,htt
 nex-agi/nex-n2-pro,nex-agi/nex-n2-pro,standard,5,2853275,pi,pi,https://pi.dev/,cli-agent,163454589,1915
 nex-agi/nex-n2-pro,nex-agi/nex-n2-pro,standard,6,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,91398542,5277
 nex-agi/nex-n2-pro,nex-agi/nex-n2-pro,standard,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,59289646,1262
-nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,1,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,1110836830,550388
-nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,2,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,379696068,20108
-nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,3,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,197934268,19749
-nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,6,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,55388264,20834
-nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,7,2293498,Agent Zero,agent-zero,https://agent-zero.ai/,cloud-agent,54242493,3152
+nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,1,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,1112908748,551563
+nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,2,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,379910382,20127
+nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,3,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,198434704,19786
+nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,6,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,55637836,20872
+nvidia/nemotron-3.5-content-safety:free,nvidia/nemotron-3.5-content-safety-20260604,free,7,2293498,Agent Zero,agent-zero,https://agent-zero.ai/,cloud-agent,54342874,3164
 nvidia/nemotron-3-ultra-550b-a55b,nvidia/nemotron-3-ultra-550b-a55b-20260604,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,10056775458,238803
 nvidia/nemotron-3-ultra-550b-a55b,nvidia/nemotron-3-ultra-550b-a55b-20260604,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,4221917126,56718
 nvidia/nemotron-3-ultra-550b-a55b,nvidia/nemotron-3-ultra-550b-a55b-20260604,standard,5,189563,OpenHands,openhands,https://docs.all-hands.dev/,cli-agent,3646590466,48800
@@ -374,11 +374,11 @@ stepfun/step-3.7-flash,stepfun/step-3.7-flash-20260528,standard,2,2262242,Kilo C
 stepfun/step-3.7-flash,stepfun/step-3.7-flash-20260528,standard,3,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,444226834005,4798105
 stepfun/step-3.7-flash,stepfun/step-3.7-flash-20260528,standard,4,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,284552154488,3086937
 stepfun/step-3.7-flash,stepfun/step-3.7-flash-20260528,standard,5,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,109563935806,4171162
-anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,1,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,308703694755,2745202
-anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,135701665781,978672
-anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,5,3335353,Framer,framer,https://www.framer.com/,,44831104843,222856
-anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,37031465693,355708
-anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,7,2853275,pi,pi,https://pi.dev/,cli-agent,35097445943,266884
+anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,1,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,309209090679,2750945
+anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,135922189871,980326
+anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,5,3335353,Framer,framer,https://www.framer.com/,,44857614730,222996
+anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,37065009256,356092
+anthropic/claude-opus-4.8,anthropic/claude-4.8-opus-20260528,standard,7,2853275,pi,pi,https://pi.dev/,cli-agent,35219655362,267859
 qwen/qwen3.7-max,qwen/qwen3.7-max-20260520,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,24601976732,423605
 qwen/qwen3.7-max,qwen/qwen3.7-max-20260520,standard,2,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,10269200574,118356
 qwen/qwen3.7-max,qwen/qwen3.7-max-20260520,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,1697898847,24993
@@ -451,9 +451,9 @@ qwen/qwen3.6-max-preview,qwen/qwen3.6-max-preview-20260420,standard,5,4661184,PM
 qwen/qwen3.6-max-preview,qwen/qwen3.6-max-preview-20260420,standard,10,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,36664840,1031
 qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,3,3682314,omp,,https://omp.sh/,cli-agent,3172941850,42402
 qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,2111274089,71401
-qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,1450551130,28729
+qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,1450862663,28738
 qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,6,2524738,LangChain,langchain,https://docs.langchain.com/,,1250856937,62044
-qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,7,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1086649880,25396
+qwen/qwen3.6-27b,qwen/qwen3.6-27b-20260422,standard,7,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1087423754,25461
 openai/gpt-5.5-pro,openai/gpt-5.5-pro-20260423,standard,8,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,121976452,2224
 openai/gpt-5.5-pro,openai/gpt-5.5-pro-20260423,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,82207267,386
 openai/gpt-5.5-pro,openai/gpt-5.5-pro-20260423,standard,6,3358448,water-pipe,,https://water-pipe.local/,,56810394,1428
@@ -494,11 +494,11 @@ openai/gpt-5.4-image-2,openai/gpt-5.4-image-2-20260421,standard,2,2583849,Vector
 openai/gpt-5.4-image-2,openai/gpt-5.4-image-2-20260421,standard,3,4081115,LOOKSI,,https://looksi.app/,,139999401,5708
 openai/gpt-5.4-image-2,openai/gpt-5.4-image-2-20260421,standard,6,3358448,water-pipe,,https://water-pipe.local/,,82717827,5211
 openai/gpt-5.4-image-2,openai/gpt-5.4-image-2-20260421,standard,8,184102,Open WebUI,open-webui,https://openwebui.com/,general-chat,72758308,5739
-moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,1,2853275,pi,pi,https://pi.dev/,cli-agent,54503762302,2102731
-moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,40641567799,812547
-moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,37136145332,814982
-moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,31417299744,365376
-moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,7,2409654,motor-de-busca,,https://motor-de-busca/,,6680500867,395839
+moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,1,2853275,pi,pi,https://pi.dev/,cli-agent,54615406164,2104672
+moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,40726230300,813947
+moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,37212399691,816501
+moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,6,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,31505507949,366319
+moonshotai/kimi-k2.6,moonshotai/kimi-k2.6-20260420,standard,7,2409654,motor-de-busca,,https://motor-de-busca/,,6722418699,398497
 anthropic/claude-opus-4.7,anthropic/claude-4.7-opus-20260416,standard,2,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,91010623168,753812
 anthropic/claude-opus-4.7,anthropic/claude-4.7-opus-20260416,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,13447858866,128195
 anthropic/claude-opus-4.7,anthropic/claude-4.7-opus-20260416,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,13154147136,162676
@@ -599,11 +599,11 @@ mistralai/mistral-small-2603,mistralai/mistral-small-2603,standard,3,2725608,Ope
 mistralai/mistral-small-2603,mistralai/mistral-small-2603,standard,5,1824546,MessengerX.io,,https://messengerx.io/,,796204407,221074
 mistralai/mistral-small-2603,mistralai/mistral-small-2603,standard,6,2853275,pi,pi,https://pi.dev/,cli-agent,705147314,10571
 mistralai/mistral-small-2603,mistralai/mistral-small-2603,standard,9,4281688,lovmia-prod,,https://api.miaai.chat/,,414775667,71438
-z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,1,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,14142939787,230184
-z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1694745264,30375
-z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,405668802,7744
-z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,5,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,317689108,22277
-z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,7,188881,Chub AI,chub-ai,https://chub.ai/,roleplay,279315752,16020
+z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,1,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,14163429770,230518
+z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1698797258,30407
+z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,4,2853275,pi,pi,https://pi.dev/,cli-agent,405741852,7748
+z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,5,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,317962710,22302
+z-ai/glm-5-turbo,z-ai/glm-5-turbo-20260315,standard,7,188881,Chub AI,chub-ai,https://chub.ai/,roleplay,279383176,16036
 nvidia/nemotron-3-super-120b-a12b,nvidia/nemotron-3-super-120b-a12b-20230311,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,25778821324,531378
 nvidia/nemotron-3-super-120b-a12b,nvidia/nemotron-3-super-120b-a12b-20230311,standard,4,189563,OpenHands,openhands,https://docs.all-hands.dev/,cli-agent,1705784424,36089
 nvidia/nemotron-3-super-120b-a12b,nvidia/nemotron-3-super-120b-a12b-20230311,standard,5,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,1553549870,36314
@@ -654,11 +654,11 @@ google/gemini-3.1-flash-image-preview,google/gemini-3.1-flash-image-preview-2026
 google/gemini-3.1-flash-image-preview,google/gemini-3.1-flash-image-preview-20260226,standard,4,3766530,OpticTrend TryOn,,https://optictrend.ru/,,111644246,37873
 google/gemini-3.1-flash-image-preview,google/gemini-3.1-flash-image-preview-20260226,standard,5,3418283,Dream,,https://dream-dev.the-atelier.world/,,109639698,46301
 google/gemini-3.1-flash-image-preview,google/gemini-3.1-flash-image-preview-20260226,standard,6,3961134,Avatar SubidoPro,,https://subidopro.com/,,106351856,11950
-qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1671953719,40744
-qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,608611249,10035
+qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1674225198,40787
+qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,609217255,10046
 qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,6,2697020,Poolside,pool,https://poolside.ai/,cli-agent,285693262,6364
 qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,7,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,244837007,2542
-qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,8,2539333,Recallium SaaS Worker,,https://recallium.ai/,,217299026,88738
+qwen/qwen3.5-35b-a3b,qwen/qwen3.5-35b-a3b-20260224,standard,8,2539333,Recallium SaaS Worker,,https://recallium.ai/,,218633696,88908
 qwen/qwen3.5-27b,qwen/qwen3.5-27b-20260224,standard,2,4232076,Raven Agent,,https://raven.evermind.ai/,cli-agent|personal-agent,723542897,23628
 qwen/qwen3.5-27b,qwen/qwen3.5-27b-20260224,standard,3,2853275,pi,pi,https://pi.dev/,cli-agent,615877127,12636
 qwen/qwen3.5-27b,qwen/qwen3.5-27b-20260224,standard,5,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,409341600,6204
@@ -674,8 +674,8 @@ qwen/qwen3.5-flash-02-23,qwen/qwen3.5-flash-20260224,standard,3,2725608,OpenClaw
 qwen/qwen3.5-flash-02-23,qwen/qwen3.5-flash-20260224,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,5204644614,109237
 qwen/qwen3.5-flash-02-23,qwen/qwen3.5-flash-20260224,standard,5,4142386,Premium Job Data Extractor,,https://recruit.net/,,2477041794,172838
 qwen/qwen3.5-flash-02-23,qwen/qwen3.5-flash-20260224,standard,6,3370926,pfp-analyze,,https://research.outersignal.com/,,2347400063,1088891
-google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,259311917,1959
-google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,4,2474275,Takt,,https://takt.app/,,221878931,16417
+google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,2,2262242,Kilo Code,kilo-code,https://kilocode.ai/,cli-agent|ide-extension,259358705,1977
+google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,4,2474275,Takt,,https://takt.app/,,222514374,16462
 google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,5,3149083,AI Realtor,,https://zown.ca/,,124347122,3304
 google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,6,2593203,VideoZero Engine,,https://videozero.ai/,,120647913,1846
 google/gemini-3.1-pro-preview-customtools,google/gemini-3.1-pro-preview-customtools-20260219,standard,7,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,112221854,3635
@@ -684,11 +684,11 @@ openai/gpt-5.3-codex,openai/gpt-5.3-codex-20260224,standard,3,3178860,Ito,ito,ht
 openai/gpt-5.3-codex,openai/gpt-5.3-codex-20260224,standard,4,2668297,Codex,codex,https://openai.com/codex/,cli-agent,5458714415,92461
 openai/gpt-5.3-codex,openai/gpt-5.3-codex-20260224,standard,6,4025225,C3PR,,https://github.com/brick-so/core/tree/prod/private/c3pr,,3148428572,69265
 openai/gpt-5.3-codex,openai/gpt-5.3-codex-20260224,standard,7,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,2520470670,36028
-aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,2,2235067,HammerAI,hammerai,https://www.hammerai.com/,roleplay,1258115039,106709
-aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,3,172824,Infinite Worlds,,https://infiniteworlds.app/,game,902439405,51331
-aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,4,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,641535212,38463
-aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,5,150064,LibreChat,librechat,https://librechat.ai/,general-chat,393648629,31573
-aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,6,3187378,AIVA DevOps,,https://aiva.local/,,362501709,26797
+aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,2,2235067,HammerAI,hammerai,https://www.hammerai.com/,roleplay,1258795372,106790
+aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,3,172824,Infinite Worlds,,https://infiniteworlds.app/,game,903789372,51411
+aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,4,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,643501176,38542
+aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,5,150064,LibreChat,librechat,https://librechat.ai/,general-chat,394254848,31620
+aion-labs/aion-2.0,aion-labs/aion-2.0-20260223,standard,6,3187378,AIVA DevOps,,https://aiva.local/,,364719820,26959
 google/gemini-3.1-pro-preview,google/gemini-3.1-pro-preview-20260219,standard,2,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,26727270310,837291
 google/gemini-3.1-pro-preview,google/gemini-3.1-pro-preview-20260219,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,21570944539,314752
 google/gemini-3.1-pro-preview,google/gemini-3.1-pro-preview-20260219,standard,3,2860037,SITE123,,https://www.site123.com/,,15355896913,508505
@@ -809,7 +809,7 @@ nvidia/nemotron-3-nano-30b-a3b,nvidia/nemotron-3-nano-30b-a3b,standard,3,3067167
 nvidia/nemotron-3-nano-30b-a3b,nvidia/nemotron-3-nano-30b-a3b,standard,5,2864637,G0DM0D3-pliny,,https://godmod3.ai/,,716302364,83985
 nvidia/nemotron-3-nano-30b-a3b,nvidia/nemotron-3-nano-30b-a3b,standard,7,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,335633093,15524
 nvidia/nemotron-3-nano-30b-a3b,nvidia/nemotron-3-nano-30b-a3b,standard,9,4763857,OfficeQA OpenHands evaluation,,https://github.com/databricks/officeqa,,88513027,2733
-openai/gpt-5.2-chat,openai/gpt-5.2-chat-20251211,standard,3,2575056,Medical CRM AI Service,,https://medical-crm.local/,,96531423,19537
+openai/gpt-5.2-chat,openai/gpt-5.2-chat-20251211,standard,3,2575056,Medical CRM Vector Service,,https://medical-crm.local/,,96531423,19537
 openai/gpt-5.2-chat,openai/gpt-5.2-chat-20251211,standard,4,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,43353908,5998
 openai/gpt-5.2-chat,openai/gpt-5.2-chat-20251211,standard,5,2559230,Dr. Dogalicious AI Vet Nutritionist,,https://dogalicious.com/,,33015403,1273
 openai/gpt-5.2-chat,openai/gpt-5.2-chat-20251211,standard,7,184102,Open WebUI,open-webui,https://openwebui.com/,general-chat,24835403,2751
@@ -844,11 +844,11 @@ openai/gpt-5.1-codex-max,openai/gpt-5.1-codex-max-20251204,standard,3,190604,Cli
 openai/gpt-5.1-codex-max,openai/gpt-5.1-codex-max-20251204,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,109192999,2603
 openai/gpt-5.1-codex-max,openai/gpt-5.1-codex-max-20251204,standard,5,3682314,omp,,https://omp.sh/,cli-agent,61139108,933
 openai/gpt-5.1-codex-max,openai/gpt-5.1-codex-max-20251204,standard,7,2853275,pi,pi,https://pi.dev/,cli-agent,47702281,1617
-amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,2,2560331,OpenMind,,https://openmind.design/,,307756933,293669
+amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,2,2560331,OpenMind,,https://openmind.design/,,308010180,293902
 amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,4,4528298,Agentworx,,https://github.com/TimeleftXL/Agentworx,,62787943,996
 amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,5,2592866,German Cap Table Extractor,,https://github.com/registry-de-cap,,58134321,36643
 amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,6,4668747,Skiftr Enricher,,https://skiftr.dk/,,50663491,14863
-amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,7,2504486,KKU IntelSphere API,,https://ai.kku.ac.th/,,41358706,52495
+amazon/nova-2-lite-v1,amazon/nova-2-lite-v1,standard,7,2504486,KKU IntelSphere API,,https://ai.kku.ac.th/,,41358804,52497
 mistralai/ministral-14b-2512,mistralai/ministral-14b-2512,standard,1,181505,LexiBot,,https://www.lexibot.me/,,818036286,258611
 mistralai/ministral-14b-2512,mistralai/ministral-14b-2512,standard,2,2584894,Luna AI WebApp,,https://luna-ai-webapp.com/,,604419968,122110
 mistralai/ministral-14b-2512,mistralai/ministral-14b-2512,standard,6,2741751,Charful,,https://charful.app/,,168122462,40450
@@ -965,20 +965,20 @@ openai/gpt-5-image,openai/gpt-5-image,standard,4,3245403,site-factory-lab,,https
 openai/gpt-5-image,openai/gpt-5-image,standard,5,3099767,Learn Center Machine,,https://learn.plasma.to/,,3729140,352
 openai/gpt-5-image,openai/gpt-5-image,standard,6,184102,Open WebUI,open-webui,https://openwebui.com/,general-chat,2906759,502
 google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,2,2797114,AllScan OCR Fallback,,https://allscan.internal/,,188456982,102600
-google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,3,2301840,MAX Career Bot,,https://max.ru/,,90850917,30917
-google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,4,2720747,Vibsy,,https://vibsy.ru/,,74995272,17850
+google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,3,2301840,MAX Career Bot,,https://max.ru/,,90975477,30955
+google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,4,2720747,Vibsy,,https://vibsy.ru/,,75167963,17886
 google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,5,2327139,NeuralFrames,,https://neuralframes.com/,,48155719,20196
-google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,6,179379,OpenRouter Ruby Client,,https://github.com/OlympiaAI/open_router,,42057543,11495
+google/gemini-2.5-flash-image,google/gemini-2.5-flash-image,standard,6,179379,OpenRouter Ruby Client,,https://github.com/OlympiaAI/open_router,,42207648,11537
 qwen/qwen3-vl-30b-a3b-thinking,qwen/qwen3-vl-30b-a3b-thinking,standard,1,3415311,Hark SITO Benchmark,,https://hark.com/,,214721677,26993
 qwen/qwen3-vl-30b-a3b-thinking,qwen/qwen3-vl-30b-a3b-thinking,standard,4,2760751,Postuma 2,,https://postuma.linkuma.co/,,47462842,15577
 qwen/qwen3-vl-30b-a3b-thinking,qwen/qwen3-vl-30b-a3b-thinking,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,17753223,762
 qwen/qwen3-vl-30b-a3b-thinking,qwen/qwen3-vl-30b-a3b-thinking,standard,7,3248223,goose,,https://goose-docs.ai/,cloud-agent|cli-agent|programming-app,10591547,163
 qwen/qwen3-vl-30b-a3b-thinking,qwen/qwen3-vl-30b-a3b-thinking,standard,8,3529344,FA Nexus Code,,https://futureassistants.app/,,5061221,774
-qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,1,3350625,extra.email,extra-email,https://extra.email/,writing-assistant|personal-agent,4984584832,4157551
-qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,2,4087686,aurcheck-agent-vision-shadow,,https://local.aurcheck.agent/,,2578362502,1175881
+qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,1,3350625,extra.email,extra-email,https://extra.email/,writing-assistant|personal-agent,4985429547,4157729
+qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,2,4087686,aurcheck-agent-vision-shadow,,https://local.aurcheck.agent/,,2579276869,1176219
 qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,4,169295,Portkey AI,portkey-ai,https://portkey.ai/,programming-app,1753845908,53593
-qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,5,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,1399561169,178469
-qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,6,4339160,tvtips,,https://github.com/tvtips,,1328386629,3355158
+qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,5,2938662,Nous Research API,nous-research-api,https://api.nousresearch.com/,general-chat,1399569767,178474
+qwen/qwen3-vl-30b-a3b-instruct,qwen/qwen3-vl-30b-a3b-instruct,standard,6,4339160,tvtips,,https://github.com/tvtips,,1329693504,3358459
 openai/gpt-5-pro,openai/gpt-5-pro-2025-10-06,standard,3,2387170,tfy,,https://www.truefoundry.com/,,2562235,518
 openai/gpt-5-pro,openai/gpt-5-pro-2025-10-06,standard,4,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,2136548,191
 openai/gpt-5-pro,openai/gpt-5-pro-2025-10-06,standard,5,2478708,undefined,,https://galaxy-ai-git-satishorg-elephant-ai.vercel.app/,,1827366,158
@@ -1044,9 +1044,9 @@ qwen/qwen3-next-80b-a3b-thinking,qwen/qwen3-next-80b-a3b-thinking-2509,standard,
 qwen/qwen3-next-80b-a3b-thinking,qwen/qwen3-next-80b-a3b-thinking-2509,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,4716418,135
 qwen/qwen3-next-80b-a3b-thinking,qwen/qwen3-next-80b-a3b-thinking-2509,standard,7,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,3708334,127
 qwen/qwen3-next-80b-a3b-thinking,qwen/qwen3-next-80b-a3b-thinking-2509,standard,8,2387170,tfy,,https://www.truefoundry.com/,,3053798,501
-qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,1,3473470,Bitsec,,https://bitsec.ai/,,20968662584,1838726
-qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,2,2524738,LangChain,langchain,https://docs.langchain.com/,,5141707340,362086
-qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,3,2506192,DivKit Builder,,https://divkit-builder.com/,,2050373195,389820
+qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,1,3473470,Bitsec,,https://bitsec.ai/,,21115558323,1853036
+qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,2,2524738,LangChain,langchain,https://docs.langchain.com/,,5149576904,362591
+qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,3,2506192,DivKit Builder,,https://divkit-builder.com/,,2053331281,390348
 qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,6,2853275,pi,pi,https://pi.dev/,cli-agent,491325179,3147
 qwen/qwen3-next-80b-a3b-instruct,qwen/qwen3-next-80b-a3b-instruct-2509,standard,7,4345621,Opkey Architect,,https://opkey.local/,,446456565,101581
 qwen/qwen-plus-2025-07-28,qwen/qwen-plus-2025-07-28,standard,1,2524738,LangChain,langchain,https://docs.langchain.com/,,95555044,10892
@@ -1090,10 +1090,10 @@ z-ai/glm-4.5v,z-ai/glm-4.5v,standard,3,188881,Chub AI,chub-ai,https://chub.ai/,r
 z-ai/glm-4.5v,z-ai/glm-4.5v,standard,4,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,33263219,4298
 z-ai/glm-4.5v,z-ai/glm-4.5v,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,26870233,5729
 openai/gpt-5,openai/gpt-5-2025-08-07,standard,2,4217612,Sentry MCP,,https://github.com/getsentry/sentry-mcp,,5305756009,944197
-openai/gpt-5,openai/gpt-5-2025-08-07,standard,3,4041061,Supernova Worker,,https://smp.followthewhiterabbit.tech/,,1148491364,781701
-openai/gpt-5,openai/gpt-5-2025-08-07,standard,4,2668297,Codex,codex,https://openai.com/codex/,cli-agent,1136722141,31766
-openai/gpt-5,openai/gpt-5-2025-08-07,standard,5,4482977,Sparkfire,,https://sparkfire.ai/,,886510081,138504
-openai/gpt-5,openai/gpt-5-2025-08-07,standard,7,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,761810431,19127
+openai/gpt-5,openai/gpt-5-2025-08-07,standard,3,4041061,Supernova Worker,,https://smp.followthewhiterabbit.tech/,,1149231904,782208
+openai/gpt-5,openai/gpt-5-2025-08-07,standard,4,2668297,Codex,codex,https://openai.com/codex/,cli-agent,1139752494,31817
+openai/gpt-5,openai/gpt-5-2025-08-07,standard,5,4482977,Sparkfire,,https://sparkfire.ai/,,886605023,138524
+openai/gpt-5,openai/gpt-5-2025-08-07,standard,7,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,762290468,19138
 openai/gpt-5-mini,openai/gpt-5-mini-2025-08-07,standard,2,2474521,Skyvern,,https://app.skyvern.com/,,5971332212,248121
 openai/gpt-5-mini,openai/gpt-5-mini-2025-08-07,standard,3,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,4410018493,135809
 openai/gpt-5-mini,openai/gpt-5-mini-2025-08-07,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,4235550093,110649
@@ -1149,9 +1149,9 @@ qwen/qwen3-235b-a22b-thinking-2507,qwen/qwen3-235b-a22b-thinking-2507,standard,2
 qwen/qwen3-235b-a22b-thinking-2507,qwen/qwen3-235b-a22b-thinking-2507,standard,6,4860684,deptree thesis harness,,https://github.com/anthony-griffin/graph,,114481638,2820
 qwen/qwen3-235b-a22b-thinking-2507,qwen/qwen3-235b-a22b-thinking-2507,standard,7,4028896,CrisisBrief,,https://crisisbrief.ai/,,45037769,16630
 qwen/qwen3-235b-a22b-thinking-2507,qwen/qwen3-235b-a22b-thinking-2507,standard,8,2853275,pi,pi,https://pi.dev/,cli-agent,43831959,1153
-qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,6279936486,97770
-qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,1723093104,27512
-qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,5,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,1633030493,24650
+qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,6281706118,97806
+qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,4,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,1724237405,27529
+qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,5,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,1636196261,24744
 qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,6,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,1409858577,16991
 qwen/qwen3-coder,qwen/qwen3-coder-480b-a35b-07-25,standard,7,2853275,pi,pi,https://pi.dev/,cli-agent,1295256398,23152
 bytedance/ui-tars-1.5-7b,bytedance/ui-tars-1.5-7b,standard,1,2623187,Hyperparameter Optimization,,https://anonymous.invalid/,,65795936,25899
@@ -1159,19 +1159,19 @@ bytedance/ui-tars-1.5-7b,bytedance/ui-tars-1.5-7b,standard,2,2427089,minitap,,ht
 bytedance/ui-tars-1.5-7b,bytedance/ui-tars-1.5-7b,standard,3,3334964,UIGaze Research,,https://github.com/uigaze,,16093654,5944
 bytedance/ui-tars-1.5-7b,bytedance/ui-tars-1.5-7b,standard,4,2325541,future-lens,,http://neelnanda.io/,,7955053,8092
 bytedance/ui-tars-1.5-7b,bytedance/ui-tars-1.5-7b,standard,5,4475685,SPARK2,,https://spark2.local/,,7943802,393
-google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,1,2308106,Descript,descript,https://descript.com/,video-gen,202544399851,12155998
-google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,3,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,47507111573,732566
-google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,4,3844484,Craft,craft-rpgs,https://craftrpgs.com/,roleplay|game|creative-writing|writing-assistant,44883655528,14692140
-google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,5,3316379,ProVision.ai,,https://provision.ai/,,35789624025,8307301
-google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,6,2699842,ISEKAI ZERO,isekai-zero,https://www.isekai.world/,game,33299014706,1390451
+google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,1,2308106,Descript,descript,https://descript.com/,video-gen,203092034177,12189285
+google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,3,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,47685505524,734896
+google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,4,3844484,Craft,craft-rpgs,https://craftrpgs.com/,roleplay|game|creative-writing|writing-assistant,44943024860,14711107
+google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,5,3316379,ProVision.ai,,https://provision.ai/,,36003976563,8371939
+google/gemini-2.5-flash-lite,google/gemini-2.5-flash-lite,standard,6,2699842,ISEKAI ZERO,isekai-zero,https://www.isekai.world/,game,33351428253,1392506
 qwen/qwen3-235b-a22b-2507,qwen/qwen3-235b-a22b-07-25,standard,2,2275362,SkyrimNet,,https://github.com/SkyrimNet,game,10249407659,1058542
 qwen/qwen3-235b-a22b-2507,qwen/qwen3-235b-a22b-07-25,standard,3,3473470,Bitsec,,https://bitsec.ai/,,5022782380,395675
 qwen/qwen3-235b-a22b-2507,qwen/qwen3-235b-a22b-07-25,standard,4,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,4538415142,107202
 qwen/qwen3-235b-a22b-2507,qwen/qwen3-235b-a22b-07-25,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,3902680710,68013
 qwen/qwen3-235b-a22b-2507,qwen/qwen3-235b-a22b-07-25,standard,7,4536440,Nava Wave 3 Tier B single_source_context,,https://nava.travel/,,3002021964,63323
-moonshotai/kimi-k2,moonshotai/kimi-k2,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1781891007,47700
-moonshotai/kimi-k2,moonshotai/kimi-k2,standard,2,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,781637883,32238
-moonshotai/kimi-k2,moonshotai/kimi-k2,standard,7,3458689,RawSource Intelligence,,https://rawsource.com/,,260032809,97954
+moonshotai/kimi-k2,moonshotai/kimi-k2,standard,1,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1783098651,47724
+moonshotai/kimi-k2,moonshotai/kimi-k2,standard,2,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,782778714,32307
+moonshotai/kimi-k2,moonshotai/kimi-k2,standard,7,3458689,RawSource Intelligence,,https://rawsource.com/,,260033026,97961
 moonshotai/kimi-k2,moonshotai/kimi-k2,standard,8,2638172,Odin Agent,,https://odin-labs.ai/,,220046023,2969
 moonshotai/kimi-k2,moonshotai/kimi-k2,standard,9,2627404,Claude Code,claude-code,https://claude.ai/code,cli-agent,173089927,3373
 cognitivecomputations/dolphin-mistral-24b-venice-edition,venice/uncensored,standard,1,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,345530019,52237
@@ -1249,9 +1249,9 @@ meta-llama/llama-guard-4-12b,meta-llama/llama-guard-4-12b,standard,2,4392473,ali
 meta-llama/llama-guard-4-12b,meta-llama/llama-guard-4-12b,standard,3,2643948,SagaBound,,https://sagabound.com/,,134784262,290775
 meta-llama/llama-guard-4-12b,meta-llama/llama-guard-4-12b,standard,4,3660852,Sekai Agent,,https://local.sekai_agent/,,109458960,54252
 meta-llama/llama-guard-4-12b,meta-llama/llama-guard-4-12b,standard,5,2365527,ExtenTeam-LlamaGuard,,https://app.extenteam.com/,,64743949,122038
-qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,2,4567837,AI-SOC Laboratory,,https://vk-soft.local/ai-soc-poc,,362963428,51519
-qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,3,4653919,Fact Chronicle,,https://factchronicle.com/,,359798667,188656
-qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,4,2419141,POD - Media Monitoring System,,https://compassapi.podegypt.com/,,332727738,36447
+qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,2,4567837,AI-SOC Laboratory,,https://vk-soft.local/ai-soc-poc,,363221485,51573
+qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,3,4653919,Fact Chronicle,,https://factchronicle.com/,,360908579,189400
+qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,4,2419141,POD - Media Monitoring System,,https://compassapi.podegypt.com/,,335016201,36775
 qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,120831199,5304
 qwen/qwen3-30b-a3b,qwen/qwen3-30b-a3b-04-28,standard,6,4634623,DreamSignal-enrich,,https://github.com/robbrowton/dream-signal,,109195392,193665
 qwen/qwen3-8b,qwen/qwen3-8b-04-28,standard,1,2481807,inference.sh,,https://inference.sh/,,2737549840,1417190
@@ -1349,11 +1349,11 @@ rekaai/reka-flash-3,rekaai/reka-flash-3,standard,2,4072322,AI Trading Assistant,
 rekaai/reka-flash-3,rekaai/reka-flash-3,standard,3,4745784,BeeJobs LLM Intelligence Testing,,https://beejobs.co/,,2155284,122
 rekaai/reka-flash-3,rekaai/reka-flash-3,standard,4,2235775,shapes inc,,https://shapes.inc/,roleplay|game,1043383,462
 rekaai/reka-flash-3,rekaai/reka-flash-3,standard,5,2387170,tfy,,https://www.truefoundry.com/,,1026844,88
-google/gemma-3-27b-it,google/gemma-3-27b-it,standard,1,2235775,shapes inc,,https://shapes.inc/,roleplay|game,7869792366,5146650
-google/gemma-3-27b-it,google/gemma-3-27b-it,standard,2,3189935,Dategram Backend,,https://dategram.io/,,3013651198,613351
-google/gemma-3-27b-it,google/gemma-3-27b-it,standard,3,172753,Rochat AI,,https://rochat.ai/,roleplay|game,2775662645,537111
-google/gemma-3-27b-it,google/gemma-3-27b-it,standard,5,2511581,MIRAI,,https://www.mirai.fun/,,1662402042,101044
-google/gemma-3-27b-it,google/gemma-3-27b-it,standard,6,4674208,Beakon Canal - multipurpose,,https://multipurpose.canal.beakon.com/,,1131643670,1481256
+google/gemma-3-27b-it,google/gemma-3-27b-it,standard,1,2235775,shapes inc,,https://shapes.inc/,roleplay|game,7886737739,5154095
+google/gemma-3-27b-it,google/gemma-3-27b-it,standard,2,3189935,Dategram Backend,,https://dategram.io/,,3016345579,613946
+google/gemma-3-27b-it,google/gemma-3-27b-it,standard,3,172753,Rochat AI,,https://rochat.ai/,roleplay|game,2784799055,538955
+google/gemma-3-27b-it,google/gemma-3-27b-it,standard,5,2511581,MIRAI,,https://www.mirai.fun/,,1668207854,101447
+google/gemma-3-27b-it,google/gemma-3-27b-it,standard,6,4674208,Beakon Canal - multipurpose,,https://multipurpose.canal.beakon.com/,,1137408116,1489213
 thedrummer/skyfall-36b-v2,thedrummer/skyfall-36b-v2,standard,2,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,41278985,6304
 thedrummer/skyfall-36b-v2,thedrummer/skyfall-36b-v2,standard,3,2423125,Codex Image Generation,,https://codex.local/,,30972885,7587
 thedrummer/skyfall-36b-v2,thedrummer/skyfall-36b-v2,standard,4,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,23236697,3704
@@ -1419,11 +1419,11 @@ deepseek/deepseek-r1-distill-llama-70b,deepseek/deepseek-r1-distill-llama-70b,st
 deepseek/deepseek-r1-distill-llama-70b,deepseek/deepseek-r1-distill-llama-70b,standard,4,2325541,future-lens,,http://neelnanda.io/,,35285116,40926
 deepseek/deepseek-r1-distill-llama-70b,deepseek/deepseek-r1-distill-llama-70b,standard,5,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,22190604,5648
 deepseek/deepseek-r1-distill-llama-70b,deepseek/deepseek-r1-distill-llama-70b,standard,7,3266788,Tavo,,https://tavoai.dev/,roleplay|personal-agent,6358339,1373
-deepseek/deepseek-r1,deepseek/deepseek-r1,standard,1,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,3214402143,293827
-deepseek/deepseek-r1,deepseek/deepseek-r1,standard,2,2612109,Transsion-Assistant,,https://git.ai-transsion.com/assistant,,777482468,132895
-deepseek/deepseek-r1,deepseek/deepseek-r1,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,444160211,15425
-deepseek/deepseek-r1,deepseek/deepseek-r1,standard,4,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,292941279,29989
-deepseek/deepseek-r1,deepseek/deepseek-r1,standard,5,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,276050367,8280
+deepseek/deepseek-r1,deepseek/deepseek-r1,standard,1,169155,Janitor AI,janitor-ai,https://janitorai.com/,roleplay,3218593862,294208
+deepseek/deepseek-r1,deepseek/deepseek-r1,standard,2,2612109,Transsion-Assistant,,https://git.ai-transsion.com/assistant,,778889380,133144
+deepseek/deepseek-r1,deepseek/deepseek-r1,standard,3,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,444299753,15432
+deepseek/deepseek-r1,deepseek/deepseek-r1,standard,4,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,293358150,30036
+deepseek/deepseek-r1,deepseek/deepseek-r1,standard,5,190604,Cline,cline,https://cline.bot/,ide-extension|cli-agent,276065424,8281
 minimax/minimax-01,minimax/minimax-01,standard,1,3766403,ew-amz-pricing,,https://erotikwelt.org/,,27626058,21252
 minimax/minimax-01,minimax/minimax-01,standard,2,2325541,future-lens,,http://neelnanda.io/,,24801513,13427
 minimax/minimax-01,minimax/minimax-01,standard,3,141885,Agnaistic,,https://agnai.chat/,,23561184,537
@@ -1454,11 +1454,11 @@ cohere/command-r7b-12-2024,cohere/command-r7b-12-2024,standard,2,4786790,UNCARBO
 cohere/command-r7b-12-2024,cohere/command-r7b-12-2024,standard,3,184102,Open WebUI,open-webui,https://openwebui.com/,general-chat,9750527,3510
 cohere/command-r7b-12-2024,cohere/command-r7b-12-2024,standard,4,4780987,New Tusk Central AI,,https://new.tusksearch.com/,,9686977,328
 cohere/command-r7b-12-2024,cohere/command-r7b-12-2024,standard,5,4256418,ROI Today Trading Floor,,https://roitoday.app/,,7990981,2289
-meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,1,3349457,DialOS SupportOS - Jimbo,,https://dialos.mediaha.us/,,7952655808,9364199
-meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,2,2537819,ESMED Email App V3,,https://esmed2021.org/,,3434745718,2205871
-meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,3,2611849,FVChat,,https://fvchat.app/,,2988656348,125003
+meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,1,3349457,DialOS SupportOS - Jimbo,,https://dialos.mediaha.us/,,7987123544,9401883
+meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,2,2537819,ESMED Email App V3,,https://esmed2021.org/,,3442505332,2210935
+meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,3,2611849,FVChat,,https://fvchat.app/,,2995368481,125241
 meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,5,3206100,KYM AI Apsara - Hailey Cooper,,https://kymai.ai/,,1739113454,326202
-meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,7,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1262261028,76720
+meta-llama/llama-3.3-70b-instruct,meta-llama/llama-3.3-70b-instruct,standard,7,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1263981492,76931
 amazon/nova-lite-v1,amazon/nova-lite-v1,standard,1,4667674,ch-data paper firm-id,,https://github.com/DudleyGould/ch-data,,1145297206,109554
 amazon/nova-lite-v1,amazon/nova-lite-v1,standard,2,2508827,DPA+,,https://dpa.plus/,,606521058,160449
 amazon/nova-lite-v1,amazon/nova-lite-v1,standard,3,3336911,sentinels-mcp,,https://carousellabs.co/,,248687631,27853
@@ -1479,7 +1479,7 @@ openai/gpt-4o-2024-11-20,openai/gpt-4o-2024-11-20,standard,4,4685887,Native S2 f
 openai/gpt-4o-2024-11-20,openai/gpt-4o-2024-11-20,standard,5,194607,Chatbox AI,,https://chatboxai.app/,general-chat,104887177,9763
 openai/gpt-4o-2024-11-20,openai/gpt-4o-2024-11-20,standard,6,2280272,RikkaHub,,https://rikka-ai.com/,,53842021,4099
 openai/gpt-4o-2024-11-20,openai/gpt-4o-2024-11-20,standard,7,142443,TypingMind,,https://www.typingmind.com/,,48130694,2514
-mistralai/mistral-large-2407,mistralai/mistral-large-2407,standard,1,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,41228787,4357
+mistralai/mistral-large-2407,mistralai/mistral-large-2407,standard,1,142576,SillyTavern,sillytavern,https://sillytavern.app/,roleplay,41261614,4359
 mistralai/mistral-large-2407,mistralai/mistral-large-2407,standard,2,4750732,exp272-s1-clause,,https://github.com/persona-base-explore,,17849809,3297
 mistralai/mistral-large-2407,mistralai/mistral-large-2407,standard,3,2565592,AgentMaurice Calisto V2 benchmark,,https://agentmaurice.ai/,,14977490,535
 mistralai/mistral-large-2407,mistralai/mistral-large-2407,standard,5,3891425,AI Influence Mod,,https://boosty.to/aiinfluence,game|roleplay,10712812,569
@@ -1564,16 +1564,16 @@ meta-llama/llama-3.1-8b-instruct,meta-llama/llama-3.1-8b-instruct,standard,3,267
 meta-llama/llama-3.1-8b-instruct,meta-llama/llama-3.1-8b-instruct,standard,4,4713235,chrono2016-qa,,https://github.com/mltrev23/chrono-data-pipeline,,1494048664,1272800
 meta-llama/llama-3.1-8b-instruct,meta-llama/llama-3.1-8b-instruct,standard,5,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,1134868619,57824
 meta-llama/llama-3.1-8b-instruct,meta-llama/llama-3.1-8b-instruct,standard,6,2241248,VocationsBot,,https://vocations.io/,,1000891560,835207
-mistralai/mistral-nemo,mistralai/mistral-nemo,standard,1,2235067,HammerAI,hammerai,https://www.hammerai.com/,roleplay,166528425646,47097596
+mistralai/mistral-nemo,mistralai/mistral-nemo,standard,1,2235067,HammerAI,hammerai,https://www.hammerai.com/,roleplay,166661361344,47134856
 mistralai/mistral-nemo,mistralai/mistral-nemo,standard,2,2241248,VocationsBot,,https://vocations.io/,,18032751865,14811935
-mistralai/mistral-nemo,mistralai/mistral-nemo,standard,3,2700997,CoffeeCat AI Image Generator,coffeecat-ai,https://www.coffeecatai.com/,image-gen,9930101530,4016041
-mistralai/mistral-nemo,mistralai/mistral-nemo,standard,5,141885,Agnaistic,,https://agnai.chat/,,4934715409,1311093
+mistralai/mistral-nemo,mistralai/mistral-nemo,standard,3,2700997,CoffeeCat AI Image Generator,coffeecat-ai,https://www.coffeecatai.com/,image-gen,9939794839,4020127
+mistralai/mistral-nemo,mistralai/mistral-nemo,standard,5,141885,Agnaistic,,https://agnai.chat/,,4938136109,1312002
 mistralai/mistral-nemo,mistralai/mistral-nemo,standard,6,2965599,Omelas AI,,https://omelas.ai/,,2416074910,2658881
-openai/gpt-4o-mini,openai/gpt-4o-mini,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,14307514293,534838
-openai/gpt-4o-mini,openai/gpt-4o-mini,standard,3,2314329,LLM SEO Tool,,https://llmseo.com/,,5649587360,1165612
+openai/gpt-4o-mini,openai/gpt-4o-mini,standard,2,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,14315327649,535242
+openai/gpt-4o-mini,openai/gpt-4o-mini,standard,3,2314329,LLM SEO Tool,,https://llmseo.com/,,5656369646,1166973
 openai/gpt-4o-mini,openai/gpt-4o-mini,standard,4,3174833,OrationAI,,https://oration.ai/,,5607527651,270712
-openai/gpt-4o-mini,openai/gpt-4o-mini,standard,5,4484665,AXLE Outlook AI Analyze,,https://crm-dev.axle26.com/,,5545069943,2000711
-openai/gpt-4o-mini,openai/gpt-4o-mini,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,5128447630,215078
+openai/gpt-4o-mini,openai/gpt-4o-mini,standard,5,4484665,AXLE Outlook AI Analyze,,https://crm-dev.axle26.com/,,5548710987,2001824
+openai/gpt-4o-mini,openai/gpt-4o-mini,standard,6,2725608,OpenClaw,openclaw,https://openclaw.ai/,personal-agent|cli-agent,5168404546,216396
 openai/gpt-4o-mini-2024-07-18,openai/gpt-4o-mini-2024-07-18,standard,1,3447469,CSI Agent Survey Stage 4 HSRCT,,https://github.com/agent-survey,,3702393242,2109711
 openai/gpt-4o-mini-2024-07-18,openai/gpt-4o-mini-2024-07-18,standard,2,2338620,BuddyPro AI,,https://buddypro.ai/,personal-agent,2965320167,587693
 openai/gpt-4o-mini-2024-07-18,openai/gpt-4o-mini-2024-07-18,standard,5,3857856,agent-flow-cs,,https://agent-flow-cs.local/,,52849241,37661
@@ -1591,7 +1591,7 @@ openai/gpt-4o,openai/gpt-4o,standard,7,4056753,carVertical Internal Tools,,https
 openai/gpt-4o,openai/gpt-4o,standard,8,4021180,Cookie3 Sentiment,,https://cookie3.co/,,331822557,121728
 openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,3,4657256,TwinBench,,https://github.com/twinbench,,9314238,1731
 openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,4,3564182,AAIDO Product Generator,,https://aaido.dev/,,6877760,549
-openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,6,4287133,heyfans,,https://hey.fans/,,3864871,9345
+openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,6,4287133,heyfans,,https://hey.fans/,,3887343,9411
 openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,7,2325541,future-lens,,http://neelnanda.io/,,3023517,4945
 openai/gpt-4o-2024-05-13,openai/gpt-4o-2024-05-13,standard,8,3067167,Hermes Agent,hermes-agent,https://hermes-agent.nousresearch.com/,personal-agent|cli-agent,2571854,109
 mistralai/mixtral-8x22b-instruct,mistralai/mixtral-8x22b-instruct,standard,2,2864637,G0DM0D3-pliny,,https://godmod3.ai/,,311290345,40394
